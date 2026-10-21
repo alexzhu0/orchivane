@@ -119,11 +119,17 @@ class ValidateTests(unittest.TestCase):
         examples = ['/Users/' + 'real-person/private', '/home/' + 'real-person/private',
                     'C:\\Users\\' + 'real-person\\private',
                     'codex://' + 'threads/123-private', 'ghp_' + 'a' * 36,
+                    'claude://' + 'claude.ai/session/private',
+                    'local_' + '12345678-1234-1234-1234-123456789abc',
                     'sk-' + 'a' * 36]
         for value in examples:
             with self.subTest(value=value[:12]):
                 self.write('README.md', value)
                 self.assert_invalid('README.md')
+
+    def test_bare_claude_scheme_in_prose_is_allowed(self):
+        self.write('docs/notes.md', 'Use claude://, then `claude://` links.')
+        self.assertEqual(self.run_check().returncode, 0)
 
     def test_build_and_cache_files_are_excluded(self):
         for directory in ('.git', '.venv', '__pycache__', 'dist', 'node_modules', '.runtime'):
@@ -143,6 +149,29 @@ class ValidateTests(unittest.TestCase):
             with self.subTest(path=path):
                 self.write(name, json.dumps({'plugins': [
                     {'name': 'demo', 'source': {'path': path}}]}))
+                result = self.run_check()
+                if path == './':
+                    self.assertEqual(result.returncode, 0, result.stderr)
+                else:
+                    self.assertNotEqual(result.returncode, 0)
+                    self.assertIn('marketplace.json', result.stderr)
+
+    def test_claude_manifest_matches_root(self):
+        name = '.claude-plugin/plugin.json'
+        self.write(name, json.dumps({'name': 'demo', 'version': '1.0.0'}))
+        self.assertEqual(self.run_check().returncode, 0)
+        for fields, clue in [({'name': 'demo', 'version': '2.0.0'}, 'version'),
+                             ({'name': 'other', 'version': '1.0.0'}, 'name'),
+                             ({'name': 'demo', 'version': '1.0.0', 'skills': './elsewhere'}, 'skills')]:
+            with self.subTest(clue=clue):
+                self.write(name, json.dumps(fields))
+                self.assert_invalid(clue)
+
+    def test_claude_marketplace_string_source(self):
+        name = '.claude-plugin/marketplace.json'
+        for path in ('./', '../', './missing'):
+            with self.subTest(path=path):
+                self.write(name, json.dumps({'plugins': [{'name': 'demo', 'source': path}]}))
                 result = self.run_check()
                 if path == './':
                     self.assertEqual(result.returncode, 0, result.stderr)

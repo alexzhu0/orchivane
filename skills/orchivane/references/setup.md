@@ -30,7 +30,7 @@ Creation may start a recipient before returning. Write the proposed record and i
 
 ## Existing projects
 
-Read existing rules, the role index and current changes. Use chat listings and necessary history to verify actual titles, IDs, responsibilities and status; titles alone cannot disambiguate duplicate names. Reuse roles first and propose new ones only for missing capabilities. Without tools, provide copyable files and briefs and say explicitly that nothing was created or sent.
+Read existing rules, the role index and current changes. When taking over an index from an earlier controller or round, update its header (as-of date, controller, inspected scope) and mark superseded guidance in place before creating roles, since roles read the header first. Refresh the inspected scope at closure. Use chat listings and necessary history to verify actual titles, IDs, responsibilities and status; titles alone cannot disambiguate duplicate names. Reuse roles first and propose new ones only for missing capabilities. Without tools, provide copyable files and briefs and say explicitly that nothing was created or sent.
 
 The current chat is the controller by default; no separate controller chat is required. Respect an existing controller's responsibilities rather than competing for its entry point. If the user only asks which chats exist or what comes next, inspect and answer without dispatching tasks.
 
@@ -77,9 +77,9 @@ Required local materials, frozen inputs, related automation and directories to p
 Old chat → successor, actual takeover status and package link.
 ```
 
-The index has one maintainer, usually the controller. Specialists maintain their own artifacts and receipts; do not let several roles edit the index while the controller owns that write. After checking existing `AGENTS.md`, append an appropriate guide without overwriting its rules:
+The index has one maintainer, usually the controller. Specialists maintain their own artifacts and receipts; do not let several roles edit the index while the controller owns that write. After checking the existing project instruction file (`AGENTS.md`; for Claude Code see [claude-code.md](claude-code.md)), append an appropriate guide without overwriting its rules:
 
-> For multi-chat collaboration, first read `docs/SESSION-MANAGEMENT.md` to locate your role and current task. The controller consolidates impacts and dispatches under the user's authorization. Specialists deliver authorized work with artifacts, versions, validation and remaining issues. Route cross-role questions to the controller; use the relevant `$orchivane` modules for handoff and health checks. Existing rules and user authorization remain effective.
+> For multi-chat collaboration, first read `docs/SESSION-MANAGEMENT.md` to locate your role and current task. The controller consolidates impacts and dispatches under the user's authorization. Specialists deliver authorized work with artifacts, versions, validation and remaining issues. Route cross-role questions to the controller; use the relevant Orchivane modules for handoff and health checks. Existing rules and user authorization remain effective.
 
 ## Context recovery
 

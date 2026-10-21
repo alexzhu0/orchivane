@@ -3,7 +3,7 @@ name: orchivane
 description: Use when a user wants to research and discuss how to organize a new project across sessions, establish controller-led collaboration from scratch, coordinate existing persistent chats, audit collaboration, or hand off to a fresh successor. No existing sessions or project files are required. Not for application runtime sessions or automatically delegating ordinary tasks.
 license: MIT
 metadata:
-  version: "0.3.2"
+  version: "0.4.0"
 ---
 
 # Controller and persistent-chat collaboration
@@ -12,8 +12,8 @@ Start with the project idea. Research and discuss what collaboration is useful; 
 
 ## Locate the work, then load only what is needed
 
-1. Distinguish a new project from takeover. With no other chats, materials or clear plan, use setup to research and discuss the work; do not demand a role table or scan unrelated history for nonexistent chats. For an existing project, read `AGENTS.md` and the role index (default: `docs/SESSION-MANAGEMENT.md`) to identify this chat's role and task. A missing index in another checkout of a known project means retrieving its entry from the controller, not assuming there is no work.
-2. Load the relevant modules:
+1. Distinguish a new project from takeover. With no other chats, materials or clear plan, use setup to research and discuss the work; do not demand a role table or scan unrelated history for nonexistent chats. For an existing project, read the project instruction file (`AGENTS.md` and/or `CLAUDE.md`, whichever exist) and the role index (default: `docs/SESSION-MANAGEMENT.md`) to identify this chat's role and task. A missing index in another checkout of a known project means retrieving its entry from the controller, not assuming there is no work.
+2. Load every module whose intent applies before acting; a host adapter supplements these modules and never replaces them (taking over records needs setup; creating or dispatching roles needs setup and dispatch):
 
 | User intent | Required reference | Delivery |
 | --- | --- | --- |
@@ -23,6 +23,7 @@ Start with the project idea. Research and discuss what collaboration is useful; 
 | Replace a chat, transfer a role, resume an interrupted handoff | [Built-in handoff](references/handoff.md) | Handoff package, verified takeover and archival evidence |
 | Audit collaboration, close a phase, assess handoff needs | [Incremental health check](references/health-check.md) | Changed issues, coverage and next steps |
 | Operate Codex chats or automation | [Codex adapter](references/codex.md) | Execution using verified current capabilities |
+| Running in Claude Code: load alongside any module above | [Claude Code adapter](references/claude-code.md) | Execution using verified current capabilities |
 
 Ordinary tasks do not trigger a whole-project audit. Handoff and health-check modules work independently, without installing older skills with similar names.
 
@@ -39,4 +40,4 @@ Ordinary tasks do not trigger a whole-project audit. Handoff and health-check mo
 
 ## Close the turn
 
-Report actual artifacts and versions, validation, remaining work and the next owner. For corrections, identify updated, unchanged-with-reason and unverifiable locations. The controller checks open items at phase closure; do not invent work merely to fill a record.
+Report actual artifacts and versions, validation, remaining work and the next owner, named even when it is the user. Base every claim about another chat's status on a read made in this turn that actually covers that chat; otherwise give the time of the last read or call it unverified. For corrections, identify updated, unchanged-with-reason and unverifiable locations. The controller checks open items at phase closure; do not invent work merely to fill a record.

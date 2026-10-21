@@ -1,0 +1,12 @@
+{
+  "name": "orchivane",
+  "version": "0.4.0",
+  "description": "Plan project collaboration, coordinate persistent chats, verify deliveries, and hand off work safely.",
+  "author": {
+    "name": "alexzhu0"
+  },
+  "homepage": "https://github.com/alexzhu0/orchivane",
+  "repository": "https://github.com/alexzhu0/orchivane",
+  "license": "MIT",
+  "keywords": ["collaboration", "handoff", "multi-session", "skills"]
+}

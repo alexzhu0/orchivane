@@ -29,7 +29,7 @@ Include the skill version, host/client and available tools, the minimal user req
 
 Keep the main Skill short; place mode-specific instructions in the relevant reference. Preserve existing authorization, stop conditions and historical evidence. Record a reproducer before changing behavior and evaluate the changed path afterward. A baseline that already passes is a valid observation, not a failed test to relabel. Add small executable tests for new scripts; prose behavior requires actual agent outcomes, not keyword counts.
 
-Change the portable manifest, compatibility manifest and Skill metadata version together. Keep the README, examples and current evidence in sync. Historical test reports retain their original version and limitations. Update the CI action pins deliberately; do not add execution hooks or telemetry by default.
+Change the portable manifest, the Codex and Claude compatibility manifests (`.codex-plugin/plugin.json`, `.claude-plugin/plugin.json`) and Skill metadata version together. Keep the README, examples and current evidence in sync. Historical test reports retain their original version and limitations. Update the CI action pins deliberately; do not add execution hooks or telemetry by default.
 
 Native E2E runs require explicit human authorization to create and message real chats. Follow [the reproduction protocol](tests/native-e2e.md); do not launch native sessions automatically from CI. Passing static CI does not prove model behavior, cross-client compatibility or archival safety.
 

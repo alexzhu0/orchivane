@@ -1,4 +1,4 @@
-# Orchivane 0.3.2
+# Orchivane 0.4.0
 
 [English](README.md) · **简体中文** · [MIT](LICENSE) · [贡献与本地验证](CONTRIBUTING.md)
 
@@ -20,13 +20,15 @@ Orchivane 把这些协作责任交给一个总控入口：总控先澄清目标�
 
 **尚未证明协调成本更低。** 2026-10-20的[配对试跑](tests/paired/README.md)使用相同任务、模型及轮次预算上限：两组各完成三题，额外协调请求均为零；Orchivane 组累计执行时长和 token 更高。没有测量真人时间，也没有形成长期多角色协作，不能把机制设计当成已证实的效能收益。
 
+0.4.0 新增 Claude Code 支持：插件清单，以及面向 Claude 桌面 App Code 标签页的 [Claude Code 适配说明](skills/orchivane/references/claude-code.md)。在[三轮桌面原生验收](tests/claude-code-desktop.md)中，新总控创建两个长期角色，完成派工，并验收一份附独立评审的简报；最后一轮 16 项中 13 项通过、3 项部分通过，此后的措辞修订未再复测。从 GitHub 安装插件尚未实测。
+
 0.3.2 将技能正文、插件展示及默认文档改为英文；可继续用中文对话。[0.3.2 原生复核](tests/bilingual-032.zh-CN.md)已确认本机升级、四个新对话加载、中英文规划及英文材料到中文接班的执行；反向接班因宿主容量中断，最终记录一致性也需总控收尾。这是部分证据，不能宣称翻译后完全无退化。
 
 ## 从一个想法开始
 
 从一个项目想法开始，先调研并与用户沟通，判断适合什么协作机制，再形成分工与启动方案。没有已有 session 或资料也可使用；已有项目则复用其角色和入口。进入多会话执行后，用户在总控提出需求，总控统一派工、验收和收口。适用于开发、研究、内容与运营项目。
 
-本套件包含一个可独立安装的 Skill 和轻量插件清单。核心入口短，按任务加载建制、派工验收、巡检、handoff 与 Codex 适配模块；没有后台服务、额外依赖或自动唤醒 hook。
+本套件包含一个可独立安装的 Skill 和轻量插件清单。核心入口短，按任务加载建制、派工验收、巡检、handoff、Codex 与 Claude Code 适配模块；没有后台服务、额外依赖或自动唤醒 hook。
 
 ## 直接使用
 
@@ -36,6 +38,8 @@ Orchivane 把这些协作责任交给一个总控入口：总控先澄清目标�
 使用 $orchivane，我有一个新项目想法，目前没有其他 session。
 先帮我调研并和我沟通，判断需要什么协作机制，再给出具体分工和启动方案。
 ```
+
+在 Claude Code 中可说“使用 orchivane”，或执行 `/orchivane:orchivane`（插件）或 `/orchivane`（独立复制）；`$orchivane` 是 Codex 写法。
 
 常用请求：
 
@@ -50,7 +54,7 @@ Orchivane 把这些协作责任交给一个总控入口：总控先澄清目标�
 
 ## 安装与迁移
 
-### 插件安装（推荐）
+### Codex 插件安装（推荐）
 
 使用与其他 Codex 插件相同的“添加来源 → 安装插件”流程。无需先克隆仓库：
 
@@ -79,6 +83,17 @@ codex plugin list --marketplace orchivane-local --json
 
 清单出现、实际读取、按规则行动是三个不同检查点。自然语言触发受宿主、模型及其他技能影响；需要稳定选用时明确点名。此核验无需新增项目文件、脚本或角色。
 
+### Claude Code 插件安装
+
+在 Claude Code 中添加 GitHub 来源并安装：
+
+```text
+/plugin marketplace add alexzhu0/orchivane
+/plugin install orchivane@orchivane
+```
+
+也可在终端执行 `claude plugin marketplace add alexzhu0/orchivane` 和 `claude plugin install orchivane@orchivane`。清单已通过 `claude plugin validate`，以 `--plugin-dir` 临时加载时能发现并调用 `orchivane:orchivane`；从该 GitHub 来源安装尚未实测。独立复制安装时，把完整的 `skills/orchivane` 目录放到 `~/.claude/skills/orchivane` 或项目的 `.claude/skills/`，只保留一个活跃来源。创建、发消息和归档长期会话需要 Claude 桌面 App Code 标签页的会话工具，见 [Claude Code 适配说明](skills/orchivane/references/claude-code.md)与[桌面验收记录](tests/claude-code-desktop.md)。
+
 ### 独立 Skill 安装
 
 ```sh
@@ -101,7 +116,7 @@ test ! -e "$HOME/.agents/skills/orchivane" && test ! -L "$HOME/.agents/skills/or
 
 自动发现尚未生效时，可以明确要求助手“读取我安装目录中的 `orchivane/SKILL.md` 并按其流程工作”，提供真实完整路径。这是显式加载方式，应单独记录，不能当成自动发现或插件安装通过。
 
-仓库内 `.agents/plugins/marketplace.json` 定义插件来源，根 `plugin.json` 为 portable 格式，`.codex-plugin/plugin.json` 为兼容格式。本包没有后台调度或自动执行 hook。
+仓库内 `.agents/plugins/marketplace.json` 定义插件来源，根 `plugin.json` 为 portable 格式，`.codex-plugin/plugin.json` 为 Codex 兼容格式，`.claude-plugin/plugin.json` 与 `.claude-plugin/marketplace.json` 供 Claude Code 使用。本包没有后台调度或自动执行 hook。
 
 旧的个人 `session-handoff` / `session-health-check` 可以继续保留。新技能内部已有完整交接与巡检流程，无运行时依赖；明确使用 `$orchivane` 即可进入统一机制。旧技能未自动改写，以免影响已有项目。
 
@@ -114,7 +129,7 @@ test ! -e "$HOME/.agents/skills/orchivane" && test ! -L "$HOME/.agents/skills/or
 | 任务说明、一次确认与验收 | [dispatch.md](skills/orchivane/references/dispatch.md) |
 | 交接、资料保全、自动化转接、归档后复核 | [handoff.md](skills/orchivane/references/handoff.md) |
 | 按变化巡检与通知 | [health-check.md](skills/orchivane/references/health-check.md) |
-| 原生能力与降级方式 | [codex.md](skills/orchivane/references/codex.md) |
+| 原生能力与降级方式 | [codex.md](skills/orchivane/references/codex.md) · [claude-code.md](skills/orchivane/references/claude-code.md) |
 | Ponytail / Superpowers 源码研究与取舍 | [研究记录](docs/research.zh-CN.md) |
 | 项目定位、同类方案与下一步取舍 | [价值与优化评估](docs/value-assessment.zh-CN.md) |
 | 桌面插件发现、启用与使用复现 | [桌面验收](tests/desktop-plugin.md) |

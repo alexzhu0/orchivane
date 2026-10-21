@@ -1,0 +1,15 @@
+{
+  "name": "orchivane",
+  "description": "Orchivane: controller-led collaboration across persistent chats, with verified dispatch, acceptance and handoff.",
+  "owner": {
+    "name": "alexzhu0"
+  },
+  "plugins": [
+    {
+      "name": "orchivane",
+      "source": "./",
+      "description": "Plan project collaboration, coordinate persistent chats, verify deliveries, and hand off work safely.",
+      "category": "productivity"
+    }
+  ]
+}

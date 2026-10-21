@@ -4,6 +4,14 @@
 
 This English index summarizes existing experiments. Original records and frozen fixtures remain in their source language; translating a summary is not rerunning an experiment. Dates and skill versions identify the actual subjects of each run.
 
+## Version 0.4.0: Claude Code adapter
+
+Version 0.4.0 adds `.claude-plugin/` manifests and a [Claude Code adapter](../skills/orchivane/references/claude-code.md) that maps the workflow onto the Claude desktop app's session tools. `SKILL.md` now reads `CLAUDE.md` alongside `AGENTS.md`, loads the adapter alongside the other modules in Claude Code, requires every applicable module and bases claims about another chat's status on a covering fresh read; setup updates a taken-over index header, and the guide it appends now says "Orchivane modules" instead of "`$orchivane` modules". Apart from loading the adapter, these changes also apply to Codex and were not rerun there.
+
+Dates: 2026-10-20 to 2026-10-21. In three fresh-controller runs in the desktop app, the user typed the same request and the controller created a writer and a reviewer through task chips, dispatched by `ListAgents` name with idle notices, accepted a brief against hashes (integrated by the controller in runs 2 and 3), with no archives, schedules or writes outside the lab. In run 1 the app's worktree guard blocked the reviewer from writing to the base checkout, which the writer had reached through the shell; the layout rule added afterwards held in runs 2 and 3. Run 3 passed 13 of 16 items, with three partial. Runs 2 and 3 used the run-1 lab, run 2 was confounded by an active plugin during planning and low effort, and the final wording edits were not rerun. A session-only `--plugin-dir` load discovered and invoked the plugin skill; installation from GitHub was not observed. [Full record](../tests/claude-code-desktop.md).
+
+The 2026-10-21 [instruction-loading regression review](../tests/claude-code-desktop.md#instruction-loading-regression-review) corrected an unconditional CLAUDE wrapper recommendation that could omit inherited AGENTS rules. Four setup cases were reviewed against documented behavior; native loading remains unverified.
+
 ## Version 0.3.2: English-first distribution
 
 Version 0.3.2 changes the maintained skill instructions, plugin presentation and default documentation to English, adds a complete Chinese README with language switching, and provides bilingual research/value guides. Code identifiers and comments remain English. Responses follow the user's preferred language.
@@ -63,4 +71,4 @@ Versions 0.1.0 and 0.2.0 included baseline and skill-guided text exercises. The 
 
 ## What remains unverified
 
-Real human coordination savings, representative long-running specialist work, language-specific behavioral equivalence, cross-client installation, archival survival, real concurrent writers, crash recovery and long-term scheduling need separate evidence. Static CI, a well-formed manifest or a successful bounded run cannot establish these properties.
+Real human coordination savings, representative long-running specialist work, language-specific behavioral equivalence, cross-client installation, archival survival, real concurrent writers, crash recovery and long-term scheduling need separate evidence. In Claude Code, plugin installation from GitHub, a clean empty-project run of the final text and controller handoff also remain unverified. Static CI, a well-formed manifest or a successful bounded run cannot establish these properties.

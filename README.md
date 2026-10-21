@@ -1,4 +1,4 @@
-# Orchivane 0.3.2
+# Orchivane 0.4.0
 
 **English** · [简体中文](README.zh-CN.md) · [MIT](LICENSE) · [Contributing](CONTRIBUTING.md)
 
@@ -20,13 +20,15 @@ For example, ask the controller to add login to an existing product. It first ch
 
 **Coordination savings are not yet established.** In the [paired pilot](docs/evidence.md#paired-pilot), both workflows completed three tasks with zero extra coordination requests under the same tasks, model and turn ceilings. Orchivane used more cumulative active time and reported tokens. Real human time and sustained specialist collaboration were not measured.
 
+Version 0.4.0 adds Claude Code support: plugin manifests and a [Claude Code adapter](skills/orchivane/references/claude-code.md) for the Claude desktop app's Code tab. In [three native desktop runs](tests/claude-code-desktop.md), fresh controllers created two persistent roles, dispatched work and accepted a short brief with an independent review. The final run passed 13 of 16 checks with three partial, and the text was revised afterwards without a rerun; plugin installation from GitHub has not been observed.
+
 Version 0.3.2 makes skill instructions, plugin presentation and default documentation English-first, with a complete Chinese README. You can continue using Chinese in conversations. A [native 0.3.2 follow-up](tests/bilingual-032.md) verified upgrade and loading in four fresh chats, bilingual planning, and English-to-Chinese handoff execution. The reverse handoff was interrupted by host capacity; final record consistency also needed controller closure. This is partial evidence, not proof of translation equivalence.
 
 ## Start from an idea
 
 Start with an idea, research and clarify the work, choose a collaboration structure, then dispatch and accept concrete deliverables. No existing sessions or repository are required. Existing projects reuse their roles and records. The workflow can support software, research, content and operations projects.
 
-The package contains one independently installable skill and lightweight plugin manifests. A short entry loads setup, dispatch, health-check, handoff and Codex references as needed. There is no background service, runtime dependency or automatic wake-up hook.
+The package contains one independently installable skill and lightweight plugin manifests. A short entry loads setup, dispatch, health-check, handoff, Codex and Claude Code references as needed. There is no background service, runtime dependency or automatic wake-up hook.
 
 ## Use it
 
@@ -37,6 +39,8 @@ Use $orchivane. I have a new project idea and no other sessions.
 Research it with me, clarify the important constraints, and recommend
 an appropriate collaboration structure and a concrete starting plan.
 ```
+
+In Claude Code, write “Use orchivane” or run `/orchivane:orchivane` (plugin) or `/orchivane` (standalone copy); `$orchivane` is Codex syntax.
 
 Common requests:
 
@@ -51,7 +55,7 @@ The workflow is: understand the goal → research and discuss → recommend a st
 
 ## Install and migrate
 
-### Plugin installation — recommended
+### Codex plugin — recommended
 
 Add the GitHub source and install the plugin, using the same plugin mechanism as other Codex plugins. No repository clone is required:
 
@@ -79,6 +83,17 @@ as a workaround. Read only: do not create chats or dispatch tasks.
 
 Discovery, reading and following the workflow are separate checks. Natural-language selection depends on the host, model and other skills; explicitly name the skill when you want it selected.
 
+### Claude Code plugin
+
+In Claude Code, add the GitHub source and install the plugin:
+
+```text
+/plugin marketplace add alexzhu0/orchivane
+/plugin install orchivane@orchivane
+```
+
+From a shell, `claude plugin marketplace add alexzhu0/orchivane` and `claude plugin install orchivane@orchivane` do the same. The manifests pass `claude plugin validate`, and a session-only `--plugin-dir` load discovered and invoked `orchivane:orchivane`; installation from this GitHub source has not been observed yet. For a standalone copy, place the complete `skills/orchivane` directory at `~/.claude/skills/orchivane` or in a project's `.claude/skills/`, and keep one active source. Creating, messaging and archiving persistent chats needs the session tools of the Claude desktop app's Code tab; see the [Claude Code adapter](skills/orchivane/references/claude-code.md) and the [desktop record](tests/claude-code-desktop.md).
+
 ### Standalone skill
 
 ```sh
@@ -96,7 +111,7 @@ The former 0.3.0 standalone copy was discovered by the CLI but absent from three
 
 If automatic discovery is unavailable, explicitly ask the assistant to read the installed `orchivane/SKILL.md` at its real full path and follow it. Record that as explicit loading, not successful automatic discovery.
 
-The repository includes `.agents/plugins/marketplace.json`, a portable root `plugin.json` and `.codex-plugin/plugin.json`. Existing personal `session-handoff` or `session-health-check` skills can remain installed; Orchivane includes its own complete modules and does not modify or depend on those older skills.
+The repository includes `.agents/plugins/marketplace.json`, a portable root `plugin.json`, `.codex-plugin/plugin.json`, and `.claude-plugin/plugin.json` with `.claude-plugin/marketplace.json` for Claude Code. Existing personal `session-handoff` or `session-health-check` skills can remain installed; Orchivane includes its own complete modules and does not modify or depend on those older skills.
 
 ## Documentation and evidence
 
@@ -107,7 +122,7 @@ The repository includes `.agents/plugins/marketplace.json`, a portable root `plu
 | Task briefs, dispatch and acceptance | [Dispatch](skills/orchivane/references/dispatch.md) |
 | Preservation, successor acceptance and archival checks | [Handoff](skills/orchivane/references/handoff.md) |
 | Incremental collaboration checks | [Health checks](skills/orchivane/references/health-check.md) |
-| Native tools and fallbacks | [Codex adapter](skills/orchivane/references/codex.md) |
+| Native tools and fallbacks | [Codex adapter](skills/orchivane/references/codex.md) · [Claude Code adapter](skills/orchivane/references/claude-code.md) |
 | Ponytail, Superpowers and related work | [Research](docs/research.md) · [中文](docs/research.zh-CN.md) |
 | Value, tradeoffs and next priorities | [Value assessment](docs/value-assessment.md) · [中文](docs/value-assessment.zh-CN.md) |
 | Results, versions and limitations | [English evidence index](docs/evidence.md) · [Original records, 中文](tests/evaluation.md) |

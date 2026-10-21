@@ -18,6 +18,8 @@ EXCLUDED = {'.git', '.venv', 'venv', '__pycache__', 'dist', 'build',
 PRIVATE = {
     'personal absolute path': re.compile(r'(?:/(?:Users|home)/[\w.-]+(?:/|\b)|[A-Za-z]:\\Users\\[\w.-]+)', re.I),
     'private thread link': re.compile(r'codex://' r'threads/[^\s\x22\x27]+'),
+    'private session link': re.compile(r'claude://' r'[A-Za-z0-9][^\s\x22\x27\x60()<>]*'),
+    'private session id': re.compile(r'\blocal_[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}\b'),
     'possible credential': re.compile(r'\b(?:sk-(?:proj-)?[A-Za-z0-9_-]{20,}|gh[pousr]_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{30,}|AKIA[A-Z0-9]{16})\b'),
 }
 
@@ -67,6 +69,14 @@ def validate(root):
     if skill_roots[0] != skill_roots[1]:
         error(manifests[1], 'skills path differs from root plugin.json')
     skill_root = skill_roots[0]
+    claude_path = root / '.claude-plugin/plugin.json'
+    if claude_path.exists():
+        claude = mapping(claude_path, json.loads)
+        for key in ('name', 'version'):
+            if claude.get(key) != configs[0].get(key):
+                error(claude_path, f'{key} differs from root plugin.json')
+        if inside(claude_path, claude.get('skills', './skills/'), root) != skill_root:
+            error(claude_path, 'skills path differs from root plugin.json')
     skills = sorted(skill_root.glob('*/SKILL.md')) if skill_root and skill_root.is_dir() else []
     if not skills:
         error(manifests[0], 'skills path must contain skill directories with SKILL.md')
