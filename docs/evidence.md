@@ -4,6 +4,12 @@
 
 This English index summarizes existing experiments. Original records and frozen fixtures remain in their source language; translating a summary is not rerunning an experiment. Dates and skill versions identify the actual subjects of each run.
 
+## Version 0.4.1: adoption and deferred version checks
+
+The [adoption module](../skills/orchivane/references/adoption.md) adds an explicit existing-project path, source/read/task evidence, scoped receipts and role verification at normal work boundaries. On 2026-10-22, [four isolated temporary-agent turns](../tests/adoption-upgrade.md) exercised a 0.4.0 baseline, 0.4.1 controller adoption, a normal data task and rejection of a mismatched/partial receipt. Protected files and simulated runtime states were preserved; the worker produced three rows/total 9 and only its two authorized outputs. Candidate source hashes, sanitized artifacts and offline replay are published.
+
+The baseline already handled the main boundaries correctly. Host project instructions also supplied deferred-loading guidance, so the run does not isolate a skill effect or prove improvement. Explicit frozen-source reads are not installed-plugin upgrade, automatic discovery, persistent-chat interruption or hot-reload evidence; idle roles and later controller acceptance remain deferred. Historical native tests below retain their actual versions.
+
 ## Version 0.4.0: Claude Code adapter
 
 Version 0.4.0 adds `.claude-plugin/` manifests and a [Claude Code adapter](../skills/orchivane/references/claude-code.md) that maps the workflow onto the Claude desktop app's session tools. `SKILL.md` now reads `CLAUDE.md` alongside `AGENTS.md`, loads the adapter alongside the other modules in Claude Code, requires every applicable module and bases claims about another chat's status on a covering fresh read; setup updates a taken-over index header, and the guide it appends now says "Orchivane modules" instead of "`$orchivane` modules". Apart from loading the adapter, these changes also apply to Codex. They had not been rerun there at the initial PR review; the bounded follow-up below adds Codex evidence.

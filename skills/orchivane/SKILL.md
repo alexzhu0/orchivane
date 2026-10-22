@@ -1,9 +1,9 @@
 ---
 name: orchivane
-description: Use when a user wants to research and discuss how to organize a new project across sessions, establish controller-led collaboration from scratch, coordinate existing persistent chats, audit collaboration, or hand off to a fresh successor. No existing sessions or project files are required. Not for application runtime sessions or automatically delegating ordinary tasks.
+description: Use when a user wants to research and discuss how to organize a new project across sessions, establish controller-led collaboration, adopt or upgrade the workflow in an existing project, coordinate persistent chats, audit collaboration, or hand off to a fresh successor. No existing sessions or project files are required. Not for application runtime sessions or automatically delegating ordinary tasks.
 license: MIT
 metadata:
-  version: "0.4.0"
+  version: "0.4.1"
 ---
 
 # Controller and persistent-chat collaboration
@@ -19,6 +19,7 @@ Start with the project idea. Research and discuss what collaboration is useful; 
 | --- | --- | --- |
 | Explore an idea and design collaboration from scratch | [Setup and records](references/setup.md) | Project brief, recommended structure and rationale, initial tasks |
 | Take over existing chats; inspect roles or TODOs | [Setup and records](references/setup.md) | Current roles, authorization and next steps |
+| Adopt or upgrade Orchivane in an existing project | [Setup and records](references/setup.md) + [Adoption and version receipts](references/adoption.md) | Verified source, deferred role checks and scoped receipts |
 | Coordinate a change, dispatch work, accept results | [Dispatch and acceptance](references/dispatch.md) | Impact list, task briefs, acceptance decision |
 | Replace a chat, transfer a role, resume an interrupted handoff | [Built-in handoff](references/handoff.md) | Handoff package, verified takeover and archival evidence |
 | Audit collaboration, close a phase, assess handoff needs | [Incremental health check](references/health-check.md) | Changed issues, coverage and next steps |
@@ -37,6 +38,7 @@ Ordinary tasks do not trigger a whole-project audit. Handoff and health-check mo
 - **Separate delivery evidence.** Record implementation, technical validation, outcome acceptance, push and deployment separately; mark inapplicable stages. Sending a message, receiving an acknowledgment or passing tests cannot replace final acceptance.
 - **Preserve budgets and stop conditions.** Stop when the condition is reached; unused allowance does not authorize another run. Handoff, context compaction, retries and tool recovery do not reset budgets or cancel a pause.
 - **Do not keep collaboration alive by repeatedly waking chats.** Dispatch only for authorized tasks, actual dependencies, material changes or blockers requiring action. Advance autonomous work as agreed; do not repeatedly ask about unchanged status or claim background monitoring without scheduling capability.
+- **Adopt at normal work boundaries.** Installation, actual reads and behavior checks are separate evidence. Use [adoption.md](references/adoption.md) for version changes; fold role verification into its next normal task without interrupting active work or waking idle roles just to upgrade.
 
 ## Close the turn
 

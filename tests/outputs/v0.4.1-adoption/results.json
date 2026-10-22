@@ -1,0 +1,62 @@
+{
+  "date": "2026-10-22",
+  "subject": "Frozen Orchivane 0.4.1 candidate; baseline 0.4.0",
+  "execution": "Four real temporary-agent turns, simulated persistent-role states, explicit local snapshot loading",
+  "overall": "Bounded exercised paths passed; no causal improvement or native noninterruption claim",
+  "phases": [
+    {
+      "id": "baseline",
+      "outcome": "pass",
+      "observations": [
+        "7 protected original files unchanged",
+        "4 actual source reads",
+        "active N1 preserved; worker/reviewer deferred; former worker historical",
+        "source snapshot distinguished from installed/latest state"
+      ]
+    },
+    {
+      "id": "candidate-controller",
+      "outcome": "pass",
+      "observations": [
+        "8 protected original files unchanged, including AGENTS.md",
+        "entry plus setup/adoption/dispatch actually read",
+        "N2 addendum saved but not sent; no summary fabricated",
+        "controller coverage scoped; other roles pending"
+      ]
+    },
+    {
+      "id": "partial-mismatch",
+      "outcome": "pass",
+      "observations": [
+        "8 protected fixture files plus submitted receipt unchanged",
+        "0.4.1 label rejected from current coverage because actual entry is 0.4.0",
+        "missing module and behavior evidence kept unverified",
+        "no pause or role wake-up"
+      ]
+    },
+    {
+      "id": "normal-worker",
+      "outcome": "pass",
+      "observations": [
+        "12 pre-existing files unchanged",
+        "only summary.json and receipt-N2.json added under role-owned work/data/",
+        "3 rows and total quantity 9 independently checked",
+        "entry/setup/adoption actually read; receipt scopes loading to N2",
+        "controller acceptance remains a distinct later step"
+      ]
+    }
+  ],
+  "baseline_interpretation": "The baseline already respected the important boundaries. This exercise demonstrates explicit procedure coverage, not superiority over 0.4.0.",
+  "retained_record_note": "Candidate controller prose says four references; its actual table and read trace contain four source files (entry plus three modules). The original artifact is retained; evaluation uses actual files.",
+  "evaluator_interventions": [
+    "Controlled fixture N1->N2 transition only after protected-file acceptance; not a real completion or role message",
+    "Evidence collector missing-import error corrected; no solver repeat or business-state change"
+  ],
+  "limits": [
+    "Host project instructions and other skill catalog entries were inherited despite fresh conversational context; they already contain deferred loading guidance, so this is not an isolated skill ablation. Private project text is not published.",
+    "No persistent native chats, actual message delivery/queue, live concurrency, installation upgrade, automatic discovery, hot reload or Claude runtime exercised.",
+    "One example per phase; no repeats, human-time, token-cost or reliability estimates.",
+    "Worker completed and evaluator checked evidence; original controller was not woken again to update its index. Pending roles remain pending."
+  ],
+  "next_owner": "Maintainer; this bounded run is closed. In the fixture, role-controller owns eventual normal acceptance of N2."
+}

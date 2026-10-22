@@ -1,6 +1,6 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "orchivane",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Plan project collaboration, coordinate persistent chats, verify deliveries, and hand off work safely."
 }

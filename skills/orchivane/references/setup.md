@@ -30,6 +30,8 @@ Creation may start a recipient before returning. Write the proposed record and i
 
 ## Existing projects
 
+For initial adoption or a version change, also read [adoption.md](adoption.md): verify the actual source and phase role checks into normal tasks. Inspecting existing TODOs alone does not trigger an upgrade campaign.
+
 Read existing rules, the role index and current changes. When taking over an index from an earlier controller or round, update its header (as-of date, controller, inspected scope) and mark superseded guidance in place before creating roles, since roles read the header first. Refresh the inspected scope at closure. Use chat listings and necessary history to verify actual titles, IDs, responsibilities and status; titles alone cannot disambiguate duplicate names. Reuse roles first and propose new ones only for missing capabilities. Without tools, provide copyable files and briefs and say explicitly that nothing was created or sent.
 
 The current chat is the controller by default; no separate controller chat is required. Respect an existing controller's responsibilities rather than competing for its entry point. If the user only asks which chats exist or what comes next, inspect and answer without dispatching tasks.

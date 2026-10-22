@@ -1,4 +1,4 @@
-# Orchivane 0.4.0
+# Orchivane 0.4.1
 
 **English** · [简体中文](README.zh-CN.md) · [MIT](LICENSE) · [Contributing](CONTRIBUTING.md)
 
@@ -19,6 +19,8 @@ Orchivane gives that work a single controller entry point. The controller clarif
 For example, ask the controller to add login to an existing product. It first checks the current identity design and interfaces, decides how implementation and independent review should be divided, then reports implementation, verification, push and deployment separately. You guide the goal and important tradeoffs without repeating the whole request in every role's chat. This is the intended workflow; tested capabilities and limits are documented below.
 
 **Coordination savings are not yet established.** In the [paired pilot](docs/evidence.md#paired-pilot), both workflows completed three tasks with zero extra coordination requests under the same tasks, model and turn ceilings. Orchivane used more cumulative active time and reported tokens. Real human time and sustained specialist collaboration were not measured.
+
+Version 0.4.1 adds [existing-project adoption and upgrades](skills/orchivane/references/adoption.md): source/version verification, task-scoped read receipts and deferred role checks at normal work boundaries. Installation, actual loading and checked behavior are tracked separately; active and idle roles are not woken just to refresh a version.
 
 Version 0.4.0 adds Claude Code support: plugin manifests and a [Claude Code adapter](skills/orchivane/references/claude-code.md) for the Claude desktop app's Code tab. In [three native desktop runs](tests/claude-code-desktop.md), fresh controllers created two persistent roles, dispatched work and accepted a short brief with an independent review. The final run passed 13 of 16 checks with three partial, and the text was revised afterwards without a rerun; plugin installation from GitHub has not been observed.
 
@@ -85,6 +87,22 @@ as a workaround. Read only: do not create chats or dispatch tasks.
 
 Discovery, reading and following the workflow are separate checks. Natural-language selection depends on the host, model and other skills; explicitly name the skill when you want it selected.
 
+### Existing projects and upgrades
+
+Ask the existing controller:
+
+```text
+Use $orchivane to adopt or upgrade this project's collaboration workflow.
+Verify the actual available source/version and your own module reads.
+Keep existing roles and work in progress. Check each role at its next
+normal task and retain a scoped receipt; leave idle roles pending.
+Do not interrupt work, broadcast upgrade messages or restart chats.
+```
+
+The controller reuses the project rules and role index, records a verified target and integrates any needed guidance without replacing local rules. Each role records the entry/modules actually read, version or content identity, task/turn, ownership and limits, and the artifacts/checks it completed. The controller accepts those receipts individually. Partial reads, old versions and unavailable sources stay explicit gaps; an installed plugin does not make all existing chats upgraded.
+
+This workflow is separate from installing a package. Use the host's supported update mechanism when installation changes are authorized, preserve customizations and keep one active source. Explicit-path loading is recorded as such. See the [adoption reference](skills/orchivane/references/adoption.md) for receipt fields and boundaries, and the [isolated exercise](tests/adoption-upgrade.md) for observed behavior and limits.
+
 ### Claude Code plugin
 
 In Claude Code, add the GitHub source and install the plugin:
@@ -121,6 +139,7 @@ The repository includes `.agents/plugins/marketplace.json`, a portable root `plu
 | --- | --- |
 | Core workflow and routing | [SKILL.md](skills/orchivane/SKILL.md) |
 | Research, setup, takeover and context recovery | [Setup](skills/orchivane/references/setup.md) |
+| Existing-project adoption, deferred upgrades and version receipts | [Adoption](skills/orchivane/references/adoption.md) |
 | Task briefs, dispatch and acceptance | [Dispatch](skills/orchivane/references/dispatch.md) |
 | Preservation, successor acceptance and archival checks | [Handoff](skills/orchivane/references/handoff.md) |
 | Incremental collaboration checks | [Health checks](skills/orchivane/references/health-check.md) |

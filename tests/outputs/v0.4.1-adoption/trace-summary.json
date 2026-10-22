@@ -1,0 +1,229 @@
+{
+  "baseline": {
+    "observed_model_contexts": [
+      {
+        "model": "gpt-6.1-sol",
+        "effort": "max"
+      }
+    ],
+    "visible_messages": [
+      {
+        "at": "2026-10-22T05:55:50.820Z",
+        "phase": "commentary",
+        "text": "I’ll use the supplied Orchivane 0.4.0 snapshot to check the project’s coordination records, then record the adoption status and next owners without changing the simulated role states."
+      },
+      {
+        "at": "2026-10-22T05:56:40.287Z",
+        "phase": "commentary",
+        "text": "The data worker is still on N1, the reviewer is idle, and the former worker is stopped. I’ll keep those states intact and put the new loading and receipt requirements at each role’s next real task. The existing 0.3.2 receipt will remain historical evidence."
+      },
+      {
+        "at": "2026-10-22T06:20:12.676Z",
+        "phase": "commentary",
+        "text": "The records now separate verified controller loading from each specialist’s pending adoption. They also give the data worker a concrete N2 continuation and receipt format. I’ll check that the active work, original inputs, historical receipt and simulated states stayed unchanged."
+      },
+      {
+        "at": "2026-10-22T06:21:07.557Z",
+        "phase": "final_answer",
+        "text": "Completed controller-side adoption using verified Orchivane **0.4.0** metadata and hashes.\n\nArtifacts:\n\n- [Updated role index](<PROJECT>/docs/SESSION-MANAGEMENT.md) and [AGENTS guidance](<PROJECT>/AGENTS.md).\n- [Change and receipt contract](<PROJECT>/docs/changes/ADOPT-20261022-01.md).\n- [Verified receipt evidence](<PROJECT>/coordination/adoption-receipts.json) and [health baseline](<PROJECT>/docs/SESSION-HEALTH.md).\n\nChecks passed: seven protected project files and four skill files unchanged; eight local links valid; original history retained. Runtime states, counters and messages remain unchanged. No N2 output or specialist receipt was fabricated.\n\nNext: **role-data** finishes N1, then performs normal N2 with its own receipt. **role-controller** verifies that delivery. Reviewer remains idle; former worker remains stopped.\n\nNot checked: live chats, other installations or parent VCS. Specialist loading remains unverified until receipts arrive at their next real tasks."
+      }
+    ],
+    "tool_call_names": [
+      "exec",
+      "exec",
+      "exec",
+      "exec",
+      "exec"
+    ],
+    "read_review": "Evaluator inspected actual entry/module read calls and source hashes; raw tool code remains private.",
+    "ambient_guidance": "Host project instructions and other skill catalog entries were present; no private project text is published.",
+    "manually_reviewed_actual_reads": [
+      "SKILL.md",
+      "references/setup.md",
+      "references/dispatch.md",
+      "references/health-check.md"
+    ],
+    "reviewed_read_calls": [
+      {
+        "at": "2026-10-22T05:55:52.989Z",
+        "code": "const results = await Promise.allSettled([\n  tools.exec_command({cmd: \"cat <SKILL_040>/SKILL.md\", workdir: \"<PROJECT>\", max_output_tokens: 12000}),\n  tools.exec_command({cmd: \"rg --files --hidden -g '!.git/**' .\", workdir: \"<PROJECT>\", max_output_tokens: 8000})\n]);\nfor (let i = 0; i < results.length; i++) text({index:i,result:results[i]});\n"
+      },
+      {
+        "at": "2026-10-22T05:56:06.329Z",
+        "code": "const results = await Promise.allSettled([\n  tools.exec_command({cmd:\"python3 - <<'PY'\\nfrom pathlib import Path\\nimport json\\nfiles = ['AGENTS.md', 'docs/SESSION-MANAGEMENT.md', 'coordination/runtime-state.json', 'NORMAL-TASK-N2.md', 'work/data/receipt-legacy.json', 'work/data/n1-checkpoint.txt', 'work/review/notes.md']\\nprint(json.dumps({name: Path(name).read_text() for name in files}, ensure_ascii=False, indent=2))\\nPY\",workdir:\"<PROJECT>\",max_output_tokens:14000}),\n  tools.exec_command({cmd:\"python3 - <<'PY'\\nfrom pathlib import Path\\nimport json\\nroot = Path('<SKILL_040>')\\nfiles = ['references/setup.md', 'references/dispatch.md', 'references/health-check.md']\\nprint(json.dumps({name: (root/name).read_text() for name in files}, ensure_ascii=False, indent=2))\\nPY\",workdir:\"<PROJECT>\",max_output_tokens:20000})\n]);\nfor (let i=0;i<results.length;i++) text({index:i,result:results[i]});\n"
+      }
+    ]
+  },
+  "candidate-controller": {
+    "observed_model_contexts": [
+      {
+        "model": "gpt-6.1-sol",
+        "effort": "max"
+      }
+    ],
+    "visible_messages": [
+      {
+        "at": "2026-10-22T05:58:44.547Z",
+        "phase": "commentary",
+        "text": "我会按指定的 Orchivane 冻结版本检查现有协作记录，补齐版本核验与交付回执，并明确保留正常工作的承接边界。"
+      },
+      {
+        "at": "2026-10-22T05:59:44.175Z",
+        "phase": "commentary",
+        "text": "现有记录显示数据角色仍在执行 N1，审阅角色空闲，旧角色已停止。我会把版本检查接到 N2 的正常入口，保留旧回执的原始范围；本轮只验证总控自身，不将其他角色标为已升级。"
+      },
+      {
+        "at": "2026-10-22T06:22:22.121Z",
+        "phase": "commentary",
+        "text": "The records now distinguish the controller’s verified reads from each specialist’s pending check. N2’s addendum is saved locally, with N1 completion still required. I’m checking file preservation and references before closing this controller turn."
+      },
+      {
+        "at": "2026-10-22T06:23:28.930Z",
+        "phase": "final_answer",
+        "text": "Updated the existing controller’s coordination records for frozen Orchivane 0.4.1:\n\n- [Role index](<PROJECT>/docs/SESSION-MANAGEMENT.md): current authority, ownership and scoped adoption coverage.\n- [Controller receipt](<PROJECT>/docs/changes/ADOPT-041.md): verified metadata, four read-source hashes, preserved history and actual checks.\n- [N2 addendum](<PROJECT>/coordination/N2-adoption-brief.md): saved locally for after N1; unsent and unaccepted.\n\nChecks passed: eight protected files and four source files unchanged; eleven document links resolve. Runtime states and counters remain unchanged. No N2 output was created.\n\nNext owner: role-data finishes N1, then performs N2 and saves its receipt. Role-controller subsequently verifies and accepts the delivery. Reviewer remains idle; former worker remains stopped.\n\nNot checked: host installation, automatic discovery or upstream latest version.  \nRemaining risk: specialist adoption is pending actual reads and normal-task evidence."
+      }
+    ],
+    "tool_call_names": [
+      "exec",
+      "exec",
+      "exec",
+      "exec",
+      "exec",
+      "exec"
+    ],
+    "read_review": "Evaluator inspected actual entry/module read calls and source hashes; raw tool code remains private.",
+    "ambient_guidance": "Host project instructions and other skill catalog entries were present; no private project text is published.",
+    "manually_reviewed_actual_reads": [
+      "SKILL.md",
+      "references/setup.md",
+      "references/adoption.md",
+      "references/dispatch.md"
+    ],
+    "reviewed_read_calls": [
+      {
+        "at": "2026-10-22T05:58:47.021Z",
+        "code": "const results = await Promise.allSettled([\n  tools.exec_command({cmd:\"cat <SKILL_041>/SKILL.md\",workdir:\"<PROJECT>\",max_output_tokens:12000}),\n  tools.exec_command({cmd:\"pwd\\nrg --files --hidden -g '!node_modules' -g '!.git/objects' -g '!.git/logs' .\",workdir:\"<PROJECT>\",max_output_tokens:12000})\n]);\nfor (let i=0;i<results.length;i++) text({item:i,...results[i]});\n"
+      },
+      {
+        "at": "2026-10-22T05:58:59.904Z",
+        "code": "const paths = [\n\"<SKILL_041>/references/setup.md\",\n\"<SKILL_041>/references/adoption.md\",\n\"<PROJECT>/AGENTS.md\",\n\"<PROJECT>/docs/SESSION-MANAGEMENT.md\",\n\"<PROJECT>/coordination/runtime-state.json\",\n\"<PROJECT>/NORMAL-TASK-N2.md\"\n];\nconst result = await Promise.allSettled(paths.map(path=>tools.exec_command({cmd:\"cat '\"+path+\"'\",workdir:\"<PROJECT>\",max_output_tokens:14000})));\nfor (let i=0;i<result.length;i++) text({path:paths[i],...result[i]});\n"
+      },
+      {
+        "at": "2026-10-22T05:59:45.358Z",
+        "code": "text(await tools.exec_command({cmd:\"cat <SKILL_041>/references/dispatch.md\",workdir:\"<PROJECT>\",max_output_tokens:12000}));\n"
+      }
+    ]
+  },
+  "partial-mismatch": {
+    "observed_model_contexts": [
+      {
+        "model": "gpt-6.1-sol",
+        "effort": "max"
+      }
+    ],
+    "visible_messages": [
+      {
+        "at": "2026-10-22T05:59:08.203Z",
+        "phase": "commentary",
+        "text": "我会按指定的 Orchivane 0.4.1 技能核对这份回执，依据实际读取证据更新覆盖记录，并保留现有业务推进安排。"
+      },
+      {
+        "at": "2026-10-22T06:00:03.922Z",
+        "phase": "commentary",
+        "text": "回执标称 0.4.1，但它引用的文件及哈希实际对应 0.4.0；回执也没有模块读取或任务行为证据，因此不能记为升级已验证。数据角色仍在 N1，我会将补验要求留到既定的 N2；空闲审阅角色继续待下一次真实任务。"
+      },
+      {
+        "at": "2026-10-22T06:22:36.783Z",
+        "phase": "commentary",
+        "text": "覆盖记录已更新：总控仅对本轮回执核验记为已检查；数据角色的 0.4.1 状态保留为未验证，补验要求已存入 N2 的待用附注。原回执、N1 检查点、业务材料和模拟运行状态均已保留；我正在做最后的文件回读核验。"
+      },
+      {
+        "at": "2026-10-22T06:23:13.515Z",
+        "phase": "final_answer",
+        "text": "Updated [coverage index](<PROJECT>/docs/SESSION-MANAGEMENT.md) and [controller review](<PROJECT>/coordination/adoption-review.md).\n\nThe claimed 0.4.1 receipt references verified 0.4.0 bytes and lacks module/behavior evidence. Worker adoption remains unverified. N1 continues untouched; the saved check belongs to `role-data` at existing N2, then `role-controller` accepts the evidence. Reviewer stays idle; predecessor stays historical.\n\nReadback passed. Nine original files and six inspected source files retained their hashes. No runtime facts, business artifacts or frozen inputs changed.\n\nNot checked: live sessions, installation/upstream versions or business outcomes.\nRemaining risk: worker 0.4.1 adoption is unverified until its normal-task receipt is inspected."
+      }
+    ],
+    "tool_call_names": [
+      "exec",
+      "exec",
+      "exec",
+      "exec",
+      "exec",
+      "exec"
+    ],
+    "read_review": "Evaluator inspected actual entry/module read calls and source hashes; raw tool code remains private.",
+    "ambient_guidance": "Host project instructions and other skill catalog entries were present; no private project text is published.",
+    "manually_reviewed_actual_reads": [
+      "SKILL.md",
+      "references/setup.md",
+      "references/adoption.md",
+      "references/dispatch.md",
+      "references/health-check.md"
+    ],
+    "additional_actual_read": "<SKILL_040>/SKILL.md",
+    "reviewed_read_calls": [
+      {
+        "at": "2026-10-22T05:59:10.827Z",
+        "code": "const results = await Promise.allSettled([\n  tools.exec_command({cmd: \"cat <SKILL_041>/SKILL.md\", workdir: \"<PROJECT>\", max_output_tokens: 12000}),\n  tools.exec_command({cmd: \"rg --files -g '*' .\", workdir: \"<PROJECT>\", max_output_tokens: 8000})\n]);\nfor (let i = 0; i < results.length; i++) text({i, result: results[i]});\n"
+      },
+      {
+        "at": "2026-10-22T05:59:36.627Z",
+        "code": "const results = await Promise.allSettled([\n  tools.exec_command({cmd: \"cat <SKILL_041>/references/dispatch.md <SKILL_041>/references/health-check.md\", workdir: \"<PROJECT>\", max_output_tokens: 14000}),\n  tools.exec_command({cmd: \"cat <SKILL_040>/SKILL.md NORMAL-TASK-N2.md work/data/receipt-legacy.json work/data/n1-checkpoint.txt\", workdir: \"<PROJECT>\", max_output_tokens: 10000}),\n  tools.exec_command({cmd: \"python3 - <<'PY'\\nfrom pathlib import Path\\nfrom hashlib import sha256\\nfrom datetime import datetime, timezone\\ncase = Path('<PROJECT>')\\nprint('checked_at=' + datetime.now(timezone.utc).isoformat())\\nfor path in sorted(p for p in case.rglob('*') if p.is_file()):\\n    print(sha256(path.read_bytes()).hexdigest(), str(path.relative_to(case)))\\nfor version in ('0.4.0', '0.4.1'):\\n    root = Path('<LAB>') / ('skill-' + version)\\n    paths = [root / 'SKILL.md']\\n    if version == '0.4.1':\\n        paths += [root / 'references' / (name + '.md') for name in ('setup', 'adoption', 'dispatch', 'health-check')]\\n    for path in paths:\\n        print(sha256(path.read_bytes()).hexdigest(), str(path))\\nPY\", workdir: \"<PROJECT>\", max_output_tokens: 5000})\n]);\nfor (let i = 0; i < results.length; i++) text({i, result: results[i]});\n"
+      }
+    ]
+  },
+  "normal-worker": {
+    "observed_model_contexts": [
+      {
+        "model": "gpt-6.1-sol",
+        "effort": "max"
+      }
+    ],
+    "visible_messages": [
+      {
+        "at": "2026-10-22T06:24:44.207Z",
+        "phase": "commentary",
+        "text": "我会核对本轮 N2 的角色、输入和停止边界，按指定的 Orchivane 快照完成数据产物，并在保存后自检。\n"
+      },
+      {
+        "at": "2026-10-22T06:25:21.353Z",
+        "phase": "commentary",
+        "text": "当前运行记录已把 N2 设为本轮任务；N1 的完成只属于评测模拟边界，我不会把它记成真实执行证据。接下来核对指定快照的模块与哈希，并保留旧回执和检查点。\n"
+      },
+      {
+        "at": "2026-10-22T06:26:43.641Z",
+        "phase": "commentary",
+        "text": "输入实际包含 3 行，数量合计为 9；入口、setup 和 adoption 的哈希均与记录一致，版本为 0.4.1。我将只保存汇总和 N2 回执，再核验保存内容及原文件是否保持不变。\n"
+      },
+      {
+        "at": "2026-10-22T06:28:00.066Z",
+        "phase": "final_answer",
+        "text": "已完成 N2，仅新增：\n\n- [summary.json](<PROJECT>/work/data/summary.json)：3 行，数量合计 9。\n- [receipt-N2.json](<PROJECT>/work/data/receipt-N2.json)：记录角色、授权、版本、检查及边界。\n\n已实读指定 Orchivane 0.4.1 入口、setup、adoption，哈希一致。独立计数、求和和保存内容解析通过；12 个原文件哈希不变。\n\n下一承接方：role-controller，读取验收并更新唯一索引。\n\n未核验真实 N1 执行、安装或自动发现；N1 完成仅为模拟边界，验收仍待总控。"
+      }
+    ],
+    "tool_call_names": [
+      "exec",
+      "exec",
+      "exec",
+      "exec",
+      "exec"
+    ],
+    "read_review": "Evaluator inspected actual entry/module read calls and source hashes; raw tool code remains private.",
+    "ambient_guidance": "Host project instructions and other skill catalog entries were present; no private project text is published.",
+    "manually_reviewed_actual_reads": [
+      "SKILL.md",
+      "references/setup.md",
+      "references/adoption.md"
+    ],
+    "reviewed_read_calls": [
+      {
+        "at": "2026-10-22T06:24:46.646Z",
+        "code": "const r = await tools.exec_command({cmd:\"pwd && rg --files -g 'AGENTS.md' -g 'NORMAL-TASK-N2.md' -g '*INDEX*' -g '*index*' -g 'N2-adoption-brief.md' -g 'runtime-state.json' -g 'evaluator-transition.json' -g 'SESSION-MANAGEMENT.md'\",\"workdir\":\"<PROJECT>\",\"max_output_tokens\":6000});text(r.output);\n"
+      },
+      {
+        "at": "2026-10-22T06:24:57.692Z",
+        "code": "const paths = [\n\"<PROJECT>/AGENTS.md\",\n\"<PROJECT>/docs/SESSION-MANAGEMENT.md\",\n\"<PROJECT>/NORMAL-TASK-N2.md\",\n\"<PROJECT>/coordination/N2-adoption-brief.md\",\n\"<SKILL_041>/SKILL.md\",\n\"<PROJECT>/coordination/evaluator-transition.json\",\n\"<PROJECT>/coordination/runtime-state.json\"\n];\nconst results = await Promise.allSettled(paths.map(path=>tools.exec_command({cmd:\"cat '\"+path+\"'\",\"workdir\":\"<PROJECT>\",\"max_output_tokens\":12000})));\nresults.forEach((r,i)=>text({path:paths[i],result:r.status===\"fulfilled\"?r.value.output:String(r.reason)}));\n"
+      }
+    ]
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "0.4.0": {
+    "SKILL.md": "6baa111f6d1fc0b0d508d9bcd9f321bad143bec5a87310316291195a254b6f15",
+    "references/claude-code.md": "8c0fd3bcd11de852e4dd57e290a9acd74098ad6891ddc29db0e950cfaac94eb6",
+    "references/setup.md": "ae1a36ac56d7d83ba93595bdea2a1c5b84a3c7c4e47ab940b814f58079c2010a",
+    "references/health-check.md": "45a41c0c00be09861b2888b16e3f009ba90819184f2b88964bd1f747f18f3a70",
+    "references/codex.md": "df65f6170f58c0aa6e655099b37096791ea90b7f3aa390fe5f139a7dc77082f1",
+    "references/dispatch.md": "a801e3879ec0ee67dd0a3de569cab2f89d3b0833a2090a4145befe878851d67a",
+    "references/handoff.md": "d51ce0b209a934e096eb30940e4ab838ff9cc94e9c3234ddc78503112598e32c",
+    "agents/openai.yaml": "a4e6158ced8ae7d0d0a119a32a93f589a1d245b67a6771b79f311847f922fa6d"
+  },
+  "0.4.1": {
+    "SKILL.md": "c4c71dab7c4201044fca04c2dc26bc0e9e5adf860bfc8bb881b6d98c4ab3c538",
+    "references/claude-code.md": "8c0fd3bcd11de852e4dd57e290a9acd74098ad6891ddc29db0e950cfaac94eb6",
+    "references/adoption.md": "16e432dc657a3037b63f5ef3e572c8ea52b043a70e4211e56e60da74ed51d6b8",
+    "references/setup.md": "3a13fa51589979bca091e319c7a201087d358bead1adbb253933d3d4ad189f66",
+    "references/health-check.md": "2414906c48af75401ab6050da784bbe3d47c968da1c6f9228551b9db7de64489",
+    "references/codex.md": "af2ce6e517d1e199db171245d69c26f0adb7df783234d16437eef199eaabd231",
+    "references/dispatch.md": "5c1f016888f992dace65c1c051948f7b1eb7f1ed5a7e71fa1c91abcc6b6448b8",
+    "references/handoff.md": "d51ce0b209a934e096eb30940e4ab838ff9cc94e9c3234ddc78503112598e32c",
+    "agents/openai.yaml": "a4e6158ced8ae7d0d0a119a32a93f589a1d245b67a6771b79f311847f922fa6d"
+  }
+}

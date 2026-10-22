@@ -18,6 +18,8 @@ When no registered project is available, an authorized projectless chat may be u
 
 Creation, dispatch, substantive acceptance and final validation are different events. Save returned IDs and register each immediately; handle registration delays as described in setup. Store native receipts in a private project runtime directory. Public examples should use sanitized copies without real chat IDs, personal absolute paths or raw transcripts, explicitly distinguished from replayable original logs.
 
+For existing-chat upgrades, use [adoption.md](adoption.md). A newer installed cache does not prove an old chat read it. This adapter specifies no hot-reload API or noninterrupting message guarantee: check the live tool semantics, and keep a pending normal-task brief on disk when delivery could interrupt active work. Do not send a probe merely to establish loading.
+
 `fork_thread` retains history and is not a clean successor. `handoff_thread` moves a chat's execution location; it does not perform this skill's responsibility handoff. Chat archival and worktree archival are separate operations. Do not add worktree cleanup to “finish” a chat handoff.
 
 Read automation configuration to verify task association, not to execute its prompt. When rebinding a target, construct the complete update from freshly read fields and verify the target, status, cadence and prompt. Trust actual current tool results only. If configuration cannot be read, state the coverage gap.

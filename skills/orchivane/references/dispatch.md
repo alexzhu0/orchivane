@@ -34,6 +34,8 @@ Execute specifically authorized tasks. Authorization for research or a plan alon
 
 Provide enough context to start, but only necessary materials. Record dispatch, understanding, execution, completion and acceptance separately. Before a message that may interrupt active work, check status and whether it is a necessary correction to the current task; avoid duplicate wake-ups.
 
+For a pending adoption/version check, include its source and receipt requirement in the next authorized normal-task brief, following [adoption.md](adoption.md). Keep the current task and budget intact; an upgrade-only message is not a reason to interrupt or wake a role.
+
 Independent tasks may run in parallel. Shared writes, production-data renaming and frozen-input updates need ordering or isolated directories first. Use temporary subagents only when host and user/project rules allow them, for bounded analysis or verification. They do not automatically replace existing persistent roles or authorize new user-visible chats.
 
 When freezing inputs, preserve the directory structure and dependencies needed by references, or specify and verify their resolution base. An unchanged file hash after relocation does not prove relative links still work. Verify versions, required references and readability at the actual recipient entry before dispatching dependent work. If packaging breaks a reference, the controller responsible for freezing fixes the package; do not ask an author to alter correct source text to conceal the packaging fault. Keep the failed snapshot and version the replacement separately.

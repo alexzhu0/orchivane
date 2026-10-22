@@ -31,6 +31,8 @@ Keep the main Skill short; place mode-specific instructions in the relevant refe
 
 Change the portable manifest, the Codex and Claude compatibility manifests (`.codex-plugin/plugin.json`, `.claude-plugin/plugin.json`) and Skill metadata version together. Keep the README, examples and current evidence in sync. Historical test reports retain their original version and limitations. Update the CI action pins deliberately; do not add execution hooks or telemetry by default.
 
+For adoption changes, exercise an existing project with active, idle and historical roles, then a normal task and a stale/partial receipt. Verify protected files and budgets, source/read/task evidence and deferred coverage separately. Keep simulated role-state exercises distinct from native messaging, installation and hot-reload claims; see [the bounded adoption protocol](tests/adoption-upgrade.md).
+
 Native E2E runs require explicit human authorization to create and message real chats. Follow [the reproduction protocol](tests/native-e2e.md); do not launch native sessions automatically from CI. Passing static CI does not prove model behavior, cross-client compatibility or archival safety.
 
 The [handoff/recovery protocol](tests/handoff-recovery.md) includes a bounded fixture for missing local inputs, ownership conflicts and duplicate dispatch. Count effects only in the actual runtime directory, not copied audit evidence. Verify that current role labels and next actions agree with delivered results before closing a run; retain failed snapshots and scope later hash comparisons to the relevant phase.

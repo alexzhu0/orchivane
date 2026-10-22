@@ -1,0 +1,29 @@
+{
+  "provenance": "Reusable summaries of evaluator dispatches; not verbatim authenticated native messages. Paths are placeholders.",
+  "common_boundaries": "Fresh-context temporary agents, one turn each, assigned case and frozen skill reads only. No native session/message/schedule/archive/install/configuration/network tools; no helpers or grader/other-case reads. Preserve source snapshots and protected business inputs.",
+  "baseline": {
+    "case": "<PROJECT>",
+    "skill": "<SKILL_040>/SKILL.md",
+    "request": "Bring this existing project onto the locally available Orchivane workflow, make version verification and receipts reliable, and keep normal work moving without interruption.",
+    "write_scope": "Controller coordination records only; no business output."
+  },
+  "candidate-controller": {
+    "case": "<PROJECT>",
+    "skill": "<SKILL_041>/SKILL.md",
+    "request": "Same adoption request and initial files as baseline.",
+    "write_scope": "Controller coordination records only; no business output."
+  },
+  "partial-mismatch": {
+    "case": "<PROJECT>",
+    "skill": "<SKILL_041>/SKILL.md",
+    "request": "Review coordination/submitted-receipt.json and update adoption coverage from actual evidence. No new business task for another role.",
+    "extra_readable_source": "<SKILL_040>",
+    "write_scope": "Controller records; preserve submitted receipt and business/source files."
+  },
+  "normal-worker": {
+    "case": "<PROJECT>",
+    "skill": "<SKILL_041>/SKILL.md",
+    "request": "Perform ordinary N2 from its existing brief and saved adoption addendum. Evaluator transition marks N1 simulated complete; this is not a real N1 result. Save business output and scoped receipt, verify saved output, then stop.",
+    "write_scope": "work/data/ only; controller records and existing checkpoints/receipts remain unchanged."
+  }
+}
