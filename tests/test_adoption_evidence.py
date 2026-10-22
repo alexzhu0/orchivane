@@ -4,7 +4,9 @@ import hashlib
 import io
 import json
 from pathlib import Path
+import tempfile
 import unittest
+from unittest.mock import patch
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -28,6 +30,9 @@ class AdoptionEvidenceTests(unittest.TestCase):
                     self.assertNotIn('..', Path(name).parts)
                     self.assertEqual(hashlib.sha256(content.encode()).hexdigest(),
                                      artifact['sha256'][name])
+        # Historical evidence remains replayable after a later skill release.
+        if json.loads((ROOT / 'plugin.json').read_text())['version'] != '0.4.1':
+            return
         hashes = json.loads((EVIDENCE / 'skill-hashes.json').read_text())['0.4.1']
         source = ROOT / 'skills/orchivane'
         self.assertEqual(set(hashes), {str(p.relative_to(source))
@@ -35,6 +40,13 @@ class AdoptionEvidenceTests(unittest.TestCase):
         for name, digest in hashes.items():
             self.assertEqual(hashlib.sha256((source / name).read_bytes()).hexdigest(),
                              digest, name)
+
+    def test_historical_replay_does_not_pin_future_skill_versions(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / 'plugin.json').write_text('{"version":"0.4.2"}\n')
+            with patch(__name__ + '.ROOT', root):
+                self.test_published_bytes_and_frozen_candidate()
 
     def test_controllers_preserve_work_and_simulated_runtime(self):
         for phase in ('baseline', 'candidate-controller', 'partial-mismatch'):
