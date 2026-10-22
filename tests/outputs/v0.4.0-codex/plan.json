@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-22",
+  "source_commit": "d59ad6431709f00006517ffe18c0507ea8a75578",
+  "skill_version": "0.4.0",
+  "max_chats": 2,
+  "max_solver_turns": 4,
+  "phases": [
+    "source_A1_handoff",
+    "successor_read_only_acceptance",
+    "A2_after_switch",
+    "duplicate_A2_close_records"
+  ],
+  "retry": false,
+  "model_override": false,
+  "token_cap": null,
+  "archive": false,
+  "stop": "Stop dependent phases on a failed phase; do not repair or relabel failed evidence."
+}

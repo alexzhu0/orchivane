@@ -22,6 +22,8 @@ For example, ask the controller to add login to an existing product. It first ch
 
 Version 0.4.0 adds Claude Code support: plugin manifests and a [Claude Code adapter](skills/orchivane/references/claude-code.md) for the Claude desktop app's Code tab. In [three native desktop runs](tests/claude-code-desktop.md), fresh controllers created two persistent roles, dispatched work and accepted a short brief with an independent review. The final run passed 13 of 16 checks with three partial, and the text was revised afterwards without a rerun; plugin installation from GitHub has not been observed.
 
+A [2026-10-22 Codex 0.4.0 follow-up](tests/codex-040.md) verified the already-installed plugin against eight source hashes and exercised fresh-chat loading, read-only takeover, continuation and duplicate dispatch in two chats/four turns. The functional paths passed; one source-record path defect was corrected by the evaluator and retained in evidence. This is bounded compatibility evidence, not a blanket nonregression claim.
+
 Version 0.3.2 makes skill instructions, plugin presentation and default documentation English-first, with a complete Chinese README. You can continue using Chinese in conversations. A [native 0.3.2 follow-up](tests/bilingual-032.md) verified upgrade and loading in four fresh chats, bilingual planning, and English-to-Chinese handoff execution. The reverse handoff was interrupted by host capacity; final record consistency also needed controller closure. This is partial evidence, not proof of translation equivalence.
 
 ## Start from an idea

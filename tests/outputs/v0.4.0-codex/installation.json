@@ -1,0 +1,42 @@
+{
+  "already_installed": true,
+  "version": "0.4.0",
+  "source_commit": "d59ad6431709f00006517ffe18c0507ea8a75578",
+  "files": {
+    "SKILL.md": {
+      "sha256": "6baa111f6d1fc0b0d508d9bcd9f321bad143bec5a87310316291195a254b6f15",
+      "matches_installed": true
+    },
+    "agents/openai.yaml": {
+      "sha256": "a4e6158ced8ae7d0d0a119a32a93f589a1d245b67a6771b79f311847f922fa6d",
+      "matches_installed": true
+    },
+    "references/claude-code.md": {
+      "sha256": "8c0fd3bcd11de852e4dd57e290a9acd74098ad6891ddc29db0e950cfaac94eb6",
+      "matches_installed": true
+    },
+    "references/codex.md": {
+      "sha256": "df65f6170f58c0aa6e655099b37096791ea90b7f3aa390fe5f139a7dc77082f1",
+      "matches_installed": true
+    },
+    "references/dispatch.md": {
+      "sha256": "a801e3879ec0ee67dd0a3de569cab2f89d3b0833a2090a4145befe878851d67a",
+      "matches_installed": true
+    },
+    "references/handoff.md": {
+      "sha256": "d51ce0b209a934e096eb30940e4ab838ff9cc94e9c3234ddc78503112598e32c",
+      "matches_installed": true
+    },
+    "references/health-check.md": {
+      "sha256": "45a41c0c00be09861b2888b16e3f009ba90819184f2b88964bd1f747f18f3a70",
+      "matches_installed": true
+    },
+    "references/setup.md": {
+      "sha256": "ae1a36ac56d7d83ba93595bdea2a1c5b84a3c7c4e47ab940b814f58079c2010a",
+      "matches_installed": true
+    }
+  },
+  "installed": true,
+  "enabled": true,
+  "action": "No reinstall needed: the requested version was already installed at inspection."
+}

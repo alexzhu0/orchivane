@@ -80,6 +80,23 @@ class PairedEvidenceTests(unittest.TestCase):
                 outcome = grader.grade(task, self.materialize(files))
                 self.assertFalse(outcome['passed'], outcome)
 
+    def test_codex_040_handoff_artifact_replay(self):
+        evidence = ROOT.parent / 'outputs' / 'v0.4.0-codex'
+        artifacts = json.loads((evidence / 'artifacts.json').read_text())
+        for phase, name in ((1, 'A1'), (2, 'A2')):
+            with self.subTest(phase=phase):
+                artifact = artifacts[name]
+                self.assertEqual(set(artifact['files']), set(artifact['sha256']))
+                for path, content in artifact['files'].items():
+                    self.assertEqual(hashlib.sha256(content.encode()).hexdigest(),
+                                     artifact['sha256'][path])
+                outcome = grader.grade('S3', self.materialize(artifact['files']), phase)
+                self.assertTrue(outcome['passed'], outcome)
+        self.assertEqual(artifacts['duplicate_before_sha256'],
+                         artifacts['duplicate_after_sha256'])
+        for path, digest in artifacts['A2']['sha256'].items():
+            self.assertEqual(digest, artifacts['duplicate_after_sha256'][path])
+
 
 if __name__ == '__main__':
     unittest.main()

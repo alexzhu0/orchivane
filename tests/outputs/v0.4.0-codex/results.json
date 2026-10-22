@@ -1,0 +1,97 @@
+{
+  "date": "2026-10-22",
+  "version": "0.4.0",
+  "source_commit": "d59ad6431709f00006517ffe18c0507ea8a75578",
+  "overall": "bounded_functional_pass_with_retained_record_defect",
+  "native_chats": 2,
+  "dispatched_turns": 4,
+  "completed_turns": 4,
+  "failed_turns": 0,
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "high",
+  "model_override": false,
+  "turns": [
+    {
+      "phase": "source",
+      "status": "completed",
+      "duration_ms": 226189,
+      "error": null,
+      "observed_installed_module_reads": [
+        "SKILL.md",
+        "references/setup.md",
+        "references/handoff.md",
+        "references/codex.md"
+      ]
+    },
+    {
+      "phase": "acceptance",
+      "status": "completed",
+      "duration_ms": 136293,
+      "error": null,
+      "observed_installed_module_reads": [
+        "SKILL.md",
+        "references/setup.md",
+        "references/handoff.md",
+        "references/codex.md"
+      ]
+    },
+    {
+      "phase": "a2",
+      "status": "completed",
+      "duration_ms": 163723,
+      "error": null,
+      "observed_installed_module_reads": [
+        "references/dispatch.md"
+      ]
+    },
+    {
+      "phase": "duplicate",
+      "status": "completed",
+      "duration_ms": 90190,
+      "error": null,
+      "observed_installed_module_reads": []
+    }
+  ],
+  "cumulative_native_duration_ms": 616395,
+  "checks": {
+    "eight_installed_files_match": true,
+    "both_fresh_chats_read_installed_entry": true,
+    "codex_modules_read_without_claude_adapter": true,
+    "a1_functional_checks": 5,
+    "read_only_acceptance_unchanged_files": 41,
+    "preserved_manifest_files": 21,
+    "ownership_switch_after_acceptance": true,
+    "a2_functional_checks": 5,
+    "identical_duplicate_prompt": true,
+    "duplicate_business_unchanged": true,
+    "execution_ledger": [
+      "T1/A1",
+      "T1/A2"
+    ],
+    "final_budget": "4/4",
+    "final_current_records_consistent": true
+  },
+  "retained_defects": [
+    {
+      "phase": "source",
+      "issue": "Wrong relative preservation path in source index; the absolute entry and actual copies were valid.",
+      "expected": "../../preservation from project/docs",
+      "observed": "../preservation",
+      "correction": "Evaluator corrected current guidance during ownership switch, retained source snapshot; successor carried the correction into closure.",
+      "native_acceptance_detected_defect": false
+    }
+  ],
+  "observer_error": "Initial read_thread request exceeded the 20000-character-per-item limit; corrected read succeeded. No solver retry or business effect.",
+  "not_tested": [
+    "fresh installation or upgrade transition",
+    "implicit skill selection",
+    "Claude runtime",
+    "English conversation",
+    "archival survival",
+    "concurrent writers",
+    "schedules",
+    "transport/crash recovery",
+    "human coordination savings",
+    "cross-client equivalence"
+  ]
+}
