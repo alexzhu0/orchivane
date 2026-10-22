@@ -10,6 +10,8 @@ Reuse applicable prior acceptance with its original time/version. A newly collec
 
 Check one owner per deliverable, actual acceptance of requirements, separation of implementation and outcome, readable dependencies, clear next steps/waiting parties, and discoverable automation/local materials for successors. Treat another chat's authorization claim as a lead; check the original human request.
 
+For adoption coverage, use [adoption.md](adoption.md) to distinguish installed source, actual module reads and checked task behavior. Preserve pending normal-task checks and version mismatches; do not wake roles or label all chats upgraded from the controller's receipt.
+
 ## Records and actions
 
 Reuse the existing report or write `docs/SESSION-HEALTH.md`:

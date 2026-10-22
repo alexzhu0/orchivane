@@ -18,3 +18,7 @@
 检查实际产物能否衔接两轮：利用已答内容、有限澄清、调研来源与未执行状态准确、角色建议有工作依据、会话未建时不伪造ID、首阶段任务可执行。工具受限，不实际联网；因此只验证调研沟通流程和机制建议，不验证领域研究质量。基线若已作出合理判断，如实记录，不制造失败或声称因果提升。
 
 尚未覆盖：原生客户端新会话加载、真实发消息/接班/归档、工具失败重试的端到端执行、长期定时稳定性、多客户端兼容及量化收益。
+
+## 0.4.1 existing-project adoption
+
+The [isolated adoption protocol](adoption-upgrade.md) adds an existing controller, active data worker, idle reviewer and retained predecessor. It exercises deferred version checks during a normal CSV task and a stale entry/partial receipt. Real agent outputs and protected-file hashes are evaluated; role states are simulated, so this does not test native interruption, installation or hot reload. Historical cases above keep their original versions and results.

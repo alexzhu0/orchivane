@@ -1,4 +1,4 @@
-# Orchivane 0.4.0
+# Orchivane 0.4.1
 
 [English](README.md) · **简体中文** · [MIT](LICENSE) · [贡献与本地验证](CONTRIBUTING.md)
 
@@ -19,6 +19,8 @@ Orchivane 把这些协作责任交给一个总控入口：总控先澄清目标�
 例如，你只需告诉总控“为现有产品增加登录功能”：它先核对现有身份方案和接口，再判断实施与独立验收如何分工；收到交付后，分别说明实现、验证、推送与部署的状态。你继续参与目标和关键取舍，无须在每个角色窗口重复描述需求。以上是预期使用方式，实际工具能力和已验证范围见文末。
 
 **尚未证明协调成本更低。** 2026-10-20的[配对试跑](tests/paired/README.md)使用相同任务、模型及轮次预算上限：两组各完成三题，额外协调请求均为零；Orchivane 组累计执行时长和 token 更高。没有测量真人时间，也没有形成长期多角色协作，不能把机制设计当成已证实的效能收益。
+
+0.4.1 新增[已有项目平滑接入与升级](skills/orchivane/references/adoption.md)：核验实际来源和版本，让各角色在下次正常任务时读取必要模块并留回执。安装、实际加载和行为核验分别记录；不会仅为升级唤醒忙碌或闲置角色。
 
 0.4.0 新增 Claude Code 支持：插件清单，以及面向 Claude 桌面 App Code 标签页的 [Claude Code 适配说明](skills/orchivane/references/claude-code.md)。在[三轮桌面原生验收](tests/claude-code-desktop.md)中，新总控创建两个长期角色，完成派工，并验收一份附独立评审的简报；最后一轮 16 项中 13 项通过、3 项部分通过，此后的措辞修订未再复测。从 GitHub 安装插件尚未实测。
 
@@ -85,6 +87,21 @@ codex plugin list --marketplace orchivane-local --json
 
 清单出现、实际读取、按规则行动是三个不同检查点。自然语言触发受宿主、模型及其他技能影响；需要稳定选用时明确点名。此核验无需新增项目文件、脚本或角色。
 
+### 已有项目接入与升级
+
+向现有总控提出：
+
+```text
+使用 $orchivane，接入或升级这个项目的协作机制。
+先核验实际可用来源、版本和你实际读取的模块。
+保留已有角色和进行中的任务；各角色在下次正常任务时核验并留回执，
+没有任务的角色继续待核验。不要打断工作、群发升级消息或重启对话。
+```
+
+总控复用项目规则与职责索引，登记已核目标，按需补充指引。各角色在自己的任务回执中记录实际读取的入口/模块、版本或内容摘要、任务/轮次、职责与预算边界、实际产物和验证；总控逐项核收。部分读取、旧版与无法访问均保留明确缺口，不能因为插件已安装就宣布全部旧对话完成升级。
+
+安装包更新是另一项操作：在获得相应授权后使用宿主支持的方式，保留本地定制并仅保留一个活跃来源。显式路径加载须如实注明。完整字段与边界见[接入与升级模块](skills/orchivane/references/adoption.md)，已测行为及限制见[隔离演练记录](tests/adoption-upgrade.md)。
+
 ### Claude Code 插件安装
 
 在 Claude Code 中添加 GitHub 来源并安装：
@@ -128,6 +145,7 @@ test ! -e "$HOME/.agents/skills/orchivane" && test ! -L "$HOME/.agents/skills/or
 | --- | --- |
 | 核心规则与路由 | [SKILL.md](skills/orchivane/SKILL.md) |
 | 从零调研沟通、机制设计、项目接管和恢复 | [setup.md](skills/orchivane/references/setup.md) |
+| 已有项目接入、升级与版本回执 | [接入与升级](skills/orchivane/references/adoption.md) |
 | 任务说明、一次确认与验收 | [dispatch.md](skills/orchivane/references/dispatch.md) |
 | 交接、资料保全、自动化转接、归档后复核 | [handoff.md](skills/orchivane/references/handoff.md) |
 | 按变化巡检与通知 | [health-check.md](skills/orchivane/references/health-check.md) |

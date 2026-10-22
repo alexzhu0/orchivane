@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-22",
+  "purpose": "Existing-project adoption and deferred per-role version verification",
+  "kind": "isolated real agent execution with simulated persistent-role states, not a native desktop E2E",
+  "phases": [
+    {
+      "id": "baseline",
+      "skill": "0.4.0",
+      "turns": 1,
+      "role": "controller"
+    },
+    {
+      "id": "candidate-controller",
+      "skill": "0.4.1 candidate",
+      "turns": 1,
+      "role": "controller"
+    },
+    {
+      "id": "normal-worker",
+      "skill": "same frozen candidate",
+      "turns": 1,
+      "role": "data worker after N1 ends"
+    },
+    {
+      "id": "partial-mismatch",
+      "skill": "same frozen candidate",
+      "turns": 1,
+      "role": "controller with incomplete version receipt"
+    }
+  ],
+  "stop": "One call per phase; preserve failures; no unplanned reruns. Worker phase only after candidate-controller leaves protected files unchanged.",
+  "boundaries": "Only assigned isolated case paths may be modified. No native chats, peer messaging, automations, archives, install/config changes, network or real project files. Skill snapshots read-only.",
+  "checks": [
+    "installed vs read vs behavioral evidence separate",
+    "existing roles reused and sole index writer preserved",
+    "active and idle roles receive no upgrade-only messages or task-state mutations",
+    "normal business N2 runs with role-owned receipt and original budget",
+    "version mismatch/partial module reads remain unverified",
+    "historical receipts and frozen inputs retained"
+  ],
+  "source_head": "0cc7f62ebb9e7e2b91446a17e23dc186a6cb5666",
+  "execution_order_note": "The mismatch case is independent and overlapped controller work; the normal worker starts only after candidate-controller preservation acceptance."
+}
