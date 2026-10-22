@@ -10,6 +10,12 @@ The [adoption module](../skills/orchivane/references/adoption.md) adds an explic
 
 The baseline already handled the main boundaries correctly. Host project instructions also supplied deferred-loading guidance, so the run does not isolate a skill effect or prove improvement. Explicit frozen-source reads are not installed-plugin upgrade, automatic discovery, persistent-chat interruption or hot-reload evidence; idle roles and later controller acceptance remain deferred. Historical native tests below retain their actual versions.
 
+### Native installed-plugin follow-up, 2026-10-22
+
+After independent PR #2 review and a test-maintenance correction, the PR merged at `b613abd`. The local plugin actually upgraded from 0.4.0 to 0.4.1, with nine source files matched and 27 other plugin records/global configuration unchanged. Two fresh native chats completed four turns: real N1 delivery, controller adoption without waking the idle role, ordinary N2 with its own installed-source/module receipt, then controller acceptance and index closure at 4/4. The synthetic stale/partial receipt remained separate; N1 was 2/5 and N2 3/9. [Full native record and evidence](../tests/codex-041-adoption.md).
+
+The native updater deleted the old cache; 138 files were restored at the original path from a preverified backup. Continuous availability during that gap was not established, and no existing-project no-impact claim is made. Acceptance also retains 4,312 module-output characters not directly recovered by the native history tool, supported by read-action/length/hash evidence. These are bounded native loading/receipt results, not uninterrupted upgrade, implicit selection, other-client or efficiency evidence.
+
 ## Version 0.4.0: Claude Code adapter
 
 Version 0.4.0 adds `.claude-plugin/` manifests and a [Claude Code adapter](../skills/orchivane/references/claude-code.md) that maps the workflow onto the Claude desktop app's session tools. `SKILL.md` now reads `CLAUDE.md` alongside `AGENTS.md`, loads the adapter alongside the other modules in Claude Code, requires every applicable module and bases claims about another chat's status on a covering fresh read; setup updates a taken-over index header, and the guide it appends now says "Orchivane modules" instead of "`$orchivane` modules". Apart from loading the adapter, these changes also apply to Codex. They had not been rerun there at the initial PR review; the bounded follow-up below adds Codex evidence.

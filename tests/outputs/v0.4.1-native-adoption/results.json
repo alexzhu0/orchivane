@@ -1,0 +1,108 @@
+{
+  "date": "2026-10-22",
+  "pr": {
+    "number": 2,
+    "reviewed_head": "2693363285d7a33daaee2c5591386bfdf62c7419",
+    "review_fix": "6d7d625b38d0b8a480880c87a6c07e7d9befe594",
+    "merged_commit": "b613abdf58a7b182a9ed2e1a3532688db6fb9723",
+    "finding": "Historical test pinned future source versions; fixed with a version-gated source comparison and a future-version regression."
+  },
+  "installation": "0.4.0 -> 0.4.1 through native marketplace refresh/install; nine installed skill files match merged source.",
+  "native_turns": 4,
+  "native_chats": 2,
+  "outcome": "Tested adoption/version/receipt/business paths passed; uninterrupted upgrade of existing active projects was not established.",
+  "phases": {
+    "N1": {
+      "status": "completed",
+      "durationMs": 88131,
+      "model": {
+        "model": "gpt-6.1-sol",
+        "effort": "high"
+      }
+    },
+    "adoption": {
+      "status": "completed",
+      "durationMs": 277167,
+      "model": {
+        "model": "gpt-6.1-sol",
+        "effort": "high"
+      }
+    },
+    "N2": {
+      "status": "completed",
+      "durationMs": 166655,
+      "model": {
+        "model": "gpt-6.1-sol",
+        "effort": "high"
+      }
+    },
+    "acceptance": {
+      "status": "completed",
+      "durationMs": 249532,
+      "model": {
+        "model": "gpt-6.1-sol",
+        "effort": "high"
+      }
+    }
+  },
+  "cumulative_native_turn_duration_ms": 781485,
+  "checks": {
+    "N1": {
+      "row_count": 2,
+      "total_quantity": 5,
+      "orchivane_load_claimed": false
+    },
+    "controller_adoption": {
+      "installed_entry_and_modules_read": [
+        "SKILL.md",
+        "setup",
+        "adoption",
+        "dispatch",
+        "health-check",
+        "codex"
+      ],
+      "protected_original_files_unchanged": 11,
+      "synthetic_040_receipt_rejected_as_041": true,
+      "upgrade_message_to_idle_role": false
+    },
+    "ordinary_N2": {
+      "row_count": 3,
+      "total_quantity": 9,
+      "installed_entry_and_modules_read": [
+        "SKILL.md",
+        "setup",
+        "adoption",
+        "dispatch",
+        "codex"
+      ],
+      "pre_existing_files_unchanged": 15,
+      "new_role_owned_files": 2,
+      "controller_acceptance_initially_pending": true
+    },
+    "final_controller": {
+      "business_and_read_action_evidence_accepted_separately": true,
+      "sole_index_reconciled": true,
+      "protected_files_unchanged": 15,
+      "rounds_closed": "4/4",
+      "native_history_module_output_tail_not_retrieved_characters": 4312
+    }
+  },
+  "retained_host_issue": {
+    "old_040_cache_removed_by_updater": true,
+    "old_files_independently_backed_up_before_upgrade": 138,
+    "old_files_restored_at_original_path_and_hash_checked": 138,
+    "continuous_old_path_availability_verified": false,
+    "other_installed_plugin_records_unchanged": 27,
+    "global_configuration_bytes_unchanged": true,
+    "other_project_chats_messaged_or_restarted": 0,
+    "old_project_reads_during_gap": "not inspected; no no-impact claim"
+  },
+  "limits": [
+    "One host and Chinese-language chain; other skills and detailed task constraints present.",
+    "Explicit skill request followed by declared installed-source file reads; not implicit selection or automatic hot reload.",
+    "Visible native history truncates 4312 trailing module-output characters at acceptance; command success/output lengths/current hashes support read actions, not a complete audit of retrieved text.",
+    "No active concurrent project writer, interruption probe, Claude runtime, archive, schedule or human-time/cost comparison.",
+    "No model override or hard token/cost cap; standard assistant inference is not a zero-cost business-provider claim."
+  ],
+  "next_owner": "Maintainer publishes evidence; no further solver execution allowance. Two completed test chats are retained idle, not archived."
+}

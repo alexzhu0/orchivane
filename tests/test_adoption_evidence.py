@@ -85,6 +85,47 @@ class AdoptionEvidenceTests(unittest.TestCase):
         self.assertEqual(state['network_calls'], 0)
         self.assertEqual(state['model_calls'], 0)
 
+    def test_native_041_adoption_and_receipt_artifacts(self):
+        evidence = ROOT / 'tests/outputs/v0.4.1-native-adoption'
+        prompts = json.loads((evidence / 'prompts.json').read_text())
+        self.assertEqual(set(prompts), {'N1', 'adoption', 'N2', 'acceptance'})
+        for prompt in prompts.values():
+            self.assertTrue(prompt['text'].strip())
+            self.assertTrue(prompt['source'])
+        artifacts = json.loads((evidence / 'artifacts.json').read_text())
+        self.assertEqual(set(artifacts), {
+            'before-adoption', 'after-adoption', 'after-n2', 'final'})
+        for phase, artifact in artifacts.items():
+            self.assertEqual(set(artifact['files']), set(artifact['sha256']))
+            for name, content in artifact['files'].items():
+                self.assertFalse(Path(name).is_absolute())
+                self.assertNotIn('..', Path(name).parts)
+                self.assertEqual(hashlib.sha256(content.encode()).hexdigest(),
+                                 artifact['sha256'][name], (phase, name))
+        before = artifacts['before-adoption']['files']
+        adopted = artifacts['after-adoption']['files']
+        for name, content in before.items():
+            if name != 'docs/SESSION-MANAGEMENT.md':
+                self.assertEqual(adopted[name], content, name)
+        delivered = artifacts['after-n2']['files']
+        for name, content in adopted.items():
+            self.assertEqual(delivered[name], content, name)
+        self.assertEqual(set(delivered) - set(adopted), {
+            'work/data/n2-summary.json', 'work/data/n2-receipt.json'})
+        final = artifacts['final']['files']
+        for name, content in delivered.items():
+            if name not in {'docs/SESSION-MANAGEMENT.md', 'docs/SESSION-HEALTH.md'}:
+                self.assertEqual(final[name], content, name)
+        for task in ('n1', 'n2'):
+            rows = list(csv.DictReader(io.StringIO(final[f'inputs/{task}.csv'])))
+            summary = json.loads(final[f'work/data/{task}-summary.json'])
+            self.assertEqual(summary, {
+                'row_count': len(rows),
+                'total_quantity': sum(int(row['quantity']) for row in rows)})
+        receipt = json.loads(final['coordination/N2-ACCEPTANCE.json'])
+        self.assertEqual(receipt['loading_acceptance']['observed_entry_metadata_version'],
+                         '0.4.1')
+
 
 if __name__ == '__main__':
     unittest.main()

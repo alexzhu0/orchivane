@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-22",
+  "kind": "native Codex desktop chats; real plugin upgrade and source/module reads",
+  "target": "0.4.1 from reviewed/merged PR #2",
+  "lab": "<REPOSITORY>-Native-Labs/adoption-041-20261022",
+  "max_chats": 2,
+  "max_solver_turns": 4,
+  "phases": [
+    "worker N1 ordinary delivery",
+    "new controller adopts existing lab and reviews synthetic stale/partial receipt without messaging worker",
+    "same worker receives normal N2, verifies declared installed skill and writes task receipt",
+    "same controller reads actual delivery/read evidence, accepts task and reconciles its own current index"
+  ],
+  "stop": "One attempt per phase; no repair turns. Stop dependent phases on discovery/ownership/preservation failure and retain evidence. No unplanned provider calls.",
+  "solver_limits": "Only isolated lab and declared installed Orchivane source read; role-owned writes. Controller may read this test worker native history only. No peer messages, creation, schedules, archive, configuration, installs, network/provider business calls or real projects.",
+  "loading": "Do not supply installed entry path in initial prompts; check declared skill discovery and read declared entry. Report unavailable discovery without fallback search.",
+  "fixture_limits": "Stale/partial receipt is a labeled synthetic injection referencing preserved real 0.4.0 bytes; not a genuine worker claim. N1 and N2 business outputs must be real. Other projects are outside scope.",
+  "preservation": [
+    "old 0.4.0 cache and independent backup",
+    "frozen accepted input",
+    "actual worker N1 output/receipt",
+    "source versions/modules/stop conditions",
+    "other plugin settings"
+  ],
+  "settings": "No model override; record actual context if available, no hard token/cost cap."
+}

@@ -22,6 +22,8 @@ For example, ask the controller to add login to an existing product. It first ch
 
 Version 0.4.1 adds [existing-project adoption and upgrades](skills/orchivane/references/adoption.md): source/version verification, task-scoped read receipts and deferred role checks at normal work boundaries. Installation, actual loading and checked behavior are tracked separately; active and idle roles are not woken just to refresh a version.
 
+A [native 0.4.1 follow-up](tests/codex-041-adoption.md) exercised the local upgrade and two new chats/four turns through adoption, normal-task loading, receipts and controller acceptance. Those bounded paths passed; old-cache removal/restoration and incomplete history retrieval are retained as limits. An uninterrupted upgrade for active projects was not established.
+
 Version 0.4.0 adds Claude Code support: plugin manifests and a [Claude Code adapter](skills/orchivane/references/claude-code.md) for the Claude desktop app's Code tab. In [three native desktop runs](tests/claude-code-desktop.md), fresh controllers created two persistent roles, dispatched work and accepted a short brief with an independent review. The final run passed 13 of 16 checks with three partial, and the text was revised afterwards without a rerun; plugin installation from GitHub has not been observed.
 
 A [2026-10-22 Codex 0.4.0 follow-up](tests/codex-040.md) verified the already-installed plugin against eight source hashes and exercised fresh-chat loading, read-only takeover, continuation and duplicate dispatch in two chats/four turns. The functional paths passed; one source-record path defect was corrected by the evaluator and retained in evidence. This is bounded compatibility evidence, not a blanket nonregression claim.
@@ -102,6 +104,8 @@ Do not interrupt work, broadcast upgrade messages or restart chats.
 The controller reuses the project rules and role index, records a verified target and integrates any needed guidance without replacing local rules. Each role records the entry/modules actually read, version or content identity, task/turn, ownership and limits, and the artifacts/checks it completed. The controller accepts those receipts individually. Partial reads, old versions and unavailable sources stay explicit gaps; an installed plugin does not make all existing chats upgraded.
 
 This workflow is separate from installing a package. Use the host's supported update mechanism when installation changes are authorized, preserve customizations and keep one active source. Explicit-path loading is recorded as such. See the [adoption reference](skills/orchivane/references/adoption.md) for receipt fields and boundaries, and the [isolated exercise](tests/adoption-upgrade.md) for observed behavior and limits.
+
+Package replacement can affect old source paths: the [native 0.4.1 update](tests/codex-041-adoption.md) removed the previous version's cache. It was restored from a verified backup, but continuous availability was not established. If active work requires uninterrupted access to its old source, defer installation to a safe window; the controller can prepare deferred adoption records without replacing the package.
 
 ### Claude Code plugin
 

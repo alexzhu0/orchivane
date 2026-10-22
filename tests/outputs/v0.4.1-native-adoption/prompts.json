@@ -1,0 +1,18 @@
+{
+  "N1": {
+    "source": "native read_thread preview",
+    "text": "你是隔离示例 Supply Note 的数据角色 role-data。本轮仅完成普通任务 N1；不进行项目接入或跨角色派工。当前人类已明确授权本次隔离新对话测试，原话保存在共享目录 coordination/authorization.json；这不授权其他项目操作。\n共享项目目录：<PROJECT>。你的新对话有自己的默认工作目录，请按绝对路径读取共享 AGENTS.md、docs/SESSION-MANAGEMENT.md、NORMAL-TASKS.md、config.json、inputs/n1.csv，并确认实际工作目录和写入边界。registration.json 可能仍显示创建中，这不是第二个数据写入者；仅操作已明确授权的独立 N1。\n完成 work/data/n1-summary.json（row_count、total_quantity）及 work/data/n1-receipt.json（任务、实际输入/输出摘要、验证、权限/停止边界）。独立核算并解析实际保存内容。只可新增这两份文件；输入、冻结资料、配置、中央索引和 registration.json 都保持。业务模型/外网预算0；本轮不运行 N2，不创建/消息/归档任何对话、不改插件/自动化或其他项目。不需要为了本轮额外加载与任务无关的模块；若实际读取技能，诚实记录范围，不把清单可见当实读。交付后停下，等待后续普通任务；回复实际产物、检查、遗留和下一承接方。"
+  },
+  "adoption": {
+    "source": "operator-saved dispatch input",
+    "text": "使用本对话声明可用的 Orchivane，作为隔离示例 Supply Note 的唯一总控，接入这个已有资料和数据角色的项目。共享目录：<PROJECT>。先读共享 AGENTS.md、职责索引、coordination/registration.json、授权与现有任务/交付材料；你的默认目录可能不同，按实际位置核对。\n本轮目标版本为0.4.1。请先检查本对话声明的可用技能；若没有 Orchivane，报告未发现并停本轮，不搜索文件找补、不改安装。若有，实际读取声明入口及本轮意图所需模块，核元数据/可达清单与来源，分别记录可用/安装证据、实际读取和任务验证范围；不要只看版本标签。\n已有数据角色的N1已真实完成且当前闲置，其真实ID在registration.json；你只可按需读取这个测试角色的原生历史（N1）来核实际承接/交付，不能读取或触达其他项目。coordination/submitted-source-receipt.json 是明确标注的合成审查输入，不是数据角色本人声称的版本，请从实际入口字节和模块/任务证据判断它是否可作为当前加载回执。原件和真实N1回执都保留。\n你独占 docs/ 及 coordination/ 的管理写入，但 registration.json 由操作方登记、submitted-source-receipt.json 是冻结输入，不可改。AGENTS.md、config.json、inputs/、frozen/、work/全部保持。请按真实资料更新当前职责/版本覆盖、保存自己的实际读取回执，并将必要核验附到下一次普通N2任务的本地简报；不要为了升级给闲置角色发消息，也不要把保存简报说成投递/接收。\n本轮只完成接入和审查，不执行N2、不创建/消息/归档会话、不改调度/安装/配置，不调用业务模型或网络，预算0、旧预算0；不重启现有对话，不触碰真实项目。若registration中总控ID暂未登记，当前唯一角色已由本任务明确授权，可做独立准备并说明登记延迟，不能造ID或另建总控。交付说明实际产物、版本、读取与验证、保留缺口及下一主责；其他角色没有实际读取证据就保持待下次正常任务核验。"
+  },
+  "N2": {
+    "source": "operator-saved dispatch input",
+    "text": "现在执行已安排的普通数据任务 N2，N1 已完成；这是业务接续，不是升级专用唤醒。共享目录仍为 <PROJECT>。先读当前职责索引、NORMAL-TASKS.md 和总控保存的 coordination/N2-BRIEF.md，按该简报核实际来源及应读模块、完成 N2 并留任务范围的回执。不要把总控已读当作自己已读，也不要把N1业务回执当作Orchivane加载证据。\n只新增 work/data/n2-summary.json 和 work/data/n2-receipt.json；保留其他全部文件，尤其N1产物、索引、合成旧回执、注册、配置和冻结输入。输入为 inputs/n2.csv；独立核算并解析实际保存文件。业务外网/模型预算0、旧预算0，不发消息、不创建/归档对话、不改插件/调度或其他项目。若版本有缺口如实记录，不修改元数据凑一致。完成本普通任务后停止，交付实际产物、实读版本/模块、验证、遗留与下一主责；总控验收另由操作方安排。"
+  },
+  "acceptance": {
+    "source": "operator-saved dispatch input",
+    "text": "请在当前隔离示例里完成普通 N2 的独立验收及总控收尾。这是已预定的第4/4个测试轮次，不再给数据角色派任务或补跑。共享目录仍为 <PROJECT>。\n数据角色已交 work/data/n2-summary.json 和 work/data/n2-receipt.json；请实际读取这些文件、原始输入、既有总控记录及必要的该测试角色原生N2历史，核业务结果、来源/模块读取、版本与回执范围。只可读取 registration.json 中这一个数据角色的历史，不读取其他项目；不能只凭其自报或安装状态接受加载。\n按真实证据更新你独占的当前职责索引、版本覆盖及审查记录，注明哪一范围已核验、哪些未核验；保留之前的待派发/待核验时点和合成旧回执，标明被新证据替代的关系。工作者已正确未改中央索引，收尾由你完成；N1/N2业务与本次加载验收分开。\n只改 docs/ 与 coordination/ 管理材料（不改 registration.json、authorization.json 或 submitted-source-receipt.json）；所有 work/、inputs/、frozen/、配置和AGENTS保持。不得执行或重发N2，不发消息、不创建/归档/调度、不改插件或配置、不调用业务模型或网络。原限额四轮到此结束，业务预算0、旧预算0，没有追加执行额度。交付后停止，说明实际验收依据、当前状态、遗留及下一主责；不声称其他项目/模块或自动热加载已经通过。"
+  }
+}

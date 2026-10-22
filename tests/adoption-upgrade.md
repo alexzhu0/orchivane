@@ -69,3 +69,5 @@ This exercise does not test concurrent native writers, interrupting message deli
 ## PR #2 review follow-up
 
 Pre-merge review reproduced a maintenance defect in the offline replay test: comparing every future checkout with the frozen 0.4.1 skill hashes would reject a legitimate later release. The fix retains unconditional artifact/preservation checks and compares current source only when its manifest version is 0.4.1. A new temporary-root regression covers version 0.4.2 without modifying historical artifacts. All 29 offline tests and package checks passed after the correction. Independent review found no other blocking issue; its review covered the original head, and the maintainer verified this test-only correction separately. The tested skill bytes and four agent outcomes above are unchanged.
+
+A separately authorized [native 0.4.1 follow-up](codex-041-adoption.md) then exercised real local installation and persistent-chat adoption/receipts. It adds native evidence and retains an old-cache removal/restoration issue; it does not reclassify this earlier exercise or erase its limitations.
