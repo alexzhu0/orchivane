@@ -16,6 +16,19 @@ Keep these observations separate:
 
 “Latest” means the source/version actually checked, with its check time; distinguish latest locally available from a verified upstream release. If metadata disagrees, a reference is missing, or the source cannot be inspected, record the mismatch and last verified source. Keep the upgrade unverified; neither an old receipt nor a successful business task closes that gap. Do not edit metadata to manufacture agreement.
 
+## Preserve old reads before any package refresh
+
+Host-managed caches are replaceable installation locations, not durable version pins. A backup restored after deletion cannot establish continuous availability at the old path. Orchivane cannot prevent the host or another actor from cleaning that path.
+
+When work must continue on an older version:
+
+1. Before refreshing a marketplace or replacing a package, copy the complete self-contained skill/source tree to a project-owned location outside managed caches, temporary checkouts and automatic skill discovery. Keep the relative layout and local customizations. Record the original and retained entry, version and full file hashes; reopen the retained entry and required references at their actual new locations. A symlink or references back into the cache are not independent preservation. If dependencies extend beyond the copied tree, preserve their resolution base too or keep the refresh blocked.
+2. At the role's next normal task or agreed checkpoint, have it actually read the retained entry and needed modules and record that source in its own task receipt. The controller verifies the receipt before marking that reader protected. Copying files, changing an index or retaining an old read receipt does not redirect an already-running role. Do not message, restart or interrupt it merely to obtain this acknowledgment.
+3. Hold **both marketplace refresh and package replacement** while any affected reader still needs the managed path, has an unaccepted pin, or has unknown source coverage. A plugin may be shared across projects; absence from this project's index does not prove there are no other readers. Without covering evidence, defer the update and let existing work continue. An idle role remains pending its next task; either that task verifies its retained source first or the update stays deferred. Check any host-triggered refresh mechanism before promising a maintenance window.
+4. Once all affected readers have accepted independent sources or finished their work, use the authorized host update mechanism. Verify retained source hashes and reference readability afterwards, separately from the new installation. Keep each old copy until its dependent work ends and its owner authorizes cleanup. Do not rewrite old receipts or count retained-source reads as discovery/loading of the new plugin.
+
+For a source-only skill such as Orchivane, preserving its complete skill directory preserves its relative reference layout. A plugin with servers, scripts or external runtime dependencies needs a separate dependency check; copying its Markdown alone is insufficient. This workflow protects a verified independent source from cache cleanup. It does not guarantee the original cache pathname, automatic hot reload, host-wide enforcement or availability through crashes and unrelated deletion.
+
 ## Roll out without interrupting work
 
 1. The controller records its own reads and applies the relevant modules at its next safe work boundary. Keep one index maintainer and reuse existing change/health records.
@@ -33,6 +46,8 @@ Add these fields to an existing task receipt; do not introduce a parallel databa
 Role / actual chat ID; normal task ID; read time or turn:
 Target source/version; observed source/version; loading mode:
 Actually read: entry + task-required modules, real paths and hashes/revision if needed:
+Source retention when needed: original/retained entry, complete inventory/hash check,
+normal-boundary acceptance evidence; readers still blocking refresh; post-update check:
 Role ownership, original authorization, remaining budget and stop boundary:
 Actual task artifacts/checks; what those checks do and do not establish:
 Status: pending normal task / read only / checked for this task / unverified:

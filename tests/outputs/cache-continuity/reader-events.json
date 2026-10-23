@@ -1,0 +1,1606 @@
+[
+  {
+    "worker": "cache",
+    "phase": "before",
+    "elapsed_ns": 69084,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "before",
+    "elapsed_ns": 100667,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "before",
+    "elapsed_ns": 7572792,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "before",
+    "elapsed_ns": 7585709,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "before",
+    "elapsed_ns": 15319084,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "before",
+    "elapsed_ns": 15357959,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "before",
+    "elapsed_ns": 22990292,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "before",
+    "elapsed_ns": 23203250,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "before",
+    "elapsed_ns": 30706709,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "before",
+    "elapsed_ns": 30766125,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "before",
+    "elapsed_ns": 38265959,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "before",
+    "elapsed_ns": 38477625,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "before",
+    "elapsed_ns": 45978125,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "before",
+    "elapsed_ns": 46208875,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "before",
+    "elapsed_ns": 53683334,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "before",
+    "elapsed_ns": 53693167,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "before",
+    "elapsed_ns": 60008750,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "before",
+    "elapsed_ns": 61463084,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "before",
+    "elapsed_ns": 67731042,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "before",
+    "elapsed_ns": 69170084,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "before",
+    "elapsed_ns": 75458667,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "before",
+    "elapsed_ns": 76855709,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "before",
+    "elapsed_ns": 83181834,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "before",
+    "elapsed_ns": 83192625,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "before",
+    "elapsed_ns": 90814875,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "before",
+    "elapsed_ns": 90871875,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "before",
+    "elapsed_ns": 98415250,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "before",
+    "elapsed_ns": 98476917,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "before",
+    "elapsed_ns": 103906084,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "before",
+    "elapsed_ns": 106015917,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "before",
+    "elapsed_ns": 111626584,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "before",
+    "elapsed_ns": 113040875,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "before",
+    "elapsed_ns": 119388584,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "before",
+    "elapsed_ns": 119428792,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "before",
+    "elapsed_ns": 127280167,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "before",
+    "elapsed_ns": 127300792,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "before",
+    "elapsed_ns": 132639959,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "before",
+    "elapsed_ns": 133967584,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "before",
+    "elapsed_ns": 140417959,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "before",
+    "elapsed_ns": 140400000,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "before",
+    "elapsed_ns": 147371750,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "before",
+    "elapsed_ns": 147415209,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "before",
+    "elapsed_ns": 154985375,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "before",
+    "elapsed_ns": 155051084,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "before",
+    "elapsed_ns": 160745625,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "before",
+    "elapsed_ns": 162566000,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "before",
+    "elapsed_ns": 168484959,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "before",
+    "elapsed_ns": 170280750,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "before",
+    "elapsed_ns": 174080084,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "before",
+    "elapsed_ns": 177992375,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "before",
+    "elapsed_ns": 181814000,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "before",
+    "elapsed_ns": 185713375,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "before",
+    "elapsed_ns": 187455292,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "before",
+    "elapsed_ns": 193423042,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "before",
+    "elapsed_ns": 193432750,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "before",
+    "elapsed_ns": 200980917,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "before",
+    "elapsed_ns": 200990959,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "before",
+    "elapsed_ns": 208645167,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "before",
+    "elapsed_ns": 208691167,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "before",
+    "elapsed_ns": 216242417,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "before",
+    "elapsed_ns": 216347917,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "before",
+    "elapsed_ns": 223913542,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "before",
+    "elapsed_ns": 224103209,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "before",
+    "elapsed_ns": 231630500,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "before",
+    "elapsed_ns": 231811500,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "before",
+    "elapsed_ns": 239393250,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "before",
+    "elapsed_ns": 239525292,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "before",
+    "elapsed_ns": 247130084,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "before",
+    "elapsed_ns": 247252167,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "before",
+    "elapsed_ns": 254842459,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "before",
+    "elapsed_ns": 254984667,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 262577625,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 264049709,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 268422834,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 271781417,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 276189500,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 278376750,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 283934584,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 283952000,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 289414292,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 290915084,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 297174042,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 298638250,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 304911667,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 306375709,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 310718125,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 314109709,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 318446709,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 321832000,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 326164209,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 329537834,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 333889209,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 337356542,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 341690542,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 345086709,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 349433250,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 352810750,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 357157625,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 360555125,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 364876375,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 368271709,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 372579625,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 375986084,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 380290750,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 383691375,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 387989959,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 391408209,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 395701375,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 399120125,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 403420917,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 406867500,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 411151417,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 414598334,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 418375292,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 421481334,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 426272000,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 429459459,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 434028792,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 437187334,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 440225917,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 444924750,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 447954000,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 452665292,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 455667834,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 460384000,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 463401834,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 468079334,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 471108625,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 475792500,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 478827334,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 483512209,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 486539917,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 491233125,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 494237042,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 498948334,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 500253917,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 506669084,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 507975084,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 513243667,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 515688334,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 520975834,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 523442709,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 528684334,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 531165500,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 536378292,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 538908084,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 544075750,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 546618792,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 551789125,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 554341709,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 559499625,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 562046625,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 567208917,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 569766125,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 574914334,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 577465292,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 582613334,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 585171959,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 590317125,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 592885875,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 597899209,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 600585167,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 605598209,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 606575250,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 613292834,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 614297209,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 621002209,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 621996042,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 626614417,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 629847834,
+    "ok": false,
+    "error": "FileNotFoundError",
+    "file": "SKILL.md"
+  },
+  {
+    "worker": "retained",
+    "phase": "marketplace-refresh",
+    "elapsed_ns": 632608334,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "plugin-install",
+    "elapsed_ns": 635563959,
+    "ok": false,
+    "error": "FileNotFoundError",
+    "file": "SKILL.md"
+  },
+  {
+    "worker": "retained",
+    "phase": "plugin-install",
+    "elapsed_ns": 640375625,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "plugin-install",
+    "elapsed_ns": 643114875,
+    "ok": false,
+    "error": "FileNotFoundError",
+    "file": "SKILL.md"
+  },
+  {
+    "worker": "retained",
+    "phase": "plugin-install",
+    "elapsed_ns": 648147625,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "plugin-install",
+    "elapsed_ns": 650637750,
+    "ok": false,
+    "error": "FileNotFoundError",
+    "file": "SKILL.md"
+  },
+  {
+    "worker": "retained",
+    "phase": "plugin-install",
+    "elapsed_ns": 655913625,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "plugin-install",
+    "elapsed_ns": 656918209,
+    "ok": false,
+    "error": "FileNotFoundError",
+    "file": "SKILL.md"
+  },
+  {
+    "worker": "retained",
+    "phase": "plugin-install",
+    "elapsed_ns": 663642250,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "plugin-install",
+    "elapsed_ns": 664167792,
+    "ok": false,
+    "error": "FileNotFoundError",
+    "file": "SKILL.md"
+  },
+  {
+    "worker": "retained",
+    "phase": "plugin-install",
+    "elapsed_ns": 671413792,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "plugin-install",
+    "elapsed_ns": 671689459,
+    "ok": false,
+    "error": "FileNotFoundError",
+    "file": "SKILL.md"
+  },
+  {
+    "worker": "cache",
+    "phase": "plugin-install",
+    "elapsed_ns": 676869292,
+    "ok": false,
+    "error": "FileNotFoundError",
+    "file": "SKILL.md"
+  },
+  {
+    "worker": "retained",
+    "phase": "plugin-install",
+    "elapsed_ns": 676673542,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "after",
+    "elapsed_ns": 684375167,
+    "ok": false,
+    "error": "FileNotFoundError",
+    "file": "SKILL.md"
+  },
+  {
+    "worker": "retained",
+    "phase": "after",
+    "elapsed_ns": 684537500,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "after",
+    "elapsed_ns": 691897542,
+    "ok": false,
+    "error": "FileNotFoundError",
+    "file": "SKILL.md"
+  },
+  {
+    "worker": "retained",
+    "phase": "after",
+    "elapsed_ns": 692260875,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "after",
+    "elapsed_ns": 699416084,
+    "ok": false,
+    "error": "FileNotFoundError",
+    "file": "SKILL.md"
+  },
+  {
+    "worker": "retained",
+    "phase": "after",
+    "elapsed_ns": 699978250,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "after",
+    "elapsed_ns": 706936542,
+    "ok": false,
+    "error": "FileNotFoundError",
+    "file": "SKILL.md"
+  },
+  {
+    "worker": "retained",
+    "phase": "after",
+    "elapsed_ns": 707678625,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "after",
+    "elapsed_ns": 714450834,
+    "ok": false,
+    "error": "FileNotFoundError",
+    "file": "SKILL.md"
+  },
+  {
+    "worker": "retained",
+    "phase": "after",
+    "elapsed_ns": 715362584,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "after",
+    "elapsed_ns": 721962667,
+    "ok": false,
+    "error": "FileNotFoundError",
+    "file": "SKILL.md"
+  },
+  {
+    "worker": "retained",
+    "phase": "after",
+    "elapsed_ns": 723062375,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "after",
+    "elapsed_ns": 728630125,
+    "ok": false,
+    "error": "FileNotFoundError",
+    "file": "SKILL.md"
+  },
+  {
+    "worker": "retained",
+    "phase": "after",
+    "elapsed_ns": 730065084,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "after",
+    "elapsed_ns": 736147584,
+    "ok": false,
+    "error": "FileNotFoundError",
+    "file": "SKILL.md"
+  },
+  {
+    "worker": "retained",
+    "phase": "after",
+    "elapsed_ns": 737763625,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "after",
+    "elapsed_ns": 743661834,
+    "ok": false,
+    "error": "FileNotFoundError",
+    "file": "SKILL.md"
+  },
+  {
+    "worker": "retained",
+    "phase": "after",
+    "elapsed_ns": 745481459,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "after",
+    "elapsed_ns": 749105625,
+    "ok": false,
+    "error": "FileNotFoundError",
+    "file": "SKILL.md"
+  },
+  {
+    "worker": "retained",
+    "phase": "after",
+    "elapsed_ns": 753171667,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "after",
+    "elapsed_ns": 756632375,
+    "ok": false,
+    "error": "FileNotFoundError",
+    "file": "SKILL.md"
+  },
+  {
+    "worker": "retained",
+    "phase": "after",
+    "elapsed_ns": 759112875,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "after",
+    "elapsed_ns": 762476167,
+    "ok": false,
+    "error": "FileNotFoundError",
+    "file": "SKILL.md"
+  },
+  {
+    "worker": "retained",
+    "phase": "after",
+    "elapsed_ns": 766814667,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "after",
+    "elapsed_ns": 769994459,
+    "ok": false,
+    "error": "FileNotFoundError",
+    "file": "SKILL.md"
+  },
+  {
+    "worker": "retained",
+    "phase": "after",
+    "elapsed_ns": 772521917,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "after",
+    "elapsed_ns": 775850000,
+    "ok": false,
+    "error": "FileNotFoundError",
+    "file": "SKILL.md"
+  },
+  {
+    "worker": "retained",
+    "phase": "after",
+    "elapsed_ns": 779596459,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "after",
+    "elapsed_ns": 783368084,
+    "ok": false,
+    "error": "FileNotFoundError",
+    "file": "SKILL.md"
+  },
+  {
+    "worker": "retained",
+    "phase": "after",
+    "elapsed_ns": 787304417,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "after",
+    "elapsed_ns": 789218625,
+    "ok": false,
+    "error": "FileNotFoundError",
+    "file": "SKILL.md"
+  },
+  {
+    "worker": "retained",
+    "phase": "after",
+    "elapsed_ns": 793411584,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "after",
+    "elapsed_ns": 796734917,
+    "ok": false,
+    "error": "FileNotFoundError",
+    "file": "SKILL.md"
+  },
+  {
+    "worker": "retained",
+    "phase": "after",
+    "elapsed_ns": 801117375,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "after",
+    "elapsed_ns": 802597959,
+    "ok": false,
+    "error": "FileNotFoundError",
+    "file": "SKILL.md"
+  },
+  {
+    "worker": "cache",
+    "phase": "after",
+    "elapsed_ns": 808835000,
+    "ok": false,
+    "error": "FileNotFoundError",
+    "file": "SKILL.md"
+  },
+  {
+    "worker": "retained",
+    "phase": "after",
+    "elapsed_ns": 808824750,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "after",
+    "elapsed_ns": 815970375,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "after",
+    "elapsed_ns": 816326667,
+    "ok": false,
+    "error": "FileNotFoundError",
+    "file": "SKILL.md"
+  },
+  {
+    "worker": "cache",
+    "phase": "after",
+    "elapsed_ns": 823841542,
+    "ok": false,
+    "error": "FileNotFoundError",
+    "file": "SKILL.md"
+  },
+  {
+    "worker": "retained",
+    "phase": "after",
+    "elapsed_ns": 823658125,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "after",
+    "elapsed_ns": 829376584,
+    "ok": false,
+    "error": "FileNotFoundError",
+    "file": "SKILL.md"
+  },
+  {
+    "worker": "retained",
+    "phase": "after",
+    "elapsed_ns": 829341584,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "after",
+    "elapsed_ns": 834924084,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "after",
+    "elapsed_ns": 836890709,
+    "ok": false,
+    "error": "FileNotFoundError",
+    "file": "SKILL.md"
+  },
+  {
+    "worker": "cache",
+    "phase": "after",
+    "elapsed_ns": 842711959,
+    "ok": false,
+    "error": "FileNotFoundError",
+    "file": "SKILL.md"
+  },
+  {
+    "worker": "retained",
+    "phase": "after",
+    "elapsed_ns": 842610125,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "after",
+    "elapsed_ns": 850229417,
+    "ok": false,
+    "error": "FileNotFoundError",
+    "file": "SKILL.md"
+  },
+  {
+    "worker": "retained",
+    "phase": "after",
+    "elapsed_ns": 850384750,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "after",
+    "elapsed_ns": 857747250,
+    "ok": false,
+    "error": "FileNotFoundError",
+    "file": "SKILL.md"
+  },
+  {
+    "worker": "retained",
+    "phase": "after",
+    "elapsed_ns": 858072459,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "after",
+    "elapsed_ns": 865267709,
+    "ok": false,
+    "error": "FileNotFoundError",
+    "file": "SKILL.md"
+  },
+  {
+    "worker": "retained",
+    "phase": "after",
+    "elapsed_ns": 865764834,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "after",
+    "elapsed_ns": 872790000,
+    "ok": false,
+    "error": "FileNotFoundError",
+    "file": "SKILL.md"
+  },
+  {
+    "worker": "retained",
+    "phase": "after",
+    "elapsed_ns": 873470584,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "after",
+    "elapsed_ns": 880302209,
+    "ok": false,
+    "error": "FileNotFoundError",
+    "file": "SKILL.md"
+  },
+  {
+    "worker": "retained",
+    "phase": "after",
+    "elapsed_ns": 881176917,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "after",
+    "elapsed_ns": 887818084,
+    "ok": false,
+    "error": "FileNotFoundError",
+    "file": "SKILL.md"
+  },
+  {
+    "worker": "retained",
+    "phase": "after",
+    "elapsed_ns": 888888042,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "after",
+    "elapsed_ns": 895333709,
+    "ok": false,
+    "error": "FileNotFoundError",
+    "file": "SKILL.md"
+  },
+  {
+    "worker": "retained",
+    "phase": "after",
+    "elapsed_ns": 895343542,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "after",
+    "elapsed_ns": 902848459,
+    "ok": false,
+    "error": "FileNotFoundError",
+    "file": "SKILL.md"
+  },
+  {
+    "worker": "retained",
+    "phase": "after",
+    "elapsed_ns": 902837834,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "after",
+    "elapsed_ns": 909572125,
+    "ok": false,
+    "error": "FileNotFoundError",
+    "file": "SKILL.md"
+  },
+  {
+    "worker": "retained",
+    "phase": "after",
+    "elapsed_ns": 910538209,
+    "ok": true
+  },
+  {
+    "worker": "retained",
+    "phase": "after",
+    "elapsed_ns": 916728125,
+    "ok": true
+  },
+  {
+    "worker": "cache",
+    "phase": "after",
+    "elapsed_ns": 917088917,
+    "ok": false,
+    "error": "FileNotFoundError",
+    "file": "SKILL.md"
+  },
+  {
+    "worker": "cache",
+    "phase": "after",
+    "elapsed_ns": 924602792,
+    "ok": false,
+    "error": "FileNotFoundError",
+    "file": "SKILL.md"
+  },
+  {
+    "worker": "retained",
+    "phase": "after",
+    "elapsed_ns": 924424875,
+    "ok": true
+  }
+]

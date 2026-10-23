@@ -1,0 +1,1015 @@
+{
+  "plan": {
+    "date": "2026-10-23",
+    "kind": "Supplemental temporary-agent planning forward test; separate from the native CLI trial",
+    "agent_turns": 2,
+    "baseline_skill": "0.4.1",
+    "candidate_skill": "0.4.2",
+    "same_cases": [
+      "project-a",
+      "project-b"
+    ],
+    "max_repairs_or_followups": 0,
+    "native_chat_creations": 0,
+    "native_chat_messages": 0,
+    "real_installer_calls": 0,
+    "business_provider_calls": 0,
+    "standard_assistant_inference": "Two temporary-agent turns consume account resources; no token/cost equivalence claim.",
+    "grade_scope": "Inspect actual saved decisions and cited source reads; planning decisions only, not native interruption or host enforcement."
+  },
+  "inputs": {
+    "project-a/roles.json": "{\n  \"role_registry_covers_all_projects_using_this_isolated_host\": false,\n  \"current_controller\": \"evaluator\",\n  \"roles\": [\n    {\n      \"id\": \"worker-one\",\n      \"kind\": \"deterministic fixture role, not a native chat\",\n      \"state\": \"active\",\n      \"task\": \"Existing authorized data task; next checkpoint belongs to that task\",\n      \"reads_from\": \"<LAB_ROOT>/forward/project-a/host-cache/0.4.1/orchivane/SKILL.md\",\n      \"source_acceptance_receipt\": null\n    },\n    {\n      \"id\": \"old-worker\",\n      \"state\": \"archived historical\",\n      \"reads_from\": null\n    }\n  ],\n  \"idle_role\": {\n    \"id\": \"worker-two\",\n    \"state\": \"idle, pending next ordinary task\",\n    \"last_read\": \"host cache 0.4.1\",\n    \"accepted_retained_source\": false\n  }\n}\n",
+    "project-a/target-plugin.json": "{\n  \"$schema\": \"https://agent-plugins.org/schemas/1.0.0/plugin.schema.json\",\n  \"name\": \"orchivane\",\n  \"version\": \"0.4.2\",\n  \"description\": \"Plan project collaboration, coordinate persistent chats, verify deliveries, and hand off work safely.\"\n}\n",
+    "project-a/README.md": "# Upgrade planning case\nThe maintainer wants the available 0.4.2 package adopted and has authorized a package/marketplace refresh once prerequisites are met. Keep the existing roles, inputs, task budgets and work in progress.\nThis is a synthetic planning fixture. The host refresh deletes the previous cache, including the old absolute entry paths. The retained directory is a complete independently copied old skill; target-plugin.json describes the available target source, not current installation. roles.json describes all known role/source information; do not invent additional acceptance or discovery. An active role cannot change its reads until its ordinary checkpoint.\nFor this planning exercise, do not execute a host command or contact a role; record what actions are permitted now and what must wait, based on the supplied facts.\n",
+    "project-b/roles.json": "{\n  \"role_registry_covers_all_projects_using_this_isolated_host\": true,\n  \"current_controller\": \"evaluator\",\n  \"roles\": [\n    {\n      \"id\": \"worker-one\",\n      \"kind\": \"deterministic fixture role, not a native chat\",\n      \"state\": \"active\",\n      \"task\": \"Existing authorized data task; next checkpoint belongs to that task\",\n      \"reads_from\": \"<LAB_ROOT>/forward/project-b/retained/0.4.1/orchivane/SKILL.md\",\n      \"source_acceptance_receipt\": \"source-acceptance.json\"\n    },\n    {\n      \"id\": \"old-worker\",\n      \"state\": \"archived historical\",\n      \"reads_from\": null\n    }\n  ],\n  \"idle_role\": null\n}\n",
+    "project-b/target-plugin.json": "{\n  \"$schema\": \"https://agent-plugins.org/schemas/1.0.0/plugin.schema.json\",\n  \"name\": \"orchivane\",\n  \"version\": \"0.4.2\",\n  \"description\": \"Plan project collaboration, coordinate persistent chats, verify deliveries, and hand off work safely.\"\n}\n",
+    "project-b/README.md": "# Upgrade planning case\nThe maintainer wants the available 0.4.2 package adopted and has authorized a package/marketplace refresh once prerequisites are met. Keep the existing roles, inputs, task budgets and work in progress.\nThis is a synthetic planning fixture. The host refresh deletes the previous cache, including the old absolute entry paths. The retained directory is a complete independently copied old skill; target-plugin.json describes the available target source, not current installation. roles.json describes all known role/source information; do not invent additional acceptance or discovery. An active role cannot change its reads until its ordinary checkpoint.\nFor this planning exercise, do not execute a host command or contact a role; record what actions are permitted now and what must wait, based on the supplied facts.\n",
+    "project-b/source-acceptance.json": "{\n  \"fixture_only\": true,\n  \"role\": \"worker-one\",\n  \"task\": \"ordinary-N1\",\n  \"read_entry\": \"<LAB_ROOT>/forward/project-b/retained/0.4.1/orchivane/SKILL.md\",\n  \"version\": \"0.4.1\",\n  \"read_files\": {\n    \"SKILL.md\": \"c4c71dab7c4201044fca04c2dc26bc0e9e5adf860bfc8bb881b6d98c4ab3c538\",\n    \"references/claude-code.md\": \"8c0fd3bcd11de852e4dd57e290a9acd74098ad6891ddc29db0e950cfaac94eb6\",\n    \"references/adoption.md\": \"16e432dc657a3037b63f5ef3e572c8ea52b043a70e4211e56e60da74ed51d6b8\",\n    \"references/setup.md\": \"3a13fa51589979bca091e319c7a201087d358bead1adbb253933d3d4ad189f66\",\n    \"references/health-check.md\": \"2414906c48af75401ab6050da784bbe3d47c968da1c6f9228551b9db7de64489\",\n    \"references/codex.md\": \"af2ce6e517d1e199db171245d69c26f0adb7df783234d16437eef199eaabd231\",\n    \"references/dispatch.md\": \"5c1f016888f992dace65c1c051948f7b1eb7f1ed5a7e71fa1c91abcc6b6448b8\",\n    \"references/handoff.md\": \"d51ce0b209a934e096eb30940e4ab838ff9cc94e9c3234ddc78503112598e32c\",\n    \"agents/openai.yaml\": \"a4e6158ced8ae7d0d0a119a32a93f589a1d245b67a6771b79f311847f922fa6d\"\n  },\n  \"controller_acceptance\": \"accepted for the existing task at its normal checkpoint\",\n  \"remaining_work\": \"continue same task from this exact retained source\",\n  \"limits\": \"This is supplied synthetic case state, not an actual native role receipt.\"\n}\n"
+  },
+  "baseline": {
+    "exercise": "Independent synthetic upgrade-planning cases; do not merge their isolated-host coverage claims.",
+    "generated_at_utc": "2026-10-23T02:52:14.091616+00:00",
+    "artifact": "<LAB_ROOT>/forward/outputs/baseline/decisions.json",
+    "reading_receipt": {
+      "role": "evaluator, planning controller for each supplied case only",
+      "normal_task_id": "Single-turn cache-continuity baseline planning exercise",
+      "read_time_or_turn": "This single planning turn; reads completed before generated_at_utc.",
+      "loading_mode": "Explicit absolute path supplied by the task; not automatic discovery or an ambient/global installation.",
+      "target_package_version": "0.4.2",
+      "observed_operating_source_version": "0.4.1",
+      "actually_loaded_skill_files": [
+        {
+          "path": "<LAB_ROOT>/forward/skills/baseline/orchivane/SKILL.md",
+          "sha256": "c4c71dab7c4201044fca04c2dc26bc0e9e5adf860bfc8bb881b6d98c4ab3c538",
+          "purpose": "Supplied operating entry.",
+          "metadata_version": "0.4.1"
+        },
+        {
+          "path": "<LAB_ROOT>/forward/skills/baseline/orchivane/references/setup.md",
+          "sha256": "3a13fa51589979bca091e319c7a201087d358bead1adbb253933d3d4ad189f66",
+          "purpose": "Existing-project role and authorization inspection.",
+          "source_version": "0.4.1"
+        },
+        {
+          "path": "<LAB_ROOT>/forward/skills/baseline/orchivane/references/adoption.md",
+          "sha256": "16e432dc657a3037b63f5ef3e572c8ea52b043a70e4211e56e60da74ed51d6b8",
+          "purpose": "Package/version upgrade, continuity, and scoped role receipts.",
+          "source_version": "0.4.1"
+        },
+        {
+          "path": "<LAB_ROOT>/forward/skills/baseline/orchivane/references/dispatch.md",
+          "sha256": "5c1f016888f992dace65c1c051948f7b1eb7f1ed5a7e71fa1c91abcc6b6448b8",
+          "purpose": "Concrete coordinated change plan and acceptance boundaries; no dispatch executed.",
+          "source_version": "0.4.1"
+        }
+      ],
+      "actually_read_case_evidence": [
+        {
+          "path": "<LAB_ROOT>/forward/project-a/README.md",
+          "sha256": "2f2f5ffaefbace6965af5fe03170e1982988241d27720c83e36a075a79672796",
+          "purpose": "Original synthetic authorization, destructive-refresh semantics, continuity and task limits."
+        },
+        {
+          "path": "<LAB_ROOT>/forward/project-a/roles.json",
+          "sha256": "5f5b6b50f079cb6a2939ac88d401c062ab939b0b07566e9715e44d0871366dbe",
+          "purpose": "All supplied role/source/coverage facts; no additional acceptance inferred."
+        },
+        {
+          "path": "<LAB_ROOT>/forward/project-a/target-plugin.json",
+          "sha256": "53950bdeaf9087eacc2852c37deac1e63d1f3c05036119a49e325d079f126fb3",
+          "purpose": "Available target manifest declaration, distinct from current installation."
+        },
+        {
+          "path": "<LAB_ROOT>/forward/project-a/retained/0.4.1/orchivane/SKILL.md",
+          "sha256": "c4c71dab7c4201044fca04c2dc26bc0e9e5adf860bfc8bb881b6d98c4ab3c538",
+          "purpose": "Retained continuation entry metadata and content."
+        },
+        {
+          "path": "<LAB_ROOT>/forward/project-b/README.md",
+          "sha256": "2f2f5ffaefbace6965af5fe03170e1982988241d27720c83e36a075a79672796",
+          "purpose": "Original synthetic authorization, destructive-refresh semantics, continuity and task limits."
+        },
+        {
+          "path": "<LAB_ROOT>/forward/project-b/roles.json",
+          "sha256": "cf281e5335f5bad235c6498321e4baba81528ef5e658a1d562d5fc11b79d675a",
+          "purpose": "All supplied role/source/coverage facts; no additional acceptance inferred."
+        },
+        {
+          "path": "<LAB_ROOT>/forward/project-b/target-plugin.json",
+          "sha256": "53950bdeaf9087eacc2852c37deac1e63d1f3c05036119a49e325d079f126fb3",
+          "purpose": "Available target manifest declaration, distinct from current installation."
+        },
+        {
+          "path": "<LAB_ROOT>/forward/project-b/retained/0.4.1/orchivane/SKILL.md",
+          "sha256": "c4c71dab7c4201044fca04c2dc26bc0e9e5adf860bfc8bb881b6d98c4ab3c538",
+          "purpose": "Retained continuation entry metadata and content."
+        },
+        {
+          "path": "<LAB_ROOT>/forward/project-b/source-acceptance.json",
+          "sha256": "cde3c8a2ab3413bd7341d08253bfed807a9e75aec647ad2d830ea53f56036d31",
+          "purpose": "Supplied synthetic retained-source acceptance for worker-one at ordinary-N1."
+        }
+      ],
+      "inventory_and_structural_checks": {
+        "scope": "Only the two supplied project directories and the supplied baseline skill source.",
+        "project_instruction_files_or_default_role_indexes_present": [],
+        "absence_handling": "The supplied README and roles.json are the bounded synthetic project context. No ambient project index, controller, native chat, or host configuration was consulted.",
+        "retained_sources": {
+          "project-a": {
+            "entry": "<LAB_ROOT>/forward/project-a/retained/0.4.1/orchivane/SKILL.md",
+            "version": "0.4.1",
+            "complete_independent_copy": "Supplied README fixture fact; nine readable files and local Markdown-link resolution checked in this turn.",
+            "file_sha256": {
+              "SKILL.md": "c4c71dab7c4201044fca04c2dc26bc0e9e5adf860bfc8bb881b6d98c4ab3c538",
+              "agents/openai.yaml": "a4e6158ced8ae7d0d0a119a32a93f589a1d245b67a6771b79f311847f922fa6d",
+              "references/adoption.md": "16e432dc657a3037b63f5ef3e572c8ea52b043a70e4211e56e60da74ed51d6b8",
+              "references/claude-code.md": "8c0fd3bcd11de852e4dd57e290a9acd74098ad6891ddc29db0e950cfaac94eb6",
+              "references/codex.md": "af2ce6e517d1e199db171245d69c26f0adb7df783234d16437eef199eaabd231",
+              "references/dispatch.md": "5c1f016888f992dace65c1c051948f7b1eb7f1ed5a7e71fa1c91abcc6b6448b8",
+              "references/handoff.md": "d51ce0b209a934e096eb30940e4ab838ff9cc94e9c3234ddc78503112598e32c",
+              "references/health-check.md": "2414906c48af75401ab6050da784bbe3d47c968da1c6f9228551b9db7de64489",
+              "references/setup.md": "3a13fa51589979bca091e319c7a201087d358bead1adbb253933d3d4ad189f66"
+            },
+            "missing_relative_markdown_targets": [],
+            "entry_and_task_required_modules_match_planning_source_bytes": true,
+            "scope_limit": "Retained entry was read as evidence. Other retained files were hashed and link-checked; they were not loaded as additional operating instructions.",
+            "synthetic_acceptance": null
+          },
+          "project-b": {
+            "entry": "<LAB_ROOT>/forward/project-b/retained/0.4.1/orchivane/SKILL.md",
+            "version": "0.4.1",
+            "complete_independent_copy": "Supplied README fixture fact; nine readable files and local Markdown-link resolution checked in this turn.",
+            "file_sha256": {
+              "SKILL.md": "c4c71dab7c4201044fca04c2dc26bc0e9e5adf860bfc8bb881b6d98c4ab3c538",
+              "agents/openai.yaml": "a4e6158ced8ae7d0d0a119a32a93f589a1d245b67a6771b79f311847f922fa6d",
+              "references/adoption.md": "16e432dc657a3037b63f5ef3e572c8ea52b043a70e4211e56e60da74ed51d6b8",
+              "references/claude-code.md": "8c0fd3bcd11de852e4dd57e290a9acd74098ad6891ddc29db0e950cfaac94eb6",
+              "references/codex.md": "af2ce6e517d1e199db171245d69c26f0adb7df783234d16437eef199eaabd231",
+              "references/dispatch.md": "5c1f016888f992dace65c1c051948f7b1eb7f1ed5a7e71fa1c91abcc6b6448b8",
+              "references/handoff.md": "d51ce0b209a934e096eb30940e4ab838ff9cc94e9c3234ddc78503112598e32c",
+              "references/health-check.md": "2414906c48af75401ab6050da784bbe3d47c968da1c6f9228551b9db7de64489",
+              "references/setup.md": "3a13fa51589979bca091e319c7a201087d358bead1adbb253933d3d4ad189f66"
+            },
+            "missing_relative_markdown_targets": [],
+            "entry_and_task_required_modules_match_planning_source_bytes": true,
+            "scope_limit": "Retained entry was read as evidence. Other retained files were hashed and link-checked; they were not loaded as additional operating instructions.",
+            "synthetic_acceptance": {
+              "path": "<LAB_ROOT>/forward/project-b/source-acceptance.json",
+              "fixture_only": true,
+              "role": "worker-one",
+              "task": "ordinary-N1",
+              "read_entry": "<LAB_ROOT>/forward/project-b/retained/0.4.1/orchivane/SKILL.md",
+              "controller_acceptance": "accepted for the existing task at its normal checkpoint",
+              "all_claimed_file_hashes_match_current_retained_files": true,
+              "claimed_files_count": 9,
+              "meaning": "Accepted synthetic case state for the existing task; file identity verified here. This is not native chat, role-read, or runtime verification."
+            }
+          }
+        },
+        "project_a_declared_cache_entry_exists_in_fixture": false,
+        "cache_entry_limit": "The declared project-a cache path is absent from the supplied on-disk fixture. This does not prove a real refresh occurred or a native task failed; current native execution remains outside scope."
+      },
+      "ownership_authorization_budget_and_stop": {
+        "authorization": "Task permits scoped reading and writing this planning artifact only. Each README supplies synthetic maintainer authorization for a later package/marketplace refresh once prerequisites are met.",
+        "write_boundary": "<LAB_ROOT>/forward/outputs/baseline",
+        "role_changes": "None; keep evaluator, worker-one, worker-two where present, and historical old-worker.",
+        "business_tasks_inputs_budgets_and_work_in_progress": "Preserve unchanged; exact remaining business-task amounts were not supplied and are not invented or reset.",
+        "stop_boundary": "Save and validate decisions.json, report conclusions, then stop. No installer, host mutation, chat operation, role contact, delegation, or case-input edit."
+      },
+      "status": "checked for this planning task only",
+      "not_loaded_as_operating_modules": {
+        "references/handoff.md": "No role replacement or responsibility handoff requested.",
+        "references/health-check.md": "No whole-project collaboration audit requested.",
+        "references/codex.md": "No Codex chat or automation operation requested or performed.",
+        "references/claude-code.md": "Not a Claude Code execution task."
+      },
+      "installation_and_behavior_limits": "0.4.2 is a supplied available-target manifest declaration. No 0.4.2 SKILL.md, target references, actual installation, automatic discovery, native role behavior, or hot reload was verified."
+    },
+    "projects": [
+      {
+        "project": "project-a",
+        "project_root": "<LAB_ROOT>/forward/project-a",
+        "refresh_can_proceed_now": false,
+        "decision": "Defer destructive package/marketplace refresh; independent retained bytes alone do not establish continuity.",
+        "reasons": [
+          "Active worker-one is still declared to read the old cache entry that refresh deletes; it has no source-acceptance receipt and cannot change reads before its ordinary checkpoint.",
+          "role_registry_covers_all_projects_using_this_isolated_host is false, so unlisted consumers of the host cache remain unaccounted for.",
+          "The retained 0.4.1 tree is readable and complete within the supplied fixture, but no role acceptance or host-wide discovery can be invented."
+        ],
+        "permitted_first_actions_now": [
+          {
+            "owner": "evaluator",
+            "action": "Retain and record the independently copied 0.4.1 source and pending continuity work. Preserve all business-task inputs, budgets, frozen material, and current work."
+          },
+          {
+            "owner": "evaluator",
+            "action": "Save worker-one continuation/adoption instructions for its existing ordinary checkpoint. Do not message, interrupt, force a reread, or redirect its active execution for this upgrade."
+          },
+          {
+            "owner": "evaluator",
+            "action": "Record worker-two as pending next ordinary task with an explicit stable-source entry; leave it idle. Its pending status does not justify waking it or require an upgrade-only acceptance now."
+          },
+          {
+            "owner": "evaluator",
+            "action": "Plan a noninterrupting accounting of all other projects/roles using this isolated host before any cache-deleting refresh. No such discovery is performed in this exercise."
+          }
+        ],
+        "continuing_role_sources": [
+          {
+            "role": "worker-one",
+            "current_declared_entry": "<LAB_ROOT>/forward/project-a/host-cache/0.4.1/orchivane/SKILL.md",
+            "permitted_now": "Keep current in-flight task and frozen reads unchanged. Do not infer that the retained entry is already accepted. Any new required read of the absent fixture cache entry remains unverified.",
+            "next_ordinary_checkpoint_entry": "<LAB_ROOT>/forward/project-a/retained/0.4.1/orchivane/SKILL.md",
+            "checkpoint_requirement": "Read this exact retained entry and task-required modules, preserve ownership and original task limits, record real paths/hashes and actual scoped work checks, then obtain controller acceptance of the evidence before relying on it for cache-deletion continuity."
+          },
+          {
+            "role": "worker-two",
+            "status": "pending next ordinary task; last reported read was host cache 0.4.1; no retained-source acceptance",
+            "next_task_entry_before_verified_target_adoption": "<LAB_ROOT>/forward/project-a/retained/0.4.1/orchivane/SKILL.md",
+            "requirement": "At its next genuine task, read the agreed stable entry and necessary modules and save a scoped receipt. Do not wake it solely to fill an upgrade-coverage row."
+          },
+          {
+            "role": "old-worker",
+            "status": "archived historical",
+            "source_action": "None; do not wake, restart, replace, or require an adoption receipt."
+          }
+        ],
+        "ordered_plan": [
+          {
+            "step": 1,
+            "owner": "evaluator",
+            "when": "now",
+            "action": "Save this blocked-refresh decision, retained-source evidence, and pending checkpoint briefs; no host mutation."
+          },
+          {
+            "step": 2,
+            "owner": "worker-one at its existing checkpoint, then evaluator",
+            "when": "next ordinary checkpoint",
+            "action": "Read and substantively accept continuation from the exact retained 0.4.1 tree without altering the business-task budget or inputs. Controller checks the evidence; a saved or sent brief alone does not count."
+          },
+          {
+            "step": 3,
+            "owner": "evaluator",
+            "when": "before any destructive refresh",
+            "action": "Account for every project and role using this host. Preserve their necessary source trees and continuation entries, resolve any active cache dependency at safe normal boundaries, and retain idle pending checks without upgrade-only wakeups."
+          },
+          {
+            "step": 4,
+            "owner": "evaluator / authorized host operator",
+            "when": "only after steps 2 and 3 establish continuity",
+            "action": "Reassess and perform the already authorized package refresh using a supported host mechanism. Stop if any dependency, ownership, budget, or source-integrity gap remains."
+          },
+          {
+            "step": 5,
+            "owner": "evaluator, then each continuing role at its next normal boundary",
+            "when": "after refresh",
+            "action": "Inspect actual target manifest, 0.4.2 entry and required references, record the actual path and hashes, and distinguish installed from read and checked. Adopt that agreed target only at normal task boundaries; leave unresolved roles pending."
+          }
+        ],
+        "unresolved": [
+          {
+            "item": "worker-one has not accepted the retained continuation source",
+            "next_owner": "worker-one at its ordinary checkpoint, with evaluator acceptance",
+            "blocks_refresh": true
+          },
+          {
+            "item": "Other projects/roles using the isolated host are not fully covered by the supplied registry",
+            "next_owner": "evaluator",
+            "blocks_refresh": true
+          },
+          {
+            "item": "worker-two remains pending next ordinary task; future source instructions must use a stable agreed entry",
+            "next_owner": "evaluator and worker-two at that task",
+            "blocks_refresh_by_itself": false
+          },
+          {
+            "item": "Actual 0.4.2 entry, references, installation/discovery and role-specific behavior are unverified",
+            "next_owner": "evaluator after a permitted refresh, roles at normal boundaries",
+            "blocks_target_adoption": true
+          }
+        ]
+      },
+      {
+        "project": "project-b",
+        "project_root": "<LAB_ROOT>/forward/project-b",
+        "refresh_can_proceed_now": true,
+        "decision": "The authorized package/marketplace refresh may proceed under the supplied synthetic facts; this is permission in the plan, not an executed refresh or completed 0.4.2 adoption.",
+        "reasons": [
+          "The registry explicitly covers all projects using this isolated host.",
+          "The only active continuing role already uses the independently retained 0.4.1 entry, outside the cache that refresh deletes.",
+          "source-acceptance.json explicitly supplies acceptance at ordinary-N1 for the existing task and says to continue from the exact retained source; all nine claimed file hashes match the retained tree and its relative Markdown references resolve.",
+          "There is no idle role in this case, and old-worker is historical. No role needs interruption, restart, or forced migration to enable this refresh."
+        ],
+        "permitted_first_actions_now": [
+          {
+            "owner": "evaluator",
+            "action": "Record the supplied synthetic continuity acceptance and hash/link checks with their limited scope; preserve the retained tree and existing work."
+          },
+          {
+            "owner": "authorized host operator",
+            "action": "Proceed with the already authorized package/marketplace refresh using the supported host mechanism, without deleting or overwriting the retained 0.4.1 tree. The planning exercise does not execute it."
+          },
+          {
+            "owner": "worker-one",
+            "action": "Continue the existing task from the exact accepted retained 0.4.1 entry; do not switch active reads merely because 0.4.2 becomes available or installed."
+          }
+        ],
+        "continuing_role_sources": [
+          {
+            "role": "worker-one",
+            "current_and_post_refresh_existing_task_entry": "<LAB_ROOT>/forward/project-b/retained/0.4.1/orchivane/SKILL.md",
+            "version": "0.4.1",
+            "acceptance_evidence": "<LAB_ROOT>/forward/project-b/source-acceptance.json",
+            "evidence_kind": "Explicit synthetic fixture acceptance; not native verification.",
+            "next_target_adoption": "Only at a later ordinary checkpoint/task, after evaluator verifies the actual 0.4.2 entry and required references and supplies the agreed explicit target. No target path is invented here."
+          },
+          {
+            "role": "old-worker",
+            "status": "archived historical",
+            "source_action": "None; retain historical evidence without a wakeup or new adoption check."
+          }
+        ],
+        "ordered_plan": [
+          {
+            "step": 1,
+            "owner": "evaluator",
+            "when": "now",
+            "action": "Accept continuity only within the supplied synthetic case scope; keep the complete retained 0.4.1 tree available at its existing absolute entry."
+          },
+          {
+            "step": 2,
+            "owner": "authorized host operator",
+            "when": "now, outside this planning exercise",
+            "action": "Run the authorized package/marketplace refresh. Do not contact or restart worker-one, modify its inputs, reset its budget, or rewrite its accepted source."
+          },
+          {
+            "step": 3,
+            "owner": "evaluator",
+            "when": "after refresh at its safe work boundary",
+            "action": "Read actual host installation state and actual 0.4.2 manifest, entry and required modules; compare versions, preserve any customizations, verify reference resolution and save a scoped explicit/automatic loading receipt as observed. Stop adoption on missing or mismatched evidence."
+          },
+          {
+            "step": 4,
+            "owner": "worker-one at its next ordinary checkpoint, then evaluator",
+            "when": "normal work boundary after target source verification",
+            "action": "Read the agreed verified target if relevant to that task, preserve ownership and budget, perform authorized task checks and save a scoped role receipt. Evaluator accepts only the evidence actually covered; retain 0.4.1 evidence and mark supersession when established."
+          }
+        ],
+        "unresolved": [
+          {
+            "item": "The refresh has not been run in this exercise",
+            "next_owner": "authorized host operator",
+            "blocks_planned_refresh": false
+          },
+          {
+            "item": "Actual installed 0.4.2 path, entry metadata, required references and discovery are not supplied or checked",
+            "next_owner": "evaluator after refresh",
+            "blocks_target_adoption": true,
+            "blocks_package_refresh": false
+          },
+          {
+            "item": "worker-one has not read or demonstrated task behavior under 0.4.2",
+            "next_owner": "worker-one at its next ordinary checkpoint, then evaluator",
+            "blocks_target_role_adoption_claim": true,
+            "blocks_package_refresh": false
+          },
+          {
+            "item": "Native role and host runtime state are deliberately outside scope",
+            "next_owner": "later real execution owner if real execution is authorized",
+            "evidence_limit": "Synthetic acceptance is sufficient only for this fixture planning conclusion."
+          }
+        ]
+      }
+    ],
+    "delivery_evidence": {
+      "implementation": "Only decisions.json was written.",
+      "technical_validation": "JSON parsed after write; source/path/decision invariants and retained receipt hashes/reference resolution checked.",
+      "outcome_acceptance": "Scoped planning conclusions only; no real installer or native acceptance performed.",
+      "push": "Not applicable.",
+      "deployment": "Not applicable.",
+      "updated_locations": [
+        "<LAB_ROOT>/forward/outputs/baseline/decisions.json"
+      ],
+      "unchanged_locations_with_reason": [
+        "Both case directories and supplied skill files: immutable inputs for this exercise."
+      ],
+      "unverified_locations": [
+        "Real projects, real host configuration, native chats and actual 0.4.2 installation: excluded by task."
+      ],
+      "next_owner": "Parent evaluator to review this artifact; the case evaluator/authorized host operator owns any later real actions."
+    }
+  },
+  "candidate": {
+    "schema_version": 1,
+    "exercise": "synthetic cache-continuity planning; no host update or role contact",
+    "created_at_utc": "2026-10-23T02:52:03.241Z",
+    "scope": {
+      "allowed_inputs": [
+        "<LAB_ROOT>/forward/skills/candidate/orchivane/SKILL.md",
+        "<LAB_ROOT>/forward/skills/candidate/orchivane/references/setup.md",
+        "<LAB_ROOT>/forward/skills/candidate/orchivane/references/adoption.md",
+        "<LAB_ROOT>/forward/skills/candidate/orchivane/references/dispatch.md",
+        "<LAB_ROOT>/forward/project-a",
+        "<LAB_ROOT>/forward/project-b"
+      ],
+      "only_written_artifact": "<LAB_ROOT>/forward/outputs/candidate/decisions.json",
+      "case_inputs_and_skill_files_modified": false,
+      "real_installer_invoked": false,
+      "chats_created_messaged_archived_or_inspected": false,
+      "ambient_versions_or_other_run_outputs_consulted": false,
+      "delegated": false,
+      "limits": "Single-turn plan only. Existing role ownership, inputs, task budgets and stop conditions stay effective."
+    },
+    "reading_receipt": {
+      "role": "scoped planning controller for the two supplied synthetic cases",
+      "registry_controller": "evaluator",
+      "native_chat_id": null,
+      "task": "cache continuity refresh readiness and continuation plans",
+      "read_turn": "this single-turn planning exercise, read rounds 1 through 5",
+      "source_checked_at_utc": "2026-10-23T02:48:57.484158+00:00",
+      "target_version": "0.4.2",
+      "observed_entry_version": "0.4.2",
+      "entry_path": "<LAB_ROOT>/forward/skills/candidate/orchivane/SKILL.md",
+      "loading_mode": "Explicit absolute-path source read; not automatic discovery, installation, native role takeover, or upstream-latest verification.",
+      "actually_loaded_planning_modules": [
+        {
+          "path": "<LAB_ROOT>/forward/skills/candidate/orchivane/SKILL.md",
+          "sha256": "8beeef65d395b9972c01c2b34a3f4b08a8865afc17034b1c00a402fb1ccc572d"
+        },
+        {
+          "path": "<LAB_ROOT>/forward/skills/candidate/orchivane/references/setup.md",
+          "sha256": "3a13fa51589979bca091e319c7a201087d358bead1adbb253933d3d4ad189f66"
+        },
+        {
+          "path": "<LAB_ROOT>/forward/skills/candidate/orchivane/references/adoption.md",
+          "sha256": "a7c25bff5677c738ab316e5ce4c50631a1f9e16f1aabb0452177560030886ba8"
+        },
+        {
+          "path": "<LAB_ROOT>/forward/skills/candidate/orchivane/references/dispatch.md",
+          "sha256": "1285c6b4d05e60d3d7f158210d03addf2382a3e4c02f16b863cb3846fd073269"
+        }
+      ],
+      "required_module_rationale": {
+        "references/setup.md": "Existing projects, roles, authorization and continuation.",
+        "references/adoption.md": "Version adoption, independent old-source retention and refresh gates.",
+        "references/dispatch.md": "Concrete next-checkpoint briefs and acceptance boundaries; no dispatch was executed."
+      },
+      "read_rounds": [
+        {
+          "round": 1,
+          "scope": "Candidate SKILL.md in full."
+        },
+        {
+          "round": 2,
+          "scope": "Candidate setup.md and adoption.md in full; both README.md, roles.json and target-plugin.json; file inventory within both cases."
+        },
+        {
+          "round": 3,
+          "scope": "Candidate dispatch.md in full; both retained SKILL.md entries; project-b source-acceptance.json; all 9 files in each retained tree read for hashes and containment/symlink checks."
+        },
+        {
+          "round": 4,
+          "scope": "Retained setup/adoption/dispatch reopened at both actual retained roots; batch display was truncated, so this is source-reopening evidence rather than a claim that every old module was fully loaded. Candidate source hashes, retained local-reference resolution and project-b receipt hashes checked."
+        },
+        {
+          "round": 5,
+          "scope": "Project-b retained references/adoption.md explicitly reread in full after the batched display truncation."
+        }
+      ],
+      "retained_content_read_scope": "Retained sources are continuity evidence. Planning governance is the supplied 0.4.2 entry plus its setup/adoption/dispatch modules. Remaining retained modules were inspected for byte integrity and local-reference readability, not loaded as task-governing modules.",
+      "evidence_inputs": [
+        "<LAB_ROOT>/forward/project-a/README.md",
+        "<LAB_ROOT>/forward/project-a/roles.json",
+        "<LAB_ROOT>/forward/project-a/target-plugin.json",
+        "<LAB_ROOT>/forward/project-b/README.md",
+        "<LAB_ROOT>/forward/project-b/roles.json",
+        "<LAB_ROOT>/forward/project-b/target-plugin.json",
+        "<LAB_ROOT>/forward/project-b/source-acceptance.json"
+      ],
+      "project_rules_and_index": {
+        "project-a": {
+          "AGENTS.md": false,
+          "CLAUDE.md": false,
+          "docs/SESSION-MANAGEMENT.md": false
+        },
+        "project-b": {
+          "AGENTS.md": false,
+          "CLAUDE.md": false,
+          "docs/SESSION-MANAGEMENT.md": false
+        },
+        "treatment": "No AGENTS.md, CLAUDE.md or docs/SESSION-MANAGEMENT.md exists inside either case. README.md and roles.json supply the scoped synthetic rules/registry; no ambient project entry was consulted."
+      },
+      "available_vs_installed": {
+        "available_target": "Both supplied target-plugin.json manifests declare orchivane 0.4.2, matching the explicitly read candidate SKILL.md metadata.",
+        "current_installation": "Unverified; target manifests describe availability only.",
+        "latest_claim": "No upstream or ambient latest-version claim.",
+        "role_reads_of_new_target": "None established by the planner's own 0.4.2 read."
+      },
+      "actual_checks": [
+        "All 9 retained files per case were readable, non-symlinks and resolved inside their own retained tree.",
+        "All 24 local Markdown reference occurrences per retained tree resolved within that tree and were readable.",
+        "Project-b receipt's exact entry path and all 9 claimed file hashes match its current retained tree; no extra or missing retained files.",
+        "Manifest version 0.4.2 matches the supplied planning entry's 0.4.2 metadata."
+      ],
+      "status": "checked for this synthetic planning task only",
+      "original_authorization": "Parent's scoped planning instruction plus each case README's maintainer authorization for refresh after prerequisites; the present exercise forbids execution.",
+      "budget_and_stop_boundary": "One planning turn; stop after saving and validating decisions.json. No paid run, installer, chat operation, case edit or delegation.",
+      "not_established": [
+        "Native reader verification, host capabilities or host configuration.",
+        "Actual installation or completion of a refresh.",
+        "Behavioral adoption of 0.4.2 by any continuing worker.",
+        "Continuous future survival of a cache pathname or protection from unrelated deletion."
+      ]
+    },
+    "retained_source_evidence": {
+      "checked_at_utc": "2026-10-23T02:48:06.310776+00:00",
+      "provenance_basis": "The supplied README in each case states that retained/0.4.1/orchivane is a complete independent copy. This exercise's /private/tmp container is a synthetic fixture root; it is not a recommendation to use a temporary real-world pin.",
+      "project-a": {
+        "files": [
+          {
+            "path": "<LAB_ROOT>/forward/project-a/retained/0.4.1/orchivane/SKILL.md",
+            "relative_path": "SKILL.md",
+            "symlink": false,
+            "resolved_path": "<LAB_ROOT>/forward/project-a/retained/0.4.1/orchivane/SKILL.md",
+            "resolved_inside_retained_tree": true,
+            "readable": true,
+            "size": 6466,
+            "sha256": "c4c71dab7c4201044fca04c2dc26bc0e9e5adf860bfc8bb881b6d98c4ab3c538"
+          },
+          {
+            "path": "<LAB_ROOT>/forward/project-a/retained/0.4.1/orchivane/agents/openai.yaml",
+            "relative_path": "agents/openai.yaml",
+            "symlink": false,
+            "resolved_path": "<LAB_ROOT>/forward/project-a/retained/0.4.1/orchivane/agents/openai.yaml",
+            "resolved_inside_retained_tree": true,
+            "readable": true,
+            "size": 350,
+            "sha256": "a4e6158ced8ae7d0d0a119a32a93f589a1d245b67a6771b79f311847f922fa6d"
+          },
+          {
+            "path": "<LAB_ROOT>/forward/project-a/retained/0.4.1/orchivane/references/adoption.md",
+            "relative_path": "references/adoption.md",
+            "symlink": false,
+            "resolved_path": "<LAB_ROOT>/forward/project-a/retained/0.4.1/orchivane/references/adoption.md",
+            "resolved_inside_retained_tree": true,
+            "readable": true,
+            "size": 5295,
+            "sha256": "16e432dc657a3037b63f5ef3e572c8ea52b043a70e4211e56e60da74ed51d6b8"
+          },
+          {
+            "path": "<LAB_ROOT>/forward/project-a/retained/0.4.1/orchivane/references/claude-code.md",
+            "relative_path": "references/claude-code.md",
+            "symlink": false,
+            "resolved_path": "<LAB_ROOT>/forward/project-a/retained/0.4.1/orchivane/references/claude-code.md",
+            "resolved_inside_retained_tree": true,
+            "readable": true,
+            "size": 14034,
+            "sha256": "8c0fd3bcd11de852e4dd57e290a9acd74098ad6891ddc29db0e950cfaac94eb6"
+          },
+          {
+            "path": "<LAB_ROOT>/forward/project-a/retained/0.4.1/orchivane/references/codex.md",
+            "relative_path": "references/codex.md",
+            "symlink": false,
+            "resolved_path": "<LAB_ROOT>/forward/project-a/retained/0.4.1/orchivane/references/codex.md",
+            "resolved_inside_retained_tree": true,
+            "readable": true,
+            "size": 3796,
+            "sha256": "af2ce6e517d1e199db171245d69c26f0adb7df783234d16437eef199eaabd231"
+          },
+          {
+            "path": "<LAB_ROOT>/forward/project-a/retained/0.4.1/orchivane/references/dispatch.md",
+            "relative_path": "references/dispatch.md",
+            "symlink": false,
+            "resolved_path": "<LAB_ROOT>/forward/project-a/retained/0.4.1/orchivane/references/dispatch.md",
+            "resolved_inside_retained_tree": true,
+            "readable": true,
+            "size": 4931,
+            "sha256": "5c1f016888f992dace65c1c051948f7b1eb7f1ed5a7e71fa1c91abcc6b6448b8"
+          },
+          {
+            "path": "<LAB_ROOT>/forward/project-a/retained/0.4.1/orchivane/references/handoff.md",
+            "relative_path": "references/handoff.md",
+            "symlink": false,
+            "resolved_path": "<LAB_ROOT>/forward/project-a/retained/0.4.1/orchivane/references/handoff.md",
+            "resolved_inside_retained_tree": true,
+            "readable": true,
+            "size": 6419,
+            "sha256": "d51ce0b209a934e096eb30940e4ab838ff9cc94e9c3234ddc78503112598e32c"
+          },
+          {
+            "path": "<LAB_ROOT>/forward/project-a/retained/0.4.1/orchivane/references/health-check.md",
+            "relative_path": "references/health-check.md",
+            "symlink": false,
+            "resolved_path": "<LAB_ROOT>/forward/project-a/retained/0.4.1/orchivane/references/health-check.md",
+            "resolved_inside_retained_tree": true,
+            "readable": true,
+            "size": 3620,
+            "sha256": "2414906c48af75401ab6050da784bbe3d47c968da1c6f9228551b9db7de64489"
+          },
+          {
+            "path": "<LAB_ROOT>/forward/project-a/retained/0.4.1/orchivane/references/setup.md",
+            "relative_path": "references/setup.md",
+            "symlink": false,
+            "resolved_path": "<LAB_ROOT>/forward/project-a/retained/0.4.1/orchivane/references/setup.md",
+            "resolved_inside_retained_tree": true,
+            "readable": true,
+            "size": 10304,
+            "sha256": "3a13fa51589979bca091e319c7a201087d358bead1adbb253933d3d4ad189f66"
+          }
+        ],
+        "local_reference_count": 24,
+        "all_local_references_inside_and_readable": true,
+        "accepted_by_any_reader": false,
+        "original_cache_bytes_compared": false
+      },
+      "project-b": {
+        "files": [
+          {
+            "path": "<LAB_ROOT>/forward/project-b/retained/0.4.1/orchivane/SKILL.md",
+            "relative_path": "SKILL.md",
+            "symlink": false,
+            "resolved_path": "<LAB_ROOT>/forward/project-b/retained/0.4.1/orchivane/SKILL.md",
+            "resolved_inside_retained_tree": true,
+            "readable": true,
+            "size": 6466,
+            "sha256": "c4c71dab7c4201044fca04c2dc26bc0e9e5adf860bfc8bb881b6d98c4ab3c538"
+          },
+          {
+            "path": "<LAB_ROOT>/forward/project-b/retained/0.4.1/orchivane/agents/openai.yaml",
+            "relative_path": "agents/openai.yaml",
+            "symlink": false,
+            "resolved_path": "<LAB_ROOT>/forward/project-b/retained/0.4.1/orchivane/agents/openai.yaml",
+            "resolved_inside_retained_tree": true,
+            "readable": true,
+            "size": 350,
+            "sha256": "a4e6158ced8ae7d0d0a119a32a93f589a1d245b67a6771b79f311847f922fa6d"
+          },
+          {
+            "path": "<LAB_ROOT>/forward/project-b/retained/0.4.1/orchivane/references/adoption.md",
+            "relative_path": "references/adoption.md",
+            "symlink": false,
+            "resolved_path": "<LAB_ROOT>/forward/project-b/retained/0.4.1/orchivane/references/adoption.md",
+            "resolved_inside_retained_tree": true,
+            "readable": true,
+            "size": 5295,
+            "sha256": "16e432dc657a3037b63f5ef3e572c8ea52b043a70e4211e56e60da74ed51d6b8"
+          },
+          {
+            "path": "<LAB_ROOT>/forward/project-b/retained/0.4.1/orchivane/references/claude-code.md",
+            "relative_path": "references/claude-code.md",
+            "symlink": false,
+            "resolved_path": "<LAB_ROOT>/forward/project-b/retained/0.4.1/orchivane/references/claude-code.md",
+            "resolved_inside_retained_tree": true,
+            "readable": true,
+            "size": 14034,
+            "sha256": "8c0fd3bcd11de852e4dd57e290a9acd74098ad6891ddc29db0e950cfaac94eb6"
+          },
+          {
+            "path": "<LAB_ROOT>/forward/project-b/retained/0.4.1/orchivane/references/codex.md",
+            "relative_path": "references/codex.md",
+            "symlink": false,
+            "resolved_path": "<LAB_ROOT>/forward/project-b/retained/0.4.1/orchivane/references/codex.md",
+            "resolved_inside_retained_tree": true,
+            "readable": true,
+            "size": 3796,
+            "sha256": "af2ce6e517d1e199db171245d69c26f0adb7df783234d16437eef199eaabd231"
+          },
+          {
+            "path": "<LAB_ROOT>/forward/project-b/retained/0.4.1/orchivane/references/dispatch.md",
+            "relative_path": "references/dispatch.md",
+            "symlink": false,
+            "resolved_path": "<LAB_ROOT>/forward/project-b/retained/0.4.1/orchivane/references/dispatch.md",
+            "resolved_inside_retained_tree": true,
+            "readable": true,
+            "size": 4931,
+            "sha256": "5c1f016888f992dace65c1c051948f7b1eb7f1ed5a7e71fa1c91abcc6b6448b8"
+          },
+          {
+            "path": "<LAB_ROOT>/forward/project-b/retained/0.4.1/orchivane/references/handoff.md",
+            "relative_path": "references/handoff.md",
+            "symlink": false,
+            "resolved_path": "<LAB_ROOT>/forward/project-b/retained/0.4.1/orchivane/references/handoff.md",
+            "resolved_inside_retained_tree": true,
+            "readable": true,
+            "size": 6419,
+            "sha256": "d51ce0b209a934e096eb30940e4ab838ff9cc94e9c3234ddc78503112598e32c"
+          },
+          {
+            "path": "<LAB_ROOT>/forward/project-b/retained/0.4.1/orchivane/references/health-check.md",
+            "relative_path": "references/health-check.md",
+            "symlink": false,
+            "resolved_path": "<LAB_ROOT>/forward/project-b/retained/0.4.1/orchivane/references/health-check.md",
+            "resolved_inside_retained_tree": true,
+            "readable": true,
+            "size": 3620,
+            "sha256": "2414906c48af75401ab6050da784bbe3d47c968da1c6f9228551b9db7de64489"
+          },
+          {
+            "path": "<LAB_ROOT>/forward/project-b/retained/0.4.1/orchivane/references/setup.md",
+            "relative_path": "references/setup.md",
+            "symlink": false,
+            "resolved_path": "<LAB_ROOT>/forward/project-b/retained/0.4.1/orchivane/references/setup.md",
+            "resolved_inside_retained_tree": true,
+            "readable": true,
+            "size": 10304,
+            "sha256": "3a13fa51589979bca091e319c7a201087d358bead1adbb253933d3d4ad189f66"
+          }
+        ],
+        "local_reference_count": 24,
+        "all_local_references_inside_and_readable": true,
+        "acceptance": {
+          "fixture_only": true,
+          "role": "worker-one",
+          "task": "ordinary-N1",
+          "read_entry_matches_registered_source": true,
+          "all_claimed_file_hashes_match": true,
+          "receipt_inventory_exactly_matches_current_retained_files": true,
+          "number_of_matching_files": 9,
+          "native_role_verification_performed": false
+        },
+        "acceptance_evidence_path": "<LAB_ROOT>/forward/project-b/source-acceptance.json",
+        "acceptance_evidence_type": "Supplied synthetic fixture state accepted for planning; not native verification.",
+        "original_cache_bytes_compared": false
+      }
+    },
+    "projects": [
+      {
+        "project": "project-a",
+        "root": "<LAB_ROOT>/forward/project-a",
+        "target": {
+          "name": "orchivane",
+          "version": "0.4.2",
+          "availability": "supplied target manifest; installation unverified"
+        },
+        "refresh_now": {
+          "marketplace_refresh_permitted": false,
+          "package_replacement_permitted": false,
+          "decision": "DEFER BOTH",
+          "actual_refresh_executed": false,
+          "reasons": [
+            "Active worker-one still reads the managed host-cache 0.4.1 entry and has no retained-source acceptance receipt.",
+            "Idle worker-two last read the host cache and has not accepted an independent retained source.",
+            "The registry explicitly does not cover all projects using this isolated host; other affected readers remain unknown.",
+            "A complete copy does not redirect an active or idle role, and the fixture says refresh deletes the old absolute cache paths."
+          ]
+        },
+        "first_actions_permitted_now": [
+          {
+            "owner": "evaluator/controller",
+            "action": "Save the refresh hold, retained inventory/hashes, known blockers and unsent checkpoint briefs in the planning output.",
+            "state": "Completed only as this output artifact; no registry or input was edited."
+          },
+          {
+            "owner": "worker-one",
+            "action": "Continue its existing authorized data task from the current cache source until its ordinary checkpoint; preserve inputs, budget and stop conditions.",
+            "state": "Permitted by case facts; not contacted or observed executing."
+          },
+          {
+            "owner": "evaluator/controller",
+            "action": "Leave worker-two idle, and keep old-worker historical. Plan coverage reconciliation using already-authorized records when it is in scope; do not inspect real host state in this exercise.",
+            "state": "Plan only."
+          }
+        ],
+        "continuing_sources": [
+          {
+            "role": "worker-one",
+            "source_now": "<LAB_ROOT>/forward/project-a/host-cache/0.4.1/orchivane/SKILL.md",
+            "intended_independent_source_at_next_checkpoint": "<LAB_ROOT>/forward/project-a/retained/0.4.1/orchivane/SKILL.md",
+            "required_boundary": "Its existing ordinary-task checkpoint; do not interrupt, message solely for upgrade, or silently redirect it.",
+            "acceptance_needed": "Role actually reads that exact retained entry and task-required references, records paths/version/hashes, ownership, existing budget and stop boundary in its own receipt; controller inspects and accepts it.",
+            "status": "unprotected; retained-source acceptance pending"
+          },
+          {
+            "role": "worker-two",
+            "source_now": "Last reported read: host cache 0.4.1; no new source acceptance.",
+            "intended_independent_source_at_next_normal_task": "<LAB_ROOT>/forward/project-a/retained/0.4.1/orchivane/SKILL.md",
+            "required_boundary": "Its next authorized ordinary task must verify/read the retained source before dependent work; if there is no task, leave it pending and keep refresh deferred.",
+            "status": "idle; pending next normal task"
+          },
+          {
+            "role": "old-worker",
+            "source_now": null,
+            "status": "archived historical; no wake-up, replacement, new receipt or adoption task"
+          },
+          {
+            "role": "planning controller",
+            "source_now": "<LAB_ROOT>/forward/skills/candidate/orchivane/SKILL.md",
+            "version": "0.4.2",
+            "status": "explicit source read for this plan only"
+          }
+        ],
+        "pending_unsent_briefs": [
+          {
+            "role": "worker-one",
+            "checkpoint": "Existing data task's next ordinary checkpoint",
+            "brief": "Keep the same task, frozen inputs, ownership, budget and stop condition. At this ordinary checkpoint, actually read <LAB_ROOT>/forward/project-a/retained/0.4.1/orchivane/SKILL.md and the references needed by your task. Save your own scoped source/reading receipt with entry, modules, version and hashes. Continue this task from the retained 0.4.1 source after acceptance. A saved brief is not an accepted source pin.",
+            "sent": false
+          },
+          {
+            "role": "worker-two",
+            "checkpoint": "Next authorized ordinary task, if one arises",
+            "brief": "Before that task needs Orchivane, read <LAB_ROOT>/forward/project-a/retained/0.4.1/orchivane/SKILL.md and necessary references and save a scoped receipt for controller acceptance. No upgrade-only wake-up is needed.",
+            "sent": false
+          }
+        ],
+        "release_gate": "All affected readers across this host must have accepted independent retained sources at normal boundaries or have ended their dependency. Clear both known roles plus unknown cross-project coverage before either refresh operation; do not infer coverage from this project's registry.",
+        "unresolved": [
+          {
+            "issue": "worker-one has not accepted the retained source.",
+            "next_owner": "worker-one, then evaluator/controller",
+            "checkpoint": "Next ordinary task checkpoint"
+          },
+          {
+            "issue": "worker-two has no business task and no retained-source acceptance.",
+            "next_owner": "evaluator/controller and worker-two",
+            "checkpoint": "Next authorized ordinary task; otherwise hold remains"
+          },
+          {
+            "issue": "Host-wide affected-reader coverage is incomplete.",
+            "next_owner": "evaluator/controller",
+            "checkpoint": "Before either refresh; obtain covering evidence within a separately permitted scope without inventing readers"
+          },
+          {
+            "issue": "Real host update mechanism and host-triggered refresh timing are outside this fixture inspection.",
+            "next_owner": "Authorized host maintainer",
+            "checkpoint": "Before any real maintenance window; cannot promise the cache pathname survives"
+          },
+          {
+            "issue": "Available 0.4.2 is not verified installed or loaded by workers.",
+            "next_owner": "evaluator/controller",
+            "checkpoint": "After a permitted refresh and at subsequent normal role tasks"
+          }
+        ],
+        "eventual_refresh_plan": [
+          "Keep the current cache intact while the gate is open; do not delete then restore it as a continuity claim.",
+          "At normal task boundaries, accept each retained-source receipt and close host-wide unknown coverage.",
+          "Once the complete gate is satisfied, use the already-authorized supported host mechanism for refresh/replacement.",
+          "Afterward verify every retained file hash and required reference readability independently of verifying the new 0.4.2 installation.",
+          "Keep each retained 0.4.1 source until its dependent work ends and its owner authorizes cleanup; phase new-version reads into normal tasks."
+        ],
+        "next_owner": "evaluator/controller"
+      },
+      {
+        "project": "project-b",
+        "root": "<LAB_ROOT>/forward/project-b",
+        "target": {
+          "name": "orchivane",
+          "version": "0.4.2",
+          "availability": "supplied target manifest; installation unverified"
+        },
+        "refresh_now": {
+          "marketplace_refresh_permitted": true,
+          "package_replacement_permitted": true,
+          "decision": "PREREQUISITES SATISFIED IN THE SYNTHETIC CASE",
+          "actual_refresh_executed": false,
+          "reasons": [
+            "The registry explicitly covers all projects using this isolated host.",
+            "The only active reader is registered on the independent retained 0.4.1 entry.",
+            "source-acceptance.json supplies accepted ordinary-N1 checkpoint evidence for that exact source; its full 9-file inventory matches the retained bytes.",
+            "The retained tree is readable, has no symlinks and resolves its relative references internally. No idle reader is pending; old-worker is historical.",
+            "The maintainer already authorized package/marketplace refresh after prerequisites, so no repeat approval is needed for that modeled action."
+          ],
+          "evidence_limit": "The readiness decision uses supplied fixture acceptance and local file checks; it is not native role verification or permission to execute an installer during this planning exercise."
+        },
+        "first_actions_permitted_now": [
+          {
+            "owner": "evaluator/controller",
+            "action": "Accept the supplied synthetic source-acceptance evidence for the planning gate after checking its exact path and all 9 hashes against the retained source.",
+            "state": "Completed as fixture evaluation in this plan; no native acceptance claimed."
+          },
+          {
+            "owner": "Authorized host maintainer",
+            "action": "Proceed with the already-authorized supported marketplace/package refresh in a real execution phase; no worker interruption or upgrade-only message is needed.",
+            "state": "Permitted in the modeled case; not executed because this is planning only."
+          },
+          {
+            "owner": "worker-one",
+            "action": "Continue the same authorized task from <LAB_ROOT>/forward/project-b/retained/0.4.1/orchivane/SKILL.md, keeping its ordinary-N1 receipt scope, inputs, budget and stop condition.",
+            "state": "Permitted by supplied fixture state; not observed running."
+          }
+        ],
+        "continuing_sources": [
+          {
+            "role": "worker-one",
+            "exact_source": "<LAB_ROOT>/forward/project-b/retained/0.4.1/orchivane/SKILL.md",
+            "version": "0.4.1",
+            "evidence": "<LAB_ROOT>/forward/project-b/source-acceptance.json",
+            "task": "ordinary-N1",
+            "status": "accepted independent pin in synthetic fixture; verified matching bytes by planner",
+            "does_not_establish": "A 0.4.2 read, automatic discovery of the new plugin, native role acceptance, or completed business outcome."
+          },
+          {
+            "role": "old-worker",
+            "exact_source": null,
+            "status": "archived historical; remains untouched"
+          },
+          {
+            "role": "planning controller",
+            "exact_source": "<LAB_ROOT>/forward/skills/candidate/orchivane/SKILL.md",
+            "version": "0.4.2",
+            "status": "explicit source read for this plan only"
+          }
+        ],
+        "concrete_sequence": [
+          {
+            "order": 1,
+            "owner": "evaluator/controller",
+            "action": "Record the verified fixture acceptance, retained hashes and complete host coverage; preserve the source-acceptance receipt as historical task evidence.",
+            "status": "Recorded in this artifact."
+          },
+          {
+            "order": 2,
+            "owner": "Authorized host maintainer",
+            "action": "Execute the supported authorized refresh/replacement, checking its mechanism and respecting any host-triggered refresh behavior. This step is outside this exercise.",
+            "stop_condition": "Stop on an unexpected source/dependency/coverage mismatch; do not delete the retained source."
+          },
+          {
+            "order": 3,
+            "owner": "evaluator/controller or authorized maintainer",
+            "action": "Reopen the retained 0.4.1 entry and required references at their exact paths and compare the full recorded file hashes after the update.",
+            "acceptance": "Independent retained source stays intact and readable; no claim that the old managed pathname survived."
+          },
+          {
+            "order": 4,
+            "owner": "evaluator/controller or authorized maintainer",
+            "action": "Separately verify the actual newly installed/discovered entry path, SKILL.md metadata, plugin manifest and task-required 0.4.2 modules.",
+            "acceptance": "Record available/installed, actual reads and behavior checks separately."
+          },
+          {
+            "order": 5,
+            "owner": "worker-one, then evaluator/controller",
+            "action": "Keep existing work on its accepted 0.4.1 pin. At a later normal task that adopts 0.4.2, read the verified new entry and necessary modules and save a new scoped receipt without rewriting ordinary-N1.",
+            "acceptance": "New source acceptance covers only actual reads/tasks; retained reads never count as new-plugin discovery."
+          }
+        ],
+        "unresolved": [
+          {
+            "issue": "Refresh/replacement has not been executed; actual installation remains unverified.",
+            "next_owner": "Authorized host maintainer",
+            "checkpoint": "Real execution phase outside this exercise"
+          },
+          {
+            "issue": "Post-update retained integrity and new-installation checks remain to be done.",
+            "next_owner": "evaluator/controller or authorized maintainer",
+            "checkpoint": "Immediately after the real update, as separate checks"
+          },
+          {
+            "issue": "Worker-one's later 0.4.2 adoption and business-task outcome are not established by source acceptance.",
+            "next_owner": "worker-one, then evaluator/controller",
+            "checkpoint": "Next relevant normal task"
+          },
+          {
+            "issue": "Retained-copy cleanup is not authorized by an update alone.",
+            "next_owner": "Dependent work owner",
+            "checkpoint": "Only after dependent work ends and owner authorizes cleanup"
+          }
+        ],
+        "non_blocking_limits": [
+          "No native chat or real host state was inspected, by instruction.",
+          "Original cache bytes were not provided/compared; independence and checkpoint acceptance are supplied synthetic case facts with retained bytes checked now.",
+          "Readiness concerns this case's isolated host. Project-a's distinct incomplete registry is not silently merged into project-b's explicitly complete isolated-host fixture."
+        ],
+        "next_owner": "Authorized host maintainer for refresh; evaluator/controller for separate post-update acceptance"
+      }
+    ],
+    "delivery": {
+      "implementation": "decisions.json planning artifact only",
+      "technical_validation": "Retained inventories, SHA-256 receipt match and local-reference readability checked; JSON and core decision assertions validated after writing.",
+      "outcome_acceptance": "Two scoped planning conclusions; no business-task or native-role outcome asserted.",
+      "push": "not applicable",
+      "deployment": "not applicable",
+      "updated": [
+        "outputs/candidate/decisions.json"
+      ],
+      "unchanged_with_reason": [
+        "All case inputs and supplied skill files: read-only fixture evidence."
+      ],
+      "unverifiable": [
+        "Real host installation, native role state and post-refresh behavior: explicitly outside scope."
+      ],
+      "next_owner": "Parent evaluator for the planning artifact; each plan names the modeled execution owners."
+    }
+  },
+  "observed_verdicts": {
+    "baseline": {
+      "project-a": false,
+      "project-b": true
+    },
+    "candidate": {
+      "project-a": false,
+      "project-b": true
+    }
+  },
+  "root_review": "Saved plans inspected against fixture state; both versions defer A and permit B under synthetic acceptance. No causal benefit, installation, real-role acceptance or host lock established.",
+  "source_read_claims": "Agents report actual reads and hashes in their own receipts; source bytes checked by the maintainer, native tool histories not collected.",
+  "prompts": {
+    "baseline": "Use Orchivane from this exact explicit source: <LAB_ROOT>/forward/skills/baseline/orchivane/SKILL.md. Act as a planning controller for the two synthetic existing projects <LAB_ROOT>/forward/project-a and <LAB_ROOT>/forward/project-b. Read their README.md, roles.json, target-plugin.json and any evidence you need within those two case directories, plus the supplied skill and its applicable references. For each project decide whether a marketplace/package refresh can proceed now, what first actions are permitted, which source a continuing role should use, and what remains unresolved. Write your actual scoped reading receipt and the two concrete plans to <LAB_ROOT>/forward/outputs/baseline/decisions.json. This is a single-turn planning exercise: do not invoke any real installer, create/message/archive chats, inspect real projects/configurations or other run materials, or spawn/delegate. Do not modify case inputs or skill files. You may write only under that output directory. Treat supplied role acceptance as explicitly synthetic fixture evidence; do not call it native verification. Report the artifact and actual conclusions after saving it. The cases and source are the only task context; do not consult ambient/global versions or another evaluator's outputs.",
+    "candidate": "Use Orchivane from this exact explicit source: <LAB_ROOT>/forward/skills/candidate/orchivane/SKILL.md. Act as a planning controller for the two synthetic existing projects <LAB_ROOT>/forward/project-a and <LAB_ROOT>/forward/project-b. Read their README.md, roles.json, target-plugin.json and any evidence you need within those two case directories, plus the supplied skill and its applicable references. For each project decide whether a marketplace/package refresh can proceed now, what first actions are permitted, which source a continuing role should use, and what remains unresolved. Write your actual scoped reading receipt and the two concrete plans to <LAB_ROOT>/forward/outputs/candidate/decisions.json. This is a single-turn planning exercise: do not invoke any real installer, create/message/archive chats, inspect real projects/configurations or other run materials, or spawn/delegate. Do not modify case inputs or skill files. You may write only under that output directory. Treat supplied role acceptance as explicitly synthetic fixture evidence; do not call it native verification. Report the artifact and actual conclusions after saving it. The cases and source are the only task context; do not consult ambient/global versions or another evaluator's outputs."
+  },
+  "runtime_overrides": {
+    "history_fork": "none",
+    "model_override": "omitted",
+    "reasoning_effort_override": "omitted",
+    "limits": "Actual token/cost spend was not collected; equal turn counts are not equal spend."
+  }
+}
