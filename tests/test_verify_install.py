@@ -103,11 +103,185 @@ class VerifyInstallTests(unittest.TestCase):
                                          'metadata:\n  version: "0.4.1"\n---\n', 'description'),
             'unclosed quoted version': ('---\nname: demo\ndescription: demo\n'
                                         'metadata:\n  version: "0.4.1\n---\n', 'version'),
+            'multiline plain continuation': ('---\nname: demo\ndescription: demo\n'
+                                             '  continued\nmetadata:\n  version: "0.4.1"\n---\n',
+                                             'indented'),
+            'indented keys outside metadata': ('---\nname: demo\ndescription: demo\n'
+                                               'other:\n  field: value\n'
+                                               'metadata:\n  version: "0.4.1"\n---\n',
+                                               'unknown root key'),
         }
         for label, (skill, clue) in cases.items():
             with self.subTest(label=label):
                 self.write_skill(self.root, skill=skill)
                 self.assert_fails(clue, self.root)
+
+    def test_version_must_belong_to_root_metadata_block(self):
+        cases = {
+            'metadata without version': ('---\nname: demo\ndescription: demo\n'
+                                         'metadata:\n---\n', 'version'),
+            'version under another key': ('---\nname: demo\ndescription: demo\n'
+                                          'metadata:\nother:\n  version: "0.4.1"\n---\n',
+                                          'version'),
+            'version nested deeper in metadata': ('---\nname: demo\ndescription: demo\n'
+                                                  'metadata:\n  nested:\n'
+                                                  '    version: "0.4.1"\n---\n',
+                                                  'version'),
+            'top-level version line': ('---\nname: demo\ndescription: demo\n'
+                                       'metadata:\nversion: "0.4.1"\n---\n', 'version'),
+        }
+        for label, (skill, clue) in cases.items():
+            with self.subTest(label=label):
+                self.write_skill(self.root, skill=skill)
+                self.assert_fails(clue, self.root)
+
+    def test_broken_quoted_scalars_fail_and_valid_escapes_pass(self):
+        bad = {
+            'embedded quote': ('---\nname: "or"chivane"\ndescription: demo\n'
+                               'metadata:\n  version: "0.4.1"\n---\n', 'name'),
+            'unclosed quote': ('---\nname: "or\ndescription: demo\n'
+                               'metadata:\n  version: "0.4.1"\n---\n', 'name'),
+            'broken version quote': ('---\nname: demo\ndescription: demo\n'
+                                     'metadata:\n  version: "0.4."1"\n---\n', 'version'),
+            'illegal escape backslash-q': ('---\nname: "a\\q"\ndescription: demo\n'
+                                           'metadata:\n  version: "0.4.1"\n---\n', 'name'),
+            'illegal hex escape backslash-xZZ': ('---\nname: "a\\xZZ"\ndescription: demo\n'
+                                                 'metadata:\n  version: "0.4.1"\n---\n', 'name'),
+        }
+        for label, (skill, clue) in bad.items():
+            with self.subTest(label=label):
+                self.write_skill(self.root, skill=skill)
+                self.assert_fails(clue, self.root)
+        # a properly escaped quoted scalar still passes
+        self.write_skill(self.root, skill=('---\nname: demo\n'
+                                           'description: "Coordinate \\"work\\" across sessions."\n'
+                                           'metadata:\n  version: "0.4.1"\n---\n'))
+        self.assertEqual(self.run_check(self.root).returncode, 0)
+
+    def test_frontmatter_subset_negative_matrix(self):
+        cases = {
+            'colon-space in plain description': ('---\nname: demo\n'
+                                                 'description: Coordinate: work.\n'
+                                                 'metadata:\n  version: "0.4.1"\n---\n',
+                                                 'description'),
+            'duplicate metadata blocks': ('---\nname: demo\ndescription: demo\n'
+                                          'metadata:\n  version: "0.4.1"\n'
+                                          'metadata: {}\n---\n', 'duplicate'),
+            'duplicate description': ('---\nname: demo\ndescription: demo\n'
+                                      'description:\nmetadata:\n  version: "0.4.1"\n---\n',
+                                      'duplicate'),
+            'duplicate version': ('---\nname: demo\ndescription: demo\n'
+                                  'metadata:\n  version: "0.4.1"\n  version: "0.4.2"\n---\n',
+                                  'duplicate'),
+            'duplicate name': ('---\nname: demo\nname: other\ndescription: demo\n'
+                               'metadata:\n  version: "0.4.1"\n---\n', 'duplicate'),
+            'duplicate license': ('---\nname: demo\ndescription: demo\nlicense: MIT\n'
+                                  'license: Apache-2.0\nmetadata:\n  version: "0.4.1"\n---\n',
+                                  'duplicate'),
+            'unknown root key': ('---\nname: demo\ndescription: demo\nfoo: bar\n'
+                                 'metadata:\n  version: "0.4.1"\n---\n', 'unknown root key'),
+            'unknown metadata key': ('---\nname: demo\ndescription: demo\n'
+                                     'metadata:\n  other: x\n  version: "0.4.1"\n---\n',
+                                     'unsupported key in metadata'),
+            'key without space after colon': ('---\nname:demo\ndescription: demo\n'
+                                              'metadata:\n  version: "0.4.1"\n---\n',
+                                              'unsupported root line'),
+            'tab-indented metadata block': ('---\nname: demo\ndescription: demo\n'
+                                            'metadata:\n\tversion: "0.4.1"\n---\n',
+                                            'tab indentation'),
+            'mixed indentation': ('---\nname: demo\ndescription: demo\n'
+                                  'metadata:\n  version: "0.4.1"\n   other: x\n---\n',
+                                  'inconsistent indentation'),
+            'trailing colon in plain': ('---\nname: demo\ndescription: ends:\n'
+                                        'metadata:\n  version: "0.4.1"\n---\n', 'colon'),
+            'colon-tab in plain': ('---\nname: demo\ndescription: a:\tb\n'
+                                   'metadata:\n  version: "0.4.1"\n---\n', 'colon'),
+            'control char in plain': ('---\nname: demo\ndescription: a\x07b\n'
+                                      'metadata:\n  version: "0.4.1"\n---\n',
+                                      'control character'),
+            'control char in quotes': ('---\nname: demo\ndescription: "a\x07b"\n'
+                                       'metadata:\n  version: "0.4.1"\n---\n',
+                                       'control character'),
+            'c1 control char': ('---\nname: demo\ndescription: a\x7fb\n'
+                                'metadata:\n  version: "0.4.1"\n---\n',
+                                'control character'),
+            'unicode escape above range': ('---\nname: demo\n'
+                                           'description: "\\U00110000"\n'
+                                           'metadata:\n  version: "0.4.1"\n---\n',
+                                           'description'),
+            'unicode escape overflow': ('---\nname: demo\n'
+                                        'description: "\\UFFFFFFFF"\n'
+                                        'metadata:\n  version: "0.4.1"\n---\n',
+                                        'description'),
+            'leading-space tilde name': ('---\nname:  ~\ndescription: demo\n'
+                                         'metadata:\n  version: "0.4.1"\n---\n', 'null'),
+            'leading-space flow name': ('---\nname:  [x]\ndescription: demo\n'
+                                        'metadata:\n  version: "0.4.1"\n---\n',
+                                        'not a plain scalar'),
+            'leading-space unclosed quote': ('---\nname:  "broken\ndescription: demo\n'
+                                             'metadata:\n  version: "0.4.1"\n---\n',
+                                             'malformed quoted'),
+            'leading-tab tilde name': ('---\nname: \t~\ndescription: demo\n'
+                                       'metadata:\n  version: "0.4.1"\n---\n', 'null'),
+            'flow metadata map': ('---\nname: demo\ndescription: demo\n'
+                                  'metadata: {version: "1"}\n---\n', 'bare'),
+            'tilde null name': ('---\nname: ~\ndescription: demo\n'
+                                'metadata:\n  version: "0.4.1"\n---\n', 'null'),
+            'null description': ('---\nname: demo\ndescription: null\n'
+                                 'metadata:\n  version: "0.4.1"\n---\n', 'null'),
+            'NULL version': ('---\nname: demo\ndescription: demo\n'
+                             'metadata:\n  version: NULL\n---\n', 'null'),
+            'document end marker': ('---\nname: demo\ndescription: demo\n...\n'
+                                    'metadata:\n  version: "0.4.1"\n---\n',
+                                    'unsupported root line'),
+            'free text line': ('---\nname: demo\ndescription: demo\nhello world\n'
+                               'metadata:\n  version: "0.4.1"\n---\n',
+                               'unsupported root line'),
+            'text after closing quote': ('---\nname: demo\n'
+                                         'description: "demo" extra\n'
+                                         'metadata:\n  version: "0.4.1"\n---\n',
+                                         'malformed quoted'),
+        }
+        for label, (skill, clue) in cases.items():
+            with self.subTest(label=label):
+                self.write_skill(self.root, skill=skill)
+                self.assert_fails(clue, self.root)
+
+    def test_frontmatter_subset_positive_matrix(self):
+        bases = {
+            'quoted colon-space description': ('---\nname: demo\n'
+                                               'description: "Coordinate: work."\n'
+                                               'metadata:\n  version: "0.4.1"\n---\n'),
+            'trailing comment on plain': ('---\nname: demo\n'
+                                          'description: demo # note\n'
+                                          'metadata:\n  version: "0.4.1"\n---\n'),
+            'trailing comment on quoted': ('---\nname: demo\ndescription: demo\n'
+                                           'metadata:\n  version: "1.0.0" # keep\n---\n'),
+            'comment line inside metadata block': ('---\nname: demo\ndescription: demo\n'
+                                                   'metadata:\n  # the version of the skill\n'
+                                                   '  version: "0.4.1"\n---\n'),
+            'doubled single quote': ("---\nname: 'it''s fine'\ndescription: demo\n"
+                                     'metadata:\n  version: "0.4.1"\n---\n'),
+            'four-space indent and shuffled keys': ('---\nname: demo\n'
+                                                    'metadata:\n    version: "0.4.1"\n'
+                                                    'description: demo\nlicense: MIT\n---\n'),
+            'unicode escape upper bound': ('---\nname: demo\n'
+                                           'description: "\\U0010FFFF"\n'
+                                           'metadata:\n  version: "0.4.1"\n---\n'),
+            'apostrophe in plain description': ("---\nname: demo\n"
+                                                "description: Track user's work # note: demo\n"
+                                                'metadata:\n  version: "0.4.1"\n---\n'),
+            'leading bom': None,
+        }
+        for label, skill in bases.items():
+            with self.subTest(label=label):
+                if label == 'leading bom':
+                    (self.root / 'SKILL.md').write_bytes(
+                        ('\ufeff' + bases['quoted colon-space description'])
+                        .encode('utf-8'))
+                else:
+                    self.write_skill(self.root, skill=skill)
+                self.assertEqual(self.run_check(self.root).returncode, 0)
 
     def test_private_link_in_openai_yaml_fails(self):
         # Synthetic disclosure probe: the maintained agent configuration must
