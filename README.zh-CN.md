@@ -69,13 +69,10 @@ Orchivane 把这些协作责任交给一个总控入口：总控先澄清目标�
 ```sh
 codex plugin marketplace add alexzhu0/orchivane
 codex plugin add orchivane@orchivane-local
-```
-
-上述命令已在 Codex CLI 0.157.1 实际完成：0.3.1插件安装并启用，技能从插件缓存发现为 `orchivane:orchivane`。可用下面的命令核对安装状态：
-
-```sh
 codex plugin list --marketplace orchivane-local --json
 ```
+
+上述命令已在 Codex CLI 0.157.1 实际完成：0.3.1 插件安装并启用，技能从插件缓存发现为 `orchivane:orchivane`；第三行用于核对安装状态。
 
 2026-10-19，本机用户已确认桌面插件目录可见；两个新建桌面对话实际从插件缓存读取0.3.1并使用规则，其中一个请求正文未点名技能。本轮无需重启。目录可见由用户观察，启用状态和实际读取由工具核验，详见[桌面验收与复现](tests/desktop-plugin.md)。流程依据 [OpenAI插件打包文档](https://developers.openai.com/plugins/build/plugins)，具体命令以本机CLI帮助为准。这是通过公开GitHub来源分发，尚未上架官方精选目录。
 
@@ -125,14 +122,11 @@ codex plugin list --marketplace orchivane-local --json
 
 ### 独立 Skill 安装
 
+独立 Skill 的完整目录是 [`skills/orchivane`](skills/orchivane/SKILL.md)，运行它无需 Python 或新依赖。下载/克隆本仓库后，在仓库根目录执行下面命令：前两行跨平台，`mkdir` 起的后两行是 macOS/Linux 写法，目标已有文件或链接时拒绝覆盖。
+
 ```sh
 git clone https://github.com/alexzhu0/orchivane.git
 cd orchivane
-```
-
-独立 Skill 的完整目录是 [`skills/orchivane`](skills/orchivane/SKILL.md)，运行它无需 Python 或新依赖。下载/克隆本仓库后，在仓库根目录执行下面的 macOS/Linux 示例（目标已有文件或链接时拒绝覆盖）：
-
-```sh
 mkdir -p "$HOME/.agents/skills"
 test ! -e "$HOME/.agents/skills/orchivane" && test ! -L "$HOME/.agents/skills/orchivane" && cp -R skills/orchivane "$HOME/.agents/skills/orchivane"
 ```

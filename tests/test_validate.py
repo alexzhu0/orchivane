@@ -1,12 +1,15 @@
 """Exercise the CLI against disposable packages, without network or client access."""
 import errno
+import importlib.util
 import json
 from pathlib import Path
+import re
 import shutil
 import subprocess
 import sys
 import tempfile
 import unittest
+from urllib.parse import unquote, urlsplit
 
 SCRIPT = Path(__file__).resolve().parents[1] / 'scripts' / 'validate.py'
 
@@ -27,6 +30,54 @@ def _symlink_unavailable(exc):
     if getattr(exc, 'winerror', None) in _SYMLINK_WINDOWS_ERRORS:
         return True
     return exc.errno in _SYMLINK_UNAVAILABLE_ERRNOS
+
+
+def _load_validate():
+    """Load scripts/validate.py as a module so fixtures track its whitelist."""
+    spec = importlib.util.spec_from_file_location('validate_script', str(SCRIPT))
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+VALIDATE = _load_validate()
+
+# Independent canaries for the real bilingual READMEs: written as equality
+# invariants (EN == ZH) instead of snapshot numbers, so a 0.4.2-style content
+# change passes as long as the two copies stay symmetric, and any re-opened
+# whitelist in scripts/validate.py cannot hide a real asymmetry from these
+# assertions. Update them deliberately only when the invariant itself changes.
+
+
+def level_sequence(text):
+    result = []
+    for line in text.splitlines():
+        match = re.match(r'^(#{1,6})\s+\S', line)
+        if match:
+            result.append(len(match.group(1)))
+    return result
+
+
+def fence_count(text):
+    return len(re.findall(r'^[ \t]*(?:`{3,}|~{3,})[^\n]*$', text, re.M)) // 2
+
+
+def readme_links(text):
+    prose = re.sub(r'(?ms)^\s*(`{3,}|~{3,})[^\n]*\n.*?^\s*\1\s*$', '', text)
+    prose = re.sub(r'`+[^`\n]*`+', '', prose)
+    targets = re.findall(r'!?\[[^\]\n]*\]\(\s*(<[^>\n]+>|(?:[^\s()]+|\([^()\n]*\))+)', prose)
+    targets += re.findall(r'^\s{0,3}\[[^\]\n]+\]:\s*(<[^>\n]+>|\S+)', prose, re.M)
+    result = set()
+    for target in targets:
+        target = target.strip('<>')
+        try:
+            url = urlsplit(target)
+        except ValueError:
+            continue
+        if url.scheme or url.netloc or not url.path:
+            continue
+        result.add(re.sub(r'\.zh-CN(?=\.\w+$)', '', unquote(url.path.split('#', 1)[0])))
+    return result
 
 
 class ValidateTests(unittest.TestCase):
@@ -206,6 +257,137 @@ class ValidateTests(unittest.TestCase):
     def test_malformed_manifest_fails_cleanly(self):
         self.write('plugin.json', '{')
         self.assert_invalid('plugin.json')
+
+    def en_base(self, blocks=1, links=('[Skill](skills/demo/SKILL.md)',)):
+        text = '# demo 1.0.0\n\n## One\n\n'
+        text += '```sh\necho hi\n```\n' * blocks
+        return text + '\n' + '\n'.join(links) + '\n'
+
+    def zh_base(self, en, extra_h2=(), extra_blocks=None, extra_links=()):
+        """Chinese copy built from the English one plus only documented drift."""
+        if extra_blocks is None:
+            extra_blocks = VALIDATE.BILINGUAL_ZH_EXTRA_CODE_BLOCKS
+        parts = [en.rstrip('\n')]
+        parts += ['## ' + title for title in extra_h2]
+        parts += ['```sh\necho extra\n```'] * extra_blocks
+        parts += list(extra_links)
+        return '\n\n'.join(parts) + '\n'
+
+    def write_bilingual_readmes(self, en=None, zh=None):
+        if en is None:
+            en = self.en_base()
+        if zh is None:
+            zh = self.zh_base(en)
+        self.write('README.md', en)
+        self.write('README.zh-CN.md', zh)
+
+    def test_bilingual_readme_title_version_guard(self):
+        self.write_bilingual_readmes()
+        self.assertEqual(self.run_check().returncode, 0)
+        for bad in ('# demo 2.0.0', '# demo', 'plain line'):
+            with self.subTest(bad=bad):
+                self.write_bilingual_readmes(
+                    zh=bad + '\n' + self.en_base().split('\n', 1)[1])
+                self.assert_invalid('README.zh-CN.md')
+
+    def test_bilingual_readme_section_guard(self):
+        self.write_bilingual_readmes()
+        self.assertEqual(self.run_check().returncode, 0)
+        # zh-CN-only section outside the documented whitelist
+        self.write_bilingual_readmes(
+            zh=self.zh_base(self.en_base(), extra_h2=('Extra',)))
+        self.assert_invalid('section structure')
+        # section re-leveled in one copy
+        self.write_bilingual_readmes(
+            zh=self.zh_base(self.en_base()).replace('## One', '### One', 1))
+        self.assert_invalid('section structure')
+        # every documented whitelisted H2 passes
+        for title in sorted(VALIDATE.BILINGUAL_ZH_ONLY_H2):
+            with self.subTest(title=title):
+                self.write_bilingual_readmes(
+                    zh=self.zh_base(self.en_base(), extra_h2=(title,)))
+                self.assertEqual(self.run_check().returncode, 0)
+        # any other extra H2 stays invalid
+        self.write_bilingual_readmes(
+            zh=self.zh_base(self.en_base(), extra_h2=('Other',)))
+        self.assert_invalid('section structure')
+
+    def test_bilingual_readme_code_block_guard(self):
+        allowance = VALIDATE.BILINGUAL_ZH_EXTRA_CODE_BLOCKS
+        self.write_bilingual_readmes()
+        self.assertEqual(self.run_check().returncode, 0)
+        # one block beyond the documented allowance
+        self.write_bilingual_readmes(
+            zh=self.zh_base(self.en_base(), extra_blocks=allowance + 1))
+        self.assert_invalid('code block')
+        # English block without a Chinese counterpart
+        self.write_bilingual_readmes(
+            en=self.en_base(blocks=2),
+            zh=self.zh_base(self.en_base(), extra_blocks=allowance))
+        self.assert_invalid('code block')
+
+    def test_bilingual_readme_link_guard(self):
+        self.write_bilingual_readmes()
+        self.assertEqual(self.run_check().returncode, 0)
+        # zh-CN-only link outside the documented whitelist
+        self.write('docs/zh-only.md', '# Only\n')
+        self.write_bilingual_readmes(
+            zh=self.zh_base(self.en_base(), extra_links=('[Extra](docs/zh-only.md)',)))
+        self.assert_invalid('docs/zh-only.md')
+        # English link missing from the Chinese copy
+        self.write('docs/en-only.md', '# Only\n')
+        self.write_bilingual_readmes(
+            en=self.en_base(links=('[Skill](skills/demo/SKILL.md)',
+                                   '[Extra](docs/en-only.md)')),
+            zh=self.zh_base(self.en_base()))
+        self.assert_invalid('docs/en-only.md')
+        # .zh-CN suffix variants map to their English counterparts
+        self.write('docs/research.md', '# Research\n')
+        self.write('docs/research.zh-CN.md', '# Research\n')
+        self.write_bilingual_readmes(
+            en=self.en_base(links=('[Skill](skills/demo/SKILL.md)',
+                                   '[Research](docs/research.md)')),
+            zh=self.zh_base(self.en_base(),
+                            extra_links=('[Research](docs/research.zh-CN.md)',)))
+        self.assertEqual(self.run_check().returncode, 0)
+        # every documented whitelisted link passes
+        for target in sorted(VALIDATE.BILINGUAL_ZH_ONLY_LINKS):
+            self.write(target, '# Whitelisted\n')
+            with self.subTest(target=target):
+                self.write_bilingual_readmes(
+                    zh=self.zh_base(self.en_base(),
+                                    extra_links=('[Whitelisted](' + target + ')',)))
+                self.assertEqual(self.run_check().returncode, 0)
+
+
+    def test_real_bilingual_readmes_match_structural_invariants(self):
+        root = Path(__file__).resolve().parents[1]
+        en = (root / 'README.md').read_text(encoding='utf-8')
+        zh = (root / 'README.zh-CN.md').read_text(encoding='utf-8')
+        self.assertTrue(level_sequence(en))
+        self.assertEqual(level_sequence(en), level_sequence(zh))
+        self.assertGreater(fence_count(en), 0)
+        self.assertEqual(fence_count(en), fence_count(zh))
+        en_links, zh_links = readme_links(en), readme_links(zh)
+        self.assertTrue(en_links)
+        self.assertEqual(en_links, zh_links)
+
+    def test_real_version_consistent_across_all_sources(self):
+        root = Path(__file__).resolve().parents[1]
+        sources = {}
+        for name in ('plugin.json', '.codex-plugin/plugin.json', '.claude-plugin/plugin.json'):
+            sources[name] = json.loads((root / name).read_text(encoding='utf-8'))['version']
+        for name in ('README.md', 'README.zh-CN.md'):
+            first = (root / name).read_text(encoding='utf-8').splitlines()[0]
+            match = re.fullmatch(r'#\s+.*\s+([0-9][^\s]*)', first.lstrip('\ufeff').strip())
+            self.assertIsNotNone(match, name)
+            sources[name] = match.group(1)
+        skill = (root / 'skills/orchivane/SKILL.md').read_text(encoding='utf-8')
+        frontmatter = re.match(r'\A---\r?\n(.*?)\r?\n---', skill, re.S).group(1)
+        match = re.search(r'(?m)^\s+version:\s*"?([^"\s]+)"?', frontmatter)
+        self.assertIsNotNone(match)
+        sources['skills/orchivane/SKILL.md'] = match.group(1)
+        self.assertEqual(len(set(sources.values())), 1, sources)
 
 
 class SymlinkUnavailableTests(unittest.TestCase):

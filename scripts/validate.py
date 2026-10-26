@@ -23,6 +23,56 @@ PRIVATE = {
     'possible credential': re.compile(r'\b(?:sk-(?:proj-)?[A-Za-z0-9_-]{20,}|gh[pousr]_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{30,}|AKIA[A-Z0-9]{16})\b'),
 }
 
+# Documented bilingual drift allowances between README.md and README.zh-CN.md.
+# The checks below fail on ANY difference outside these entries, so resolving
+# a drift means editing the READMEs and then shrinking the matching entry.
+# All three allowances are empty after the 0.4.1 alignment: zh-CN now has no
+# sections beyond the English ones, the previously split install code blocks
+# were merged, and the evidence table lists the same records in both copies.
+# Re-adding an entry requires documenting here why that asymmetry is legitimate.
+BILINGUAL_ZH_ONLY_H2 = set()  # zh-CN-only H2 sections without an English counterpart.
+BILINGUAL_ZH_EXTRA_CODE_BLOCKS = 0  # extra fenced code blocks in README.zh-CN.md.
+BILINGUAL_ZH_ONLY_LINKS = set()  # relative links that exist only in the Chinese guide.
+
+
+def heading_sequence(text):
+    """Ordered (level, title) pairs for every ATX heading."""
+    result = []
+    for line in text.splitlines():
+        match = re.match(r'^(#{1,6})\s+(.+?)\s*$', line)
+        if match:
+            result.append((len(match.group(1)), match.group(2).strip()))
+    return result
+
+
+def code_block_count(text):
+    fences = re.findall(r'^[ \t]*(?:`{3,}|~{3,})[^\n]*$', text, re.M)
+    return len(fences) // 2
+
+
+def relative_link_paths(text):
+    """Same link-extraction shortcut as the file walk below; keep both in sync."""
+    prose = re.sub(r'(?ms)^\s*(`{3,}|~{3,})[^\n]*\n.*?^\s*\1\s*$', '', text)
+    prose = re.sub(r'`+[^`\n]*`+', '', prose)
+    targets = re.findall(r'!?\[[^\]\n]*\]\(\s*(<[^>\n]+>|(?:[^\s()]+|\([^()\n]*\))+)', prose)
+    targets += re.findall(r'^\s{0,3}\[[^\]\n]+\]:\s*(<[^>\n]+>|\S+)', prose, re.M)
+    result = set()
+    for target in targets:
+        target = target.strip('<>')
+        try:
+            url = urlsplit(target)
+        except ValueError:
+            continue
+        if url.scheme or url.netloc or not url.path:
+            continue
+        result.add(unquote(url.path.split('#', 1)[0]))
+    return result
+
+
+def bilingual_link_key(target):
+    """Map a .zh-CN document variant to its English counterpart target."""
+    return re.sub(r'\.zh-CN(?=\.\w+$)', '', target)
+
 
 def validate(root):
     errors = []
@@ -131,6 +181,53 @@ def validate(root):
             target = inside(path, local, root)
             if target and not target.is_dir():
                 error(path, 'source path must be a directory')
+
+    # Bilingual README guards, active only when both copies exist.
+    en_readme, zh_readme = root / 'README.md', root / 'README.zh-CN.md'
+    if en_readme.exists() and zh_readme.exists():
+        expected_version = configs[0].get('version')
+        for path in (en_readme, zh_readme):
+            try:
+                text = path.read_text(encoding='utf-8')
+            except OSError:
+                error(path, 'cannot read README')
+                continue
+            lines = text.splitlines()
+            first = lines[0].lstrip('\ufeff').strip() if lines else ''
+            match = re.fullmatch(r'#\s+.*\s+([0-9][^\s]*)', first)
+            if not match:
+                error(path, 'first line must be a versioned H1 title, e.g. "# Orchivane 0.4.1"')
+            elif match.group(1) != expected_version:
+                error(path, f'first-line title version {match.group(1)!r} differs from plugin version {expected_version!r}')
+        en_text = en_readme.read_text(encoding='utf-8')
+        zh_text = zh_readme.read_text(encoding='utf-8')
+        # Translated headings cannot be matched by title text, so parity is
+        # pinned through the heading LEVEL sequence: after dropping the
+        # documented zh-CN-only sections, the level sequences must be equal.
+        # That pins section count, nesting depth and level order; a section
+        # added, removed, moved across levels or re-leveled in either copy
+        # fails here.
+        en_levels = [level for level, _ in heading_sequence(en_text)]
+        zh_levels = [level for level, title in heading_sequence(zh_text)
+                     if not (level == 2 and title in BILINGUAL_ZH_ONLY_H2)]
+        if zh_levels != en_levels:
+            error(zh_readme, f'section structure drifted: README.md levels {en_levels}, '
+                             f'README.zh-CN.md levels {zh_levels} '
+                             '(after removing the documented zh-CN-only sections)')
+        en_blocks = code_block_count(en_text)
+        zh_blocks = code_block_count(zh_text)
+        if zh_blocks - en_blocks != BILINGUAL_ZH_EXTRA_CODE_BLOCKS:
+            error(zh_readme, f'code block counts drifted: README.md has {en_blocks}, '
+                             f'README.zh-CN.md has {zh_blocks}; expected {en_blocks + BILINGUAL_ZH_EXTRA_CODE_BLOCKS}')
+        en_links = {bilingual_link_key(target) for target in relative_link_paths(en_text)}
+        zh_links = {bilingual_link_key(target) for target in relative_link_paths(zh_text)}
+        missing = sorted(en_links - zh_links)
+        if missing:
+            error(zh_readme, 'README.md links missing from README.zh-CN.md: ' + ', '.join(missing))
+        unexpected_links = sorted(zh_links - en_links - BILINGUAL_ZH_ONLY_LINKS)
+        if unexpected_links:
+            error(zh_readme, 'zh-CN-only links outside the documented whitelist: '
+                             + ', '.join(unexpected_links))
 
     count = 0
     for directory, dirs, files in os.walk(root, followlinks=False):
