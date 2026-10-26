@@ -15,8 +15,8 @@ EVIDENCE = ROOT / 'tests/outputs/v0.4.1-adoption'
 
 class AdoptionEvidenceTests(unittest.TestCase):
     def setUp(self):
-        self.artifacts = json.loads((EVIDENCE / 'artifacts.json').read_text())
-        self.inputs = json.loads((EVIDENCE / 'inputs.json').read_text())
+        self.artifacts = json.loads((EVIDENCE / 'artifacts.json').read_text(encoding='utf-8'))
+        self.inputs = json.loads((EVIDENCE / 'inputs.json').read_text(encoding='utf-8'))
 
     def test_published_bytes_and_frozen_candidate(self):
         self.assertEqual(set(self.artifacts), {
@@ -31,11 +31,11 @@ class AdoptionEvidenceTests(unittest.TestCase):
                     self.assertEqual(hashlib.sha256(content.encode()).hexdigest(),
                                      artifact['sha256'][name])
         # Historical evidence remains replayable after a later skill release.
-        if json.loads((ROOT / 'plugin.json').read_text())['version'] != '0.4.1':
+        if json.loads((ROOT / 'plugin.json').read_text(encoding='utf-8'))['version'] != '0.4.1':
             return
-        hashes = json.loads((EVIDENCE / 'skill-hashes.json').read_text())['0.4.1']
+        hashes = json.loads((EVIDENCE / 'skill-hashes.json').read_text(encoding='utf-8'))['0.4.1']
         source = ROOT / 'skills/orchivane'
-        self.assertEqual(set(hashes), {str(p.relative_to(source))
+        self.assertEqual(set(hashes), {p.relative_to(source).as_posix()
                                       for p in source.rglob('*') if p.is_file()})
         for name, digest in hashes.items():
             self.assertEqual(hashlib.sha256((source / name).read_bytes()).hexdigest(),
@@ -58,7 +58,7 @@ class AdoptionEvidenceTests(unittest.TestCase):
             self.assertNotIn('work/data/summary.json', files)
         submitted = json.loads(self.artifacts['partial-mismatch']['files'][
             'coordination/submitted-receipt.json'])
-        hashes = json.loads((EVIDENCE / 'skill-hashes.json').read_text())
+        hashes = json.loads((EVIDENCE / 'skill-hashes.json').read_text(encoding='utf-8'))
         self.assertEqual(submitted['entry_sha256'], hashes['0.4.0']['SKILL.md'])
         self.assertEqual(submitted['reported_version'], '0.4.1')
         self.assertEqual(submitted['modules'], [])
@@ -87,12 +87,12 @@ class AdoptionEvidenceTests(unittest.TestCase):
 
     def test_native_041_adoption_and_receipt_artifacts(self):
         evidence = ROOT / 'tests/outputs/v0.4.1-native-adoption'
-        prompts = json.loads((evidence / 'prompts.json').read_text())
+        prompts = json.loads((evidence / 'prompts.json').read_text(encoding='utf-8'))
         self.assertEqual(set(prompts), {'N1', 'adoption', 'N2', 'acceptance'})
         for prompt in prompts.values():
             self.assertTrue(prompt['text'].strip())
             self.assertTrue(prompt['source'])
-        artifacts = json.loads((evidence / 'artifacts.json').read_text())
+        artifacts = json.loads((evidence / 'artifacts.json').read_text(encoding='utf-8'))
         self.assertEqual(set(artifacts), {
             'before-adoption', 'after-adoption', 'after-n2', 'final'})
         for phase, artifact in artifacts.items():
