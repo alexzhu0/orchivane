@@ -1,0 +1,132 @@
+[
+  {
+    "argv": [
+      "git",
+      "init",
+      "--initial-branch=main"
+    ],
+    "exit_code": 0,
+    "stdout": "Initialized empty Git repository in <LAB_ROOT>/native-run/marketplace/.git/\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "add",
+      "."
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "-c",
+      "user.name=Orchivane Fixture",
+      "-c",
+      "user.email=fixture@example.invalid",
+      "commit",
+      "-m",
+      "Frozen old package"
+    ],
+    "exit_code": 0,
+    "stdout": "[main (root-commit) 983e8df] Frozen old package\n 13 files changed, 405 insertions(+)\n create mode 100644 .agents/plugins/marketplace.json\n create mode 100644 .claude-plugin/plugin.json\n create mode 100644 .codex-plugin/plugin.json\n create mode 100644 plugin.json\n create mode 100644 skills/orchivane/SKILL.md\n create mode 100644 skills/orchivane/agents/openai.yaml\n create mode 100644 skills/orchivane/references/adoption.md\n create mode 100644 skills/orchivane/references/claude-code.md\n create mode 100644 skills/orchivane/references/codex.md\n create mode 100644 skills/orchivane/references/dispatch.md\n create mode 100644 skills/orchivane/references/handoff.md\n create mode 100644 skills/orchivane/references/health-check.md\n create mode 100644 skills/orchivane/references/setup.md\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "codex",
+      "--version"
+    ],
+    "exit_code": 0,
+    "stdout": "codex-cli 0.157.1\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "codex",
+      "plugin",
+      "marketplace",
+      "add",
+      "https://orchivane-cache-lab.invalid/marketplace.git",
+      "--json"
+    ],
+    "exit_code": 0,
+    "stdout": "{\n  \"marketplaceName\": \"orchivane-continuity-lab\",\n  \"installedRoot\": \"<LAB_ROOT>/native-run/cli-home/.tmp/marketplaces/orchivane-continuity-lab\",\n  \"alreadyAdded\": false\n}\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "codex",
+      "plugin",
+      "add",
+      "orchivane@orchivane-continuity-lab",
+      "--json"
+    ],
+    "exit_code": 0,
+    "stdout": "{\n  \"pluginId\": \"orchivane@orchivane-continuity-lab\",\n  \"name\": \"orchivane\",\n  \"marketplaceName\": \"orchivane-continuity-lab\",\n  \"version\": \"0.4.1\",\n  \"installedPath\": \"<LAB_ROOT>/native-run/cli-home/plugins/cache/orchivane-continuity-lab/orchivane/0.4.1\",\n  \"authPolicy\": \"ON_INSTALL\"\n}\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "add",
+      "."
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "git",
+      "-c",
+      "user.name=Orchivane Fixture",
+      "-c",
+      "user.email=fixture@example.invalid",
+      "commit",
+      "-m",
+      "Candidate package"
+    ],
+    "exit_code": 0,
+    "stdout": "[main 28b6660] Candidate package\n 7 files changed, 22 insertions(+), 7 deletions(-)\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "codex",
+      "plugin",
+      "marketplace",
+      "upgrade",
+      "orchivane-continuity-lab",
+      "--json"
+    ],
+    "exit_code": 0,
+    "stdout": "{\n  \"selectedMarketplaces\": [\n    \"orchivane-continuity-lab\"\n  ],\n  \"upgradedRoots\": [\n    \"<LAB_ROOT>/native-run/cli-home/.tmp/marketplaces/orchivane-continuity-lab\"\n  ],\n  \"errors\": []\n}\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "codex",
+      "plugin",
+      "add",
+      "orchivane@orchivane-continuity-lab",
+      "--json"
+    ],
+    "exit_code": 0,
+    "stdout": "{\n  \"pluginId\": \"orchivane@orchivane-continuity-lab\",\n  \"name\": \"orchivane\",\n  \"marketplaceName\": \"orchivane-continuity-lab\",\n  \"version\": \"0.4.2\",\n  \"installedPath\": \"<LAB_ROOT>/native-run/cli-home/plugins/cache/orchivane-continuity-lab/orchivane/0.4.2\",\n  \"authPolicy\": \"ON_INSTALL\"\n}\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "codex",
+      "plugin",
+      "list",
+      "--json"
+    ],
+    "exit_code": 0,
+    "stdout": "{\n  \"installed\": [\n    {\n      \"pluginId\": \"orchivane@orchivane-continuity-lab\",\n      \"name\": \"orchivane\",\n      \"marketplaceName\": \"orchivane-continuity-lab\",\n      \"version\": \"0.4.2\",\n      \"installed\": true,\n      \"enabled\": true,\n      \"source\": {\n        \"source\": \"local\",\n        \"path\": \"<LAB_ROOT>/native-run/cli-home/.tmp/marketplaces/orchivane-continuity-lab\"\n      },\n      \"marketplaceSource\": {\n        \"sourceType\": \"git\",\n        \"source\": \"https://orchivane-cache-lab.invalid/marketplace.git\"\n      },\n      \"installPolicy\": \"AVAILABLE\",\n      \"authPolicy\": \"ON_INSTALL\"\n    }\n  ],\n  \"available\": []\n}\n",
+    "stderr": ""
+  }
+]

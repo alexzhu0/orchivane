@@ -1,0 +1,13 @@
+{
+  "global_files_checked": 295,
+  "global_before_sha256": "89b6d25c60cb1fd94f3c686514d2280ffa5f866e70fb09c3b33d9f9afdc0046a",
+  "global_after_sha256": "89b6d25c60cb1fd94f3c686514d2280ffa5f866e70fb09c3b33d9f9afdc0046a",
+  "coverage": "Real config.toml and every existing file under the actual Orchivane plugin cache; raw path inventories retained privately.",
+  "real_installed_plugin_version": "0.4.1",
+  "isolated_child_home": "<LAB_ROOT>/native-run/cli-home",
+  "git_transport": "Reserved .invalid HTTPS source rewritten to local Git using child-process configuration; no global Git/config edits or network marketplace required.",
+  "native_chat_creations": 0,
+  "native_chat_messages": 0,
+  "model_calls": 0,
+  "limits": "Hashes are private-inventory digests, not a public raw-home audit; unrelated concurrent file access was not traced."
+}

@@ -4,6 +4,12 @@
 
 This English index summarizes existing experiments. Original records and frozen fixtures remain in their source language; translating a summary is not rerunning an experiment. Dates and skill versions identify the actual subjects of each run.
 
+## Version 0.4.2: old-source retention before refresh
+
+On 2026-10-23, an [isolated native CLI experiment](../tests/cache-continuity.md) used a disposable CLI home and local Git transport to install 0.4.1, refresh to the candidate 0.4.2 and reinstall. Marketplace refresh itself removed the old cache. A cache-bound deterministic reader observed 43 failures in 128 sweeps; an independent old-source reader completed 125 sweeps over all nine files without failure. Retained hashes/references stayed valid; a post-update deterministic CSV task used 0.4.1 and produced three rows/total 9. Corrupt and symlink-dependent copies were rejected before the update. The real configuration and existing Orchivane cache, 295 files, were unchanged.
+
+The workflow now holds marketplace refresh as well as installation until affected readers have accepted independent sources at normal task boundaries or finished their work. Unknown/shared-project coverage keeps the update deferred. Two separate one-turn temporary agents then planned the same unsafe/ready cases: both baseline 0.4.1 and candidate 0.4.2 deferred the unsafe case and permitted refresh under the synthetic ready case. No causal behavior improvement is established. This is a controller procedure, not a host lock. No native chats were created, messaged or retargeted; native receipt compliance, hot reload, crashes and another client's installer remain untested. Original cache path availability still fails. Earlier restoration evidence and its gap remain historical.
+
 ## Version 0.4.1: adoption and deferred version checks
 
 The [adoption module](../skills/orchivane/references/adoption.md) adds an explicit existing-project path, source/read/task evidence, scoped receipts and role verification at normal work boundaries. On 2026-10-22, [four isolated temporary-agent turns](../tests/adoption-upgrade.md) exercised a 0.4.0 baseline, 0.4.1 controller adoption, a normal data task and rejection of a mismatched/partial receipt. Protected files and simulated runtime states were preserved; the worker produced three rows/total 9 and only its two authorized outputs. Candidate source hashes, sanitized artifacts and offline replay are published.
