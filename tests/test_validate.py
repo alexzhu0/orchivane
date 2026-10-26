@@ -1,4 +1,5 @@
 """Exercise the CLI against disposable packages, without network or client access."""
+import errno
 import importlib.util
 import json
 from pathlib import Path
@@ -136,10 +137,7 @@ class ValidateTests(unittest.TestCase):
 
     def test_link_through_symlink_outside_package_is_rejected(self):
         (self.root.parent / 'outside.md').write_text('outside')
-        try:
-            (self.root / 'outside.md').symlink_to(self.root.parent / 'outside.md')
-        except OSError as exc:
-            self.skipTest(f'symlinks unavailable on this platform: {exc}')
+        (self.root / 'outside.md').symlink_to(self.root.parent / 'outside.md')
         self.write('README.md', '[Outside](outside.md)')
         self.assert_invalid('escapes')
 
