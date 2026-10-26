@@ -1,5 +1,6 @@
 """Source-preservation checks and offline replay; never launches the native CLI."""
 from collections import Counter
+import errno
 import hashlib
 import importlib.util
 import json
@@ -7,6 +8,7 @@ from pathlib import Path
 import shutil
 import tempfile
 import unittest
+from unittest.mock import patch
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -43,9 +45,35 @@ class CacheContinuityTests(unittest.TestCase):
             fixture.verify_source(self.source, expected)
 
     def test_rejects_symlink_dependent_copy(self):
-        (self.source / 'alias').symlink_to(self.source / 'references', target_is_directory=True)
+        try:
+            (self.source / 'alias').symlink_to(self.source / 'references', target_is_directory=True)
+        except OSError as exc:
+            if (getattr(exc, 'winerror', None) not in (50, 1314)
+                    and exc.errno not in (errno.ENOSYS, errno.ENOTSUP)):
+                raise
+            self.skipTest(f'Symlink creation unavailable: {exc}')
         with self.assertRaises(ValueError):
             fixture.inventory(self.source)
+
+    def test_symlink_creation_skips_only_capability_errors(self):
+        privilege = PermissionError(errno.EACCES, 'Symlink privilege not held')
+        privilege.winerror = 1314
+        unsupported = OSError(errno.EINVAL, 'Windows symlinks not supported')
+        unsupported.winerror = 50
+        cases = [
+            (privilege, unittest.SkipTest),
+            (unsupported, unittest.SkipTest),
+            (OSError(errno.ENOSYS, 'Symlinks not implemented'), unittest.SkipTest),
+            (OSError(errno.ENOTSUP, 'Symlinks not supported'), unittest.SkipTest),
+            (PermissionError(errno.EACCES, 'Unexpected access denial'), PermissionError),
+            (FileNotFoundError(errno.ENOENT, 'Missing parent'), FileNotFoundError),
+            (OSError(errno.EIO, 'Filesystem I/O failure'), OSError),
+        ]
+        for error, expected in cases:
+            with self.subTest(errno=error.errno, winerror=getattr(error, 'winerror', None)):
+                with patch.object(Path, 'symlink_to', side_effect=error):
+                    with self.assertRaises(expected):
+                        self.test_rejects_symlink_dependent_copy()
 
     def test_rejects_missing_external_or_file_uri_reference(self):
         (self.root / 'outside.md').write_text('Outside dependency')

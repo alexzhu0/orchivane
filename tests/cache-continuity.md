@@ -85,3 +85,9 @@ The fixture needs the historical base commit locally; a shallow checkout may nee
 One host/CLI version, two deterministic threads and one short update. No native chat pin acceptance, implicit discovery, host-wide enforcement, crash, power-loss, external updater race, long-running service or Claude installer was tested. The example covers Orchivane's self-contained source files; external scripts, servers or other plugin dependencies need their own checks. Existing live projects were not migrated. Prior cache-gap, bilingual, handoff and efficiency limitations are unchanged.
 
 中文摘要：隔离测试确认，单是刷新目录就会清理旧缓存；原路径失败43次，独立旧来源125次完整读取均成功，升级后仍用旧版完成3行合计9的确定性任务。真实配置及插件295文件未变。0.4.2新增“先独立保全、正常任务确认；覆盖不全则暂缓刷新和安装”的规则。不能保证宿主缓存原路径永久可用，也未验证原生对话改读或自动执行该规则；没有触达现有项目。
+
+## Review follow-up: capability-limited symlink test (2026-10-26)
+
+The cache-continuity symlink test now skips only when creation is unsupported (`ENOSYS` / `ENOTSUP`, or Windows error 50) or Windows lacks the required privilege (error 1314). Unexpected access denial, a missing parent and filesystem I/O errors still fail. On a capable host, the real symlink is created and the source inventory must still reject it.
+
+A regression test injects all four supported skip cases and three unexpected errors. It failed on the unchanged test, then passed with the narrow guard. The seven cache-continuity tests and the complete 37-test suite pass locally, as do static package and whitespace checks. This follow-up uses fault injection on macOS, not native Windows validation. It changes no skill bytes, frozen evidence or installer behavior and does not rerun the native experiment. The earlier 36-test result remains the historical check for the original candidate.
