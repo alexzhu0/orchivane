@@ -34,7 +34,7 @@ Execute specifically authorized tasks. Authorization for research or a plan alon
 
 Provide enough context to start, but only necessary materials. Record dispatch, understanding, execution, completion and acceptance separately. Before a message that may interrupt active work, check status and whether it is a necessary correction to the current task; avoid duplicate wake-ups.
 
-For a pending adoption/version check, include its source and receipt requirement in the next authorized normal-task brief, following [adoption.md](adoption.md). Keep the current task and budget intact; an upgrade-only message is not a reason to interrupt or wake a role.
+For a pending adoption/version check, include its source and receipt requirement in the next authorized normal-task brief, following [adoption.md](adoption.md). If old-version work needs an independent retained source, name that exact entry and require its actual read receipt before clearing the reader's refresh block; a brief saved on disk is still pending. Keep the current task and budget intact; an upgrade-only message is not a reason to interrupt or wake a role.
 
 Independent tasks may run in parallel. Shared writes, production-data renaming and frozen-input updates need ordering or isolated directories first. Use temporary subagents only when host and user/project rules allow them, for bounded analysis or verification. They do not automatically replace existing persistent roles or authorize new user-visible chats.
 

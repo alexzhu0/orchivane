@@ -13,6 +13,24 @@ from urllib.parse import unquote, urlsplit
 
 SCRIPT = Path(__file__).resolve().parents[1] / 'scripts' / 'validate.py'
 
+# Errnos that mean "symlinks are not possible here" on an otherwise healthy
+# platform: filesystems without symlink support (EPERM/EOPNOTSUPP on POSIX)
+# and Windows privilege restrictions (winerror 5/1314, which CPython surfaces
+# as EACCES). Anything else is a real test-environment failure and must not
+# be skipped.
+_SYMLINK_UNAVAILABLE_ERRNOS = {getattr(errno, name) for name in
+                               ('EPERM', 'EOPNOTSUPP', 'ENOTSUP', 'ENOSYS')} - {None}
+_SYMLINK_WINDOWS_ERRORS = (5, 1314)  # ERROR_ACCESS_DENIED, ERROR_PRIVILEGE_NOT_HELD
+
+
+def _symlink_unavailable(exc):
+    """True only for known unsupported-platform or Windows privilege failures."""
+    if not isinstance(exc, OSError):
+        return False
+    if getattr(exc, 'winerror', None) in _SYMLINK_WINDOWS_ERRORS:
+        return True
+    return exc.errno in _SYMLINK_UNAVAILABLE_ERRNOS
+
 
 def _load_validate():
     """Load scripts/validate.py as a module so fixtures track its whitelist."""
@@ -137,7 +155,12 @@ class ValidateTests(unittest.TestCase):
 
     def test_link_through_symlink_outside_package_is_rejected(self):
         (self.root.parent / 'outside.md').write_text('outside')
-        (self.root / 'outside.md').symlink_to(self.root.parent / 'outside.md')
+        try:
+            (self.root / 'outside.md').symlink_to(self.root.parent / 'outside.md')
+        except OSError as exc:
+            if _symlink_unavailable(exc):
+                self.skipTest(f'symlink creation unavailable on this platform: {exc}')
+            raise
         self.write('README.md', '[Outside](outside.md)')
         self.assert_invalid('escapes')
 
@@ -365,6 +388,30 @@ class ValidateTests(unittest.TestCase):
         self.assertIsNotNone(match)
         sources['skills/orchivane/SKILL.md'] = match.group(1)
         self.assertEqual(len(set(sources.values())), 1, sources)
+
+
+class SymlinkUnavailableTests(unittest.TestCase):
+    """Injected-error checks for the narrow symlink skip decision."""
+
+    def test_windows_privilege_errors_are_skippable(self):
+        for winerror in (5, 1314):
+            with self.subTest(winerror=winerror):
+                exc = OSError(errno.EACCES, 'symlink privilege not held')
+                exc.winerror = winerror
+                self.assertTrue(_symlink_unavailable(exc))
+
+    def test_unsupported_filesystem_errnos_are_skippable(self):
+        for code in _SYMLINK_UNAVAILABLE_ERRNOS:
+            with self.subTest(errno=code):
+                self.assertTrue(_symlink_unavailable(OSError(code, 'unsupported')))
+
+    def test_unexpected_errors_are_not_skippable(self):
+        for exc in (OSError(errno.ENOENT, 'missing path'),
+                    OSError(errno.EACCES, 'access denied'),
+                    OSError(errno.EIO, 'i/o error'),
+                    ValueError('not an OSError')):
+            with self.subTest(exc=repr(exc)):
+                self.assertFalse(_symlink_unavailable(exc))
 
 
 if __name__ == '__main__':

@@ -3,7 +3,7 @@ name: orchivane
 description: Use when a user wants to research and discuss how to organize a new project across sessions, establish controller-led collaboration, adopt or upgrade the workflow in an existing project, coordinate persistent chats, audit collaboration, or hand off to a fresh successor. No existing sessions or project files are required. Not for application runtime sessions or automatically delegating ordinary tasks.
 license: MIT
 metadata:
-  version: "0.4.1"
+  version: "0.4.2"
 ---
 
 # Controller and persistent-chat collaboration
@@ -38,7 +38,7 @@ Ordinary tasks do not trigger a whole-project audit. Handoff and health-check mo
 - **Separate delivery evidence.** Record implementation, technical validation, outcome acceptance, push and deployment separately; mark inapplicable stages. Sending a message, receiving an acknowledgment or passing tests cannot replace final acceptance.
 - **Preserve budgets and stop conditions.** Stop when the condition is reached; unused allowance does not authorize another run. Handoff, context compaction, retries and tool recovery do not reset budgets or cancel a pause.
 - **Do not keep collaboration alive by repeatedly waking chats.** Dispatch only for authorized tasks, actual dependencies, material changes or blockers requiring action. Advance autonomous work as agreed; do not repeatedly ask about unchanged status or claim background monitoring without scheduling capability.
-- **Adopt at normal work boundaries.** Installation, actual reads and behavior checks are separate evidence. Use [adoption.md](references/adoption.md) for version changes; fold role verification into its next normal task without interrupting active work or waking idle roles just to upgrade.
+- **Adopt at normal work boundaries.** Installation, actual reads and behavior checks are separate evidence. Use [adoption.md](references/adoption.md) for version changes and independent old-source pins. Hold package/marketplace refresh while affected readers still depend on managed caches or their coverage is unknown; verify pins at normal task boundaries without interrupting work or waking idle roles just to upgrade.
 
 ## Close the turn
 

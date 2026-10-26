@@ -1,4 +1,4 @@
-# Orchivane 0.4.1
+# Orchivane 0.4.2
 
 **English** · [简体中文](README.zh-CN.md) · [MIT](LICENSE) · [Contributing](CONTRIBUTING.md)
 
@@ -19,6 +19,8 @@ Orchivane gives that work a single controller entry point. The controller clarif
 For example, ask the controller to add login to an existing product. It first checks the current identity design and interfaces, decides how implementation and independent review should be divided, then reports implementation, verification, push and deployment separately. You guide the goal and important tradeoffs without repeating the whole request in every role's chat. This is the intended workflow; tested capabilities and limits are documented below.
 
 **Coordination savings are not yet established.** In the [paired pilot](docs/evidence.md#paired-pilot), both workflows completed three tasks with zero extra coordination requests under the same tasks, model and turn ceilings. Orchivane used more cumulative active time and reported tokens. Real human time and sustained specialist collaboration were not measured.
+
+Version 0.4.2 adds [independent old-source retention and a refresh hold](skills/orchivane/references/adoption.md#preserve-old-reads-before-any-package-refresh). Roles accept retained sources at normal task boundaries; cache-dependent or unknown readers keep the update deferred. In an [isolated native CLI trial](tests/cache-continuity.md), marketplace refresh deleted the old cache: its reader failed 43 times, while 125 complete reads of the independent old copy succeeded. This is source-availability evidence with deterministic workers, not native-chat retargeting or a host-enforced lock.
 
 Version 0.4.1 adds [existing-project adoption and upgrades](skills/orchivane/references/adoption.md): source/version verification, task-scoped read receipts and deferred role checks at normal work boundaries. Installation, actual loading and checked behavior are tracked separately; active and idle roles are not woken just to refresh a version.
 
@@ -99,13 +101,17 @@ Verify the actual available source/version and your own module reads.
 Keep existing roles and work in progress. Check each role at its next
 normal task and retain a scoped receipt; leave idle roles pending.
 Do not interrupt work, broadcast upgrade messages or restart chats.
+Before refreshing a package or marketplace, verify independent old-source
+acceptance; defer updates for cache-dependent or unknown readers.
 ```
 
 The controller reuses the project rules and role index, records a verified target and integrates any needed guidance without replacing local rules. Each role records the entry/modules actually read, version or content identity, task/turn, ownership and limits, and the artifacts/checks it completed. The controller accepts those receipts individually. Partial reads, old versions and unavailable sources stay explicit gaps; an installed plugin does not make all existing chats upgraded.
 
 This workflow is separate from installing a package. Use the host's supported update mechanism when installation changes are authorized, preserve customizations and keep one active source. Explicit-path loading is recorded as such. See the [adoption reference](skills/orchivane/references/adoption.md) for receipt fields and boundaries, and the [isolated exercise](tests/adoption-upgrade.md) for observed behavior and limits.
 
-Package replacement can affect old source paths: the [native 0.4.1 update](tests/codex-041-adoption.md) removed the previous version's cache. It was restored from a verified backup, but continuous availability was not established. If active work requires uninterrupted access to its old source, defer installation to a safe window; the controller can prepare deferred adoption records without replacing the package.
+**Preserve sources before refreshing.** The [0.4.1 update](tests/codex-041-adoption.md) removed the old cache; the [0.4.2 isolated follow-up](tests/cache-continuity.md) reproduced deletion during marketplace refresh itself. Before either refresh or installation, preserve the complete self-contained old source outside managed caches/discovery, verify its files and relative references, and have affected roles actually accept that entry at their next normal task. Keep both operations deferred while a reader still needs the managed path, a pin is unaccepted or cross-project coverage is unknown. Saving a brief or restoring a deleted cache does not provide uninterrupted access. Do not wake roles to clear this gate; existing work continues under its last verified source.
+
+For an older installation, read this procedure from the repository before updating; do not refresh the plugin just to obtain the new guard. The controller can read the new [adoption module](skills/orchivane/references/adoption.md) by its explicit repository path while leaving the installed package unchanged. Record that source accurately.
 
 ### Claude Code plugin
 

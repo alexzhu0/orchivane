@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-23",
+  "kind": "Isolated native CLI cache-continuity experiment, deterministic readers, no native chats",
+  "base_commit": "f1b45702d76e921710213a9398adaa97419cd705",
+  "scope": "Disposable CLI home, local Git marketplace transport, independent project skill snapshot; never update the real installed plugin or send role messages.",
+  "limits": {
+    "native_upgrades": 1,
+    "plugin_installs": 2,
+    "reader_workers": 2,
+    "model_calls": 0,
+    "chat_creations": 0,
+    "chat_messages": 0,
+    "business_provider_calls": 0,
+    "command_timeout_seconds": 45,
+    "total_experiment_timeout_seconds": 180,
+    "max_transport_repairs": 1
+  },
+  "cases": [
+    "Cache-bound/unknown role: installation deferred without sending a message.",
+    "Create independent full skill copy; ordinary-boundary worker actually opens entry and all retained files, records source acceptance.",
+    "One actual CLI old-to-new install while two deterministic workers reopen original cache and retained old source.",
+    "Retained old source hashes and relative references survive; new source version reads succeed; N2 business result checked.",
+    "A corrupted or symlink-dependent retained source is rejected before any upgrade."
+  ],
+  "stop": "Stop on isolation leakage, real-home writes, source-copy/hash failure, unknown target path, command timeout or unexpected concurrent changes; retain failed outputs without relabeling."
+}

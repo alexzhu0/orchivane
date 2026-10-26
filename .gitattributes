@@ -1,0 +1,7 @@
+# Byte-frozen fixtures: the sha256 digests recorded in
+# tests/outputs/v0.4.1-adoption/skill-hashes.json (skills/) and in
+# tests/paired/frozen-manifest.json (paired/) were produced with LF line
+# endings. Force LF on checkout so byte-for-byte replays also pass on
+# Windows checkouts where core.autocrlf is enabled.
+skills/orchivane/** text=auto eol=lf
+tests/paired/** text=auto eol=lf
