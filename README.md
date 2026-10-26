@@ -129,6 +129,12 @@ test ! -e "$HOME/.agents/skills/orchivane" && test ! -L "$HOME/.agents/skills/or
 
 This macOS/Linux example refuses to overwrite an existing file, directory or symlink. Copy the complete [`skills/orchivane`](skills/orchivane/SKILL.md) directory, including `references/` and `agents/`. On Windows, copy it into the user's `.agents/skills/` directory. Older clients using `~/.codex/skills/` need their own discovery check. Preserve local customizations when updating and choose one installation source. See [Codex skill documentation](https://learn.chatgpt.com/docs/build-skills).
 
+Verify the installed copy with one read-only command (one PASS/FAIL line per check, exit code 0 or 1; run it without a path to check the repository copy):
+
+```sh
+python scripts/verify_install.py ~/.agents/skills/orchivane
+```
+
 Version 0.3.1 renamed Session Control to Orchivane. If you installed `session-control`, preserve it and any local modifications outside discovery directories before installing the new name. Historical tests retain their original name and version.
 
 The former 0.3.0 standalone copy was discovered by the CLI but absent from three fresh desktop chats. Its root cause remains unknown. The later 0.3.1 plugin route passed discovery and use; this does not retroactively fix or retest standalone installation. See [compatibility notes](docs/compatibility.md).
@@ -151,13 +157,21 @@ The repository includes `.agents/plugins/marketplace.json`, a portable root `plu
 | Ponytail, Superpowers and related work | [Research](docs/research.md) · [中文](docs/research.zh-CN.md) |
 | Value, tradeoffs and next priorities | [Value assessment](docs/value-assessment.md) · [中文](docs/value-assessment.zh-CN.md) |
 | Results, versions and limitations | [English evidence index](docs/evidence.md) · [Original records, 中文](tests/evaluation.md) |
+| Desktop plugin discovery and use | [Desktop reproduction, 中文](tests/desktop-plugin.md) |
+| Isolated handoff, dependency recovery and legacy receipts | [Handoff recovery, 中文](tests/handoff-recovery.md) |
+| Paired pilot, coordination requests and resource use | [Paired pilot, 中文](tests/paired/README.md) |
+| Real multi-session case (final 19/20, not passed) | [Tool library, 中文](examples/tool-library/README.md) |
+| Native end-to-end reproduction steps | [Native E2E, 中文](tests/native-e2e.md) |
+| Behavioral test conditions and measured boundaries | [Scenarios, 中文](tests/scenarios.md) |
 | Platform support and boundaries | [Compatibility](docs/compatibility.md) |
 | Local checks and language conventions | [Contributing](CONTRIBUTING.md) |
+
+## Language and contribution conventions
+
+English is the default homepage; the top of the page links to the complete Chinese guide. Code identifiers, comments, plugin metadata and maintained skill instructions use English. Respond in the user's preferred language. Research and value documents provide English and Chinese versions. Original Chinese transcripts, fixtures and frozen reports remain in their source language so evidence is not rewritten; the [evidence index](docs/evidence.md) collects results, versions and limitations, and the bounded [bilingual check](tests/bilingual-032.md) retains incomplete and failed observations alongside passes. When contributing, keep both READMEs' installation steps, features and evidence claims in sync to avoid language drift.
 
 ## Boundaries
 
 The skill defines a workflow; the host supplies chat creation, reading, messaging and automation tools. Without those tools, it can prepare files and task briefs but cannot control other chats. An inspection or design request does not authorize new chats, messaging, product fixes or archival. Schedules require a user request.
 
 The native example finished at 19/20 and **failed acceptance**. The paired pilot found no coordination-request reduction. Bounded handoff tests do not prove crash recovery, concurrent safety or archival reliability. See [evidence](docs/evidence.md) for versions and failures; static checks are not behavioral tests or cross-client certification.
-
-Code identifiers, comments, plugin metadata and maintained skill instructions use English. The README and selected design guides provide Chinese counterparts. Respond in the user's preferred language. Original Chinese transcripts, fixtures and frozen reports remain in their source language so evidence is not rewritten; the bounded [bilingual check](tests/bilingual-032.md) retains incomplete and failed observations alongside passes.
