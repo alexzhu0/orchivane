@@ -86,6 +86,44 @@ class VerifyInstallTests(unittest.TestCase):
             '# Setup\n\nC:\\Users\\real-person\\private\n', encoding='utf-8')
         self.assert_fails('personal absolute path', self.root)
 
+    def test_malformed_frontmatter_flow_sequence_fails(self):
+        # Maintainer-reported false pass: `name: [` looks key-shaped but is
+        # not a valid scalar, so every check must not pass.
+        self.write_skill(self.root, skill=('---\nname: [\ndescription: demo\n'
+                                           'metadata:\n  version: "0.4.1"\n---\n'))
+        self.assert_fails('name', self.root)
+
+    def test_invalid_frontmatter_scalar_shapes_fail(self):
+        cases = {
+            'flow-sequence name': ('---\nname: [demo]\ndescription: demo\n'
+                                   'metadata:\n  version: "0.4.1"\n---\n', 'name'),
+            'empty name': ('---\nname:\ndescription: demo\n'
+                           'metadata:\n  version: "0.4.1"\n---\n', 'name'),
+            'empty quoted description': ('---\nname: demo\ndescription: ""\n'
+                                         'metadata:\n  version: "0.4.1"\n---\n', 'description'),
+            'unclosed quoted version': ('---\nname: demo\ndescription: demo\n'
+                                        'metadata:\n  version: "0.4.1\n---\n', 'version'),
+        }
+        for label, (skill, clue) in cases.items():
+            with self.subTest(label=label):
+                self.write_skill(self.root, skill=skill)
+                self.assert_fails(clue, self.root)
+
+    def test_private_link_in_openai_yaml_fails(self):
+        # Synthetic disclosure probe: the maintained agent configuration must
+        # be part of the privacy scan even though it is not Markdown. The
+        # literal is split so the package-wide scan does not flag this file.
+        (self.root / 'agents' / 'openai.yaml').write_text(
+            'interface: {}\n# codex://' + 'threads/123-private\n', encoding='utf-8')
+        self.assert_fails('private thread link', self.root)
+
+    def test_unreadable_reference_reports_named_failure(self):
+        (self.root / 'references' / 'setup.md').write_bytes(b'# Setup\n\xc3\x28\n')
+        result = self.run_check(self.root)
+        self.assertNotEqual(result.returncode, 0, result.stdout)
+        self.assertIn('setup.md: cannot be read as UTF-8', result.stdout)
+        self.assertNotIn('Traceback', result.stderr)
+
     def test_package_root_and_default_cwd_resolution(self):
         nested = Path(self.temp.name) / 'skills' / 'orchivane'
         self.write_skill(nested)

@@ -8,10 +8,14 @@ Usage:
 
 Checks (pure standard library, read-only):
     required files        SKILL.md, agents/openai.yaml and every routed reference exist
-    frontmatter           SKILL.md carries the --- delimited block with name, description and metadata.version
+    frontmatter           SKILL.md carries the --- delimited block with valid plain-scalar
+                          name, description and metadata.version values (a structural check,
+                          not a YAML parser: flow/block indicators and empty values fail)
     relative links        every local Markdown link inside the skill exists and stays inside it
-    private path leaks    no personal paths, private chat/session links or credential-looking tokens
+    private path leaks    no personal paths, private chat/session links or credential-looking
+                          tokens in the skill files, including the maintained agents/openai.yaml
 Prints one PASS/FAIL line per check and a final PASS/FAIL summary; exits 0 or 1.
+Unreadable or non-UTF-8 files produce a named FAIL, never a traceback.
 """
 import argparse
 import re
@@ -60,27 +64,53 @@ def required_files(skill_dir):
     return problems
 
 
+def _read_text(path):
+    try:
+        return path.read_text(encoding='utf-8')
+    except (OSError, UnicodeError):
+        return None
+
+
+def _scalar_value(value):
+    """Structural single-line scalar check, not a YAML parser.
+
+    Accepts non-empty plain scalars and simple single-line quoted scalars.
+    Rejects flow/block indicators, anchors, tags and empty values, so
+    malformed frontmatter such as `name: [` or `name: [demo]` fails instead
+    of passing.
+    """
+    value = value.strip()
+    if not value:
+        return False
+    if value[0] in ('"', "'"):
+        return len(value) > 2 and value[-1] == value[0]
+    return value[0] not in '-?:,[]{}#&*!|>%@`'
+
+
 def frontmatter(skill_dir):
     problems = []
     path = skill_dir / 'SKILL.md'
     if not path.is_file():
         return problems  # reported by the required-files check
-    try:
-        text = path.read_text(encoding='utf-8')
-    except (OSError, UnicodeError):
+    text = _read_text(path)
+    if text is None:
         return ['SKILL.md cannot be read as UTF-8']
     match = re.match(r'\A---[ \t]*\r?\n(.*?)\r?\n---[ \t]*(?:\r?\n|$)', text, re.S)
     if not match:
         return ['missing or unterminated YAML frontmatter (--- ... ---)']
     body = match[1]
-    if not re.search(r'(?m)^name:\s*\S+', body):
-        problems.append('frontmatter must declare a nonempty name:')
-    if not re.search(r'(?m)^description:\s*\S+', body):
-        problems.append('frontmatter must declare a nonempty description:')
+    name_value = re.search(r'(?m)^name:(.*)$', body)
+    if name_value is None or not _scalar_value(name_value.group(1)):
+        problems.append('frontmatter must declare a valid plain name: value')
+    description_value = re.search(r'(?m)^description:(.*)$', body)
+    if description_value is None or not _scalar_value(description_value.group(1)):
+        problems.append('frontmatter must declare a valid plain description: value')
     if not re.search(r'(?m)^metadata:\s*$', body):
         problems.append('frontmatter must contain a metadata: block')
-    elif not re.search(r'(?m)^\s+version:\s*\S', body):
-        problems.append('metadata must declare version:')
+    else:
+        version_value = re.search(r'(?m)^\s+version:(.*)$', body)
+        if version_value is None or not _scalar_value(version_value.group(1)):
+            problems.append('metadata must declare a valid version: value')
     return problems
 
 
@@ -99,7 +129,10 @@ def relative_links(skill_dir):
     for path in text_files(skill_dir):
         if not path.is_file():
             continue
-        text = path.read_text(encoding='utf-8')
+        text = _read_text(path)
+        if text is None:
+            problems.append(f'{path.name}: cannot be read as UTF-8')
+            continue
         for target in link_targets(text):
             target = target.strip('<>')
             try:
@@ -119,10 +152,17 @@ def relative_links(skill_dir):
 
 def private_leaks(skill_dir):
     problems = []
-    for path in text_files(skill_dir):
+    # agents/openai.yaml is a required, maintained configuration file; it is
+    # not Markdown (so it is absent from text_files()), but it still joins
+    # the disclosure scan.
+    files = text_files(skill_dir) + [skill_dir / 'agents/openai.yaml']
+    for path in files:
         if not path.is_file():
             continue
-        text = path.read_text(encoding='utf-8')
+        text = _read_text(path)
+        if text is None:
+            problems.append(f'{path.name}: cannot be read as UTF-8')
+            continue
         for label, pattern in PRIVATE.items():
             for match in pattern.finditer(text):
                 line = text.count('\n', 0, match.start()) + 1

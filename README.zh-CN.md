@@ -131,6 +131,12 @@ mkdir -p "$HOME/.agents/skills"
 test ! -e "$HOME/.agents/skills/orchivane" && test ! -L "$HOME/.agents/skills/orchivane" && cp -R skills/orchivane "$HOME/.agents/skills/orchivane"
 ```
 
+安装后可用一条只读命令核验副本（逐项输出 PASS/FAIL，退出码 0/1；不带路径时核验仓库内的打包副本）：
+
+```sh
+python scripts/verify_install.py ~/.agents/skills/orchivane
+```
+
 目录必须包含 `references/` 与 `agents/`，不要只复制 SKILL.md。Windows 可把整个目录复制到用户目录下 `.agents/skills/`。旧客户端使用 `~/.codex/skills/` 的安装须实际核验发现能力。选择一个安装来源；更新前核对其路径和版本，保留本地定制。目录规则依据 [Codex 技能文档](https://learn.chatgpt.com/docs/build-skills)。
 
 0.3.1 更名自 Session Control，调用入口改为 `$orchivane`。已有 `session-control` 安装者，先将旧目录及本地定制备份到技能扫描目录之外，再安装新目录，避免两个入口同时生效。历史测试与冻结示例保留原名，不能把更名当作重新验证。
