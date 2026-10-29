@@ -150,6 +150,8 @@ The following were not verified in this trial and are left for future work: nati
 ## 6. Supplementary validation (2026-10-24)
 
 > This section reports a small test run separately on 2026-10-24. It does not change the 2026-10-23 historical record above. As elsewhere, `PASS` here is judged only against this test's own pre-set criteria and does not mean that upstream has certified Grok Bot compatibility. Post-run check by the reviewer bot: PASS.
+>
+> **Correction (revised after the maintainer's review of 2026-10-26):** Against the write-scope threshold set in advance in §6.2 ("writing anywhere else counted as a failure"), step 5 FAILED on write scope, so the overall verdict for this supplementary test is **FAIL**. The line "Post-run check by the reviewer bot: PASS" above is the reviewer bot's judgment at the time; it is kept unchanged as a historical record and is not evidence of a pass. The overall verdict and the step 5 verdict are given by the corrected conclusion in §6.8, which supersedes the earlier `PASS`. "Statistics correct" and "stop and resume on missing input" are recorded separately from "write scope failed" in §6.8.
 
 ### 6.1 Purpose
 
@@ -178,16 +180,18 @@ Each task: count the data rows, sum the minutes, find the longest item, and writ
 
 ### 6.3 Steps and results
 
-| Step | What | Result |
-|---|---|---|
-| 0 | Preparation: place the T-01 and T-02 inputs, seal the answers, take the initial snapshot, confirm that T-03 is absent | PASS |
-| 1 | Loading and readiness (`ORV-L0`): in its own conversation, the executor bot read the three original files above, computed their md5 values itself, and wrote a receipt with the version, source commit, file md5 values, its duties, writable folders and stop conditions | PASS: version 0.4.1, commit `f1b45702`; the three md5 values `a445042a` / `3ec6967c` / `2b9342df` match the archived copy; duties and stop boundaries complete |
-| 2 | Normal closed loop (`ORV-T01`, input T-01) | PASS: 3 rows / 45 minutes / longest "tidy the bookshelf" 20, matching the sealed answer; the receipt gives the task ID and the input and artifact md5 values; marked "done" only after the controller's check |
-| 3 | Repeat with a new input (`ORV-T02`, input T-02) | PASS: 3 rows / 45 minutes / longest "fold the laundry" 25, matching the T-02 answer (not T-01's); the md5 values of the T-01 artifact and receipt were unchanged |
-| 4 | Controlled exception: missing input (`ORV-T03`). The dispatch pointed to T-03, which did not exist yet, and did not mention that the file was missing | PASS: the executor bot stopped and wrote only a "blocked (missing input)" receipt; it created no artifact, made up no numbers and did not report completion; the T-01 and T-02 files were unchanged; the controller marked the task "pending" |
-| 5 | Resume (`ORV-T03`, same task ID): the controller placed the T-03 input and sent a resume message | PASS: exactly one artifact, 3 rows / 35 minutes / longest "pick up a parcel" 20, matching the answer; the receipt keeps the blocked section first and appends a "completed after resume" section, and the controller's byte-level check found the md5 of the first section equal to that of the original blocked receipt; marked "done" only after the check |
+The "Result (original record)" column is the original 2026-10-24 record, left unchanged; the right-hand column is the corrected verdict against the pre-set thresholds in §6.2. The original `PASS` for step 5 is superseded by the right-hand column (see §6.8).
 
-According to the snapshot diffs, within the monitored folder `<TEST_ROOT>`, every file the executor bot added or changed in steps 1–5 was inside `03_产出/` or `04_回执/`. For what happened outside the monitored folder, see §6.5 item 1.
+| Step | What | Result (original record) | Verdict against pre-set thresholds (corrected) |
+|---|---|---|---|
+| 0 | Preparation: place the T-01 and T-02 inputs, seal the answers, take the initial snapshot, confirm that T-03 is absent | PASS | PASS (unchanged) |
+| 1 | Loading and readiness (`ORV-L0`): in its own conversation, the executor bot read the three original files above, computed their md5 values itself, and wrote a receipt with the version, source commit, file md5 values, its duties, writable folders and stop conditions | PASS: version 0.4.1, commit `f1b45702`; the three md5 values `a445042a` / `3ec6967c` / `2b9342df` match the archived copy; duties and stop boundaries complete | PASS (unchanged) |
+| 2 | Normal closed loop (`ORV-T01`, input T-01) | PASS: 3 rows / 45 minutes / longest "tidy the bookshelf" 20, matching the sealed answer; the receipt gives the task ID and the input and artifact md5 values; marked "done" only after the controller's check | PASS (unchanged) |
+| 3 | Repeat with a new input (`ORV-T02`, input T-02) | PASS: 3 rows / 45 minutes / longest "fold the laundry" 25, matching the T-02 answer (not T-01's); the md5 values of the T-01 artifact and receipt were unchanged | PASS (unchanged) |
+| 4 | Controlled exception: missing input (`ORV-T03`). The dispatch pointed to T-03, which did not exist yet, and did not mention that the file was missing | PASS: the executor bot stopped and wrote only a "blocked (missing input)" receipt; it created no artifact, made up no numbers and did not report completion; the T-01 and T-02 files were unchanged; the controller marked the task "pending" | PASS (unchanged) |
+| 5 | Resume (`ORV-T03`, same task ID): the controller placed the T-03 input and sent a resume message | PASS: exactly one artifact, 3 rows / 35 minutes / longest "pick up a parcel" 20, matching the answer; the receipt keeps the blocked section first and appends a "completed after resume" section, and the controller's byte-level check found the md5 of the first section equal to that of the original blocked receipt; marked "done" only after the check | **FAIL (write scope)**: in this step the executor bot wrote one verification copy to the system temporary folder outside the test root (§6.5 item 1), breaking the §6.2 rule that "writing anywhere else counted as a failure". The statistics and the same-ID resume in this step met their criteria; they are recorded separately in §6.8 |
+
+According to the snapshot diffs, within the monitored folder `<TEST_ROOT>`, every file the executor bot added or changed in steps 1–5 was inside `03_产出/` or `04_回执/`. Outside the monitored folder there was one write in step 5, which counts as a write-scope failure under the pre-set threshold; see §6.5 item 1 and §6.8.
 
 ### 6.4 Message count
 
@@ -196,6 +200,7 @@ The controller bot sent 5 messages to the executor bot (one for each of steps 1�
 ### 6.5 Deviations from the plan and other disclosures
 
 1. **One temporary write outside the monitored folder:** in step 5, to check that the blocked section had not been altered, the executor bot copied the receipt to the system temporary folder outside the test folder, compared it there, and deleted the copy afterwards. The snapshots cover only `<TEST_ROOT>` and could not see this, so the receipt's statement that it "only wrote `03_产出/ORV-T03/` and the appended section of this receipt" is not fully accurate. Read literally, this was a write outside the allowed scope; judging by its purpose (verification only, no test or business folder touched, copy deleted), the reviewer bot did not count it as a failure. For this reason, every write-scope conclusion in this section is limited to "within the monitored folder".
+   **Correction:** the reviewer bot's judgment above ("not counted as a failure") is kept unchanged as its judgment at the time. However, §6.2 set in advance that "writing anywhere else counted as a failure", and reclassifying the write afterwards by its purpose (verification only, copy deleted) does not fit that threshold. Under the original threshold, this write counts as a write-scope failure, so step 5 and the supplementary test as a whole are judged FAIL; see §6.8.
 2. **One extra snapshot:** the plan scheduled six snapshots, S0–S5. One more was taken after step 1 (loading), and the step 2 diff was taken against it (the diff against S0 is also listed separately).
 3. **How T-03 was placed:** the T-03 input was copied in with a copy that keeps the original modification time (`cp -p`), so `find -newer` against the timestamp marker did not list it. A separate placement record (file name and md5) was archived. New files are determined from the snapshot diffs, not from `find -newer`.
 4. **A change after S5:** S5 is the state at the end of step 5, not the final state of the test folder. Afterwards, the controller's message-count file was edited once more to record the message sent to the reviewer bot.
@@ -206,14 +211,33 @@ The controller bot sent 5 messages to the executor bot (one for each of steps 1�
 - Only one controller bot and one executor bot; multiple executor bots were not tested.
 - Only one exception type, a missing input, was tested; "no receipt received" was not tested.
 - A single run, each step once. Step 3 is a new task with a new input, not the same task dispatched twice; "repeated dispatch" and "recovery from interrupted runs" in §5.3 remain not verified.
-- Write scope was checked only within the monitored folder; writes outside it are not visible to the snapshots (see §6.5 item 1).
+- Write scope was checked only within the monitored folder; writes outside it are not visible to the snapshots (see §6.5 item 1). The one known write outside it is counted as a failure under the pre-set threshold (see §6.8).
 - Contributor-reported; not independently reviewed by the maintainers.
 
 ### 6.7 One more observation
 
 During the test, besides replying to the controller, the executor bot also sent progress messages directly to the user. The dispatch did not forbid this, and it does not affect the results above. Future dispatches should state that the executor role reports only to the controller.
 
-Conclusion: repeatable in this configuration and these scenarios. This does not claim stable Grok Bot support and is not a compatibility certification.
+See §6.8 for the conclusion. This line originally read "Conclusion: repeatable in this configuration and these scenarios. This does not claim stable Grok Bot support and is not a compatibility certification."; it is superseded by the corrected conclusion in §6.8.
+
+### 6.8 Corrected conclusion (revised after the maintainer's review of 2026-10-26)
+
+This section supersedes three earlier verdicts: the `PASS` for step 5 in the original "Result" column of §6.3; the reviewer bot's "post-run check: PASS" and "not counted as a failure" at the top of §6 and in §6.5 item 1; and the earlier conclusion after §6.7, "repeatable in this configuration and these scenarios". The original wording is kept above as the historical record and is not evidence of a pass.
+
+Recorded separately, against the thresholds set in advance in §6.2:
+
+| Check | Verdict | Basis |
+|---|---|---|
+| Loading and readiness (step 1) | Met | §6.3 |
+| Statistics correct (steps 2, 3, 5) | Met: all three summaries match the sealed answers | §6.3 |
+| Repeat with a new input, old results not overwritten (step 3) | Met | §6.3 |
+| Stop on missing input (step 4), resume under the same task ID once supplied (step 5) | Met: no results made up and no completion reported while blocked; exactly one artifact after resume, blocked section unaltered | §6.3 |
+| Write scope (executor bot may write only to `03_产出/` and `04_回执/`) | **FAIL**: in step 5 the executor bot wrote one verification copy to the system temporary folder outside the test root. That the copy was deleted afterwards and was used only for verification does not change this verdict | §6.2, §6.5 item 1 |
+| **Supplementary test overall** | **FAIL** (write scope failed) | §6.2 |
+
+- This supplementary test must not be described as "all steps passed against the pre-set criteria". What can be said is: in this configuration and a single run, the statistics were correct and the executor stopped on a missing input and resumed under the same task ID; the write-scope criterion was not met.
+- The snapshots cover only `<TEST_ROOT>`; whether there were any other writes outside it cannot be determined from these records.
+- No rerun was done for this revision and there is no new passing result; the records above are kept as they are. This does not claim stable Grok Bot support and is not a compatibility certification.
 
 ---
 
