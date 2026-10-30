@@ -135,6 +135,12 @@ test ! -e "$HOME/.agents/skills/orchivane" && test ! -L "$HOME/.agents/skills/or
 
 This macOS/Linux example refuses to overwrite an existing file, directory or symlink. Copy the complete [`skills/orchivane`](skills/orchivane/SKILL.md) directory, including `references/` and `agents/`. On Windows, copy it into the user's `.agents/skills/` directory. Older clients using `~/.codex/skills/` need their own discovery check. Preserve local customizations when updating and choose one installation source. See [Codex skill documentation](https://learn.chatgpt.com/docs/build-skills).
 
+Verify the installed copy with one read-only command (one PASS/FAIL line per check, exit code 0 or 1; run it without a path to check the repository copy):
+
+```sh
+python scripts/verify_install.py ~/.agents/skills/orchivane
+```
+
 Version 0.3.1 renamed Session Control to Orchivane. If you installed `session-control`, preserve it and any local modifications outside discovery directories before installing the new name. Historical tests retain their original name and version.
 
 The former 0.3.0 standalone copy was discovered by the CLI but absent from three fresh desktop chats. Its root cause remains unknown. The later 0.3.1 plugin route passed discovery and use; this does not retroactively fix or retest standalone installation. See [compatibility notes](docs/compatibility.md).
