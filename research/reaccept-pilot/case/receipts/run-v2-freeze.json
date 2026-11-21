@@ -1,0 +1,13 @@
+{
+  "version": "run-v2",
+  "design": "design-v2",
+  "research": "research-v1",
+  "root": "snapshots/run-v2",
+  "files": {
+    "design/pilot.md": "7d3617c050222e080661ad1cd8bae67ea09eb5a94b3cbf06c67e86871587f9fc",
+    "design/inventory.csv": "e77cda140144c980a69c850c29ed3450c03d9e0cb0eacdff7620609db76506d0",
+    "snapshots/research-v1/sources.md": "a678e82b6ddd48e57d003e42bba7177122c0059a40046c93f6ca8b97a9980456",
+    "receipts/research-freeze.json": "3222904ca4c737c23c731aa33d238b4ea29e5017a1996e97bb724d7eec0b7c3a"
+  },
+  "relative_reference_check": "all two ../ dependencies resolve within bundle; original v1 unchanged"
+}

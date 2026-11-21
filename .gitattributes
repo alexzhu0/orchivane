@@ -5,3 +5,4 @@
 # Windows checkouts where core.autocrlf is enabled.
 skills/orchivane/** text=auto eol=lf
 tests/paired/** text=auto eol=lf
+research/reaccept-pilot/case/** text=auto eol=lf

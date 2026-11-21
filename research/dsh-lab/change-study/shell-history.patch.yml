@@ -1,0 +1,7 @@
+# Disable interactive history expansion before model-authored shell commands.
+# Preserve sdk-minimal's terminal timeout; controller still bounds pending tools.
+- id: terminal-bash
+  name: '@deepseek-ai/dsh-terminal-bash'
+  config:
+    timeoutMs: 300000
+    shellArgs: ['--noprofile', '--norc', '+H', '-i']

@@ -165,6 +165,7 @@ python scripts/verify_install.py ~/.agents/skills/orchivane
 | 桌面插件发现、启用与使用复现 | [桌面验收](tests/desktop-plugin.md) |
 | 隔离接班、依赖恢复、旧回执及重复派工 | [接班恢复实验](tests/handoff-recovery.md) |
 | 单会话对照、协调请求与资源用量 | [配对试跑及复现](tests/paired/README.md) |
+| DSH 需求变更实验与重新验收回放 | [研究归档](research/README.md) |
 | 当前标准、平台支持与边界 | [兼容性说明](docs/compatibility.md) |
 | 真实多会话案例（最终19/20，未通过） | [借物小站完整记录](examples/tool-library/README.md) |
 | 原生端到端实验的复现步骤 | [native-e2e.md](tests/native-e2e.md) |

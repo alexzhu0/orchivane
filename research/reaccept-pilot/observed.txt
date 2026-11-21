@@ -1,0 +1,8 @@
+RECHECK design/pilot.md
+RECHECK design/inventory.csv
+SAME BYTES snapshots/research-v1/sources.md
+SAME BYTES receipts/research-freeze.json
+A references: {'../snapshots/research-v1/sources.md': False, '../receipts/research-freeze.json': False}
+B references: {'../snapshots/research-v1/sources.md': True, '../receipts/research-freeze.json': True}
+CSV changed cells: 20 columns: ['notes']
+Current snapshot verified. Business acceptance requires independent review.

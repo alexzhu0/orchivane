@@ -1,0 +1,8 @@
+.env
+.deepseek-api-key
+.venv-dsh/
+node_modules/
+__pycache__/
+runtime-home/
+change-study/runs/
+change-study/*preflight*.json

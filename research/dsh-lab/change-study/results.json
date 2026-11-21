@@ -1,0 +1,399 @@
+{
+  "scope": "Selected protocol 4.x observations. One record per attempt, with private trace and environment fields omitted.",
+  "trials": [
+    {
+      "date": "20261117",
+      "session_group": "c43860",
+      "protocol": "4.0",
+      "scenario": "pagination",
+      "model": "deepseek-v4-flash",
+      "runtime": "npm DSH 0.2.1-rc.3",
+      "max_output_tokens_per_request": 8192,
+      "arm": "native",
+      "status": "completed",
+      "valid": true,
+      "same_turn_consumed": true,
+      "succeeded": true,
+      "seconds": 62.238076,
+      "final_checks": {
+        "core_snapshot": true,
+        "api_snapshot": true,
+        "client_snapshot": true,
+        "auth": true,
+        "validation": true,
+        "core_validation": true,
+        "empty": true,
+        "input_immutable": true,
+        "account_filter": true
+      },
+      "record_schema_valid": null,
+      "stop_reason": "completed",
+      "changed_artifacts": [
+        "api.py",
+        "client.py",
+        "core.py",
+        "test_orders.py"
+      ],
+      "invalidated_decision_count": 0,
+      "tokens": {
+        "inputTokens": 1922,
+        "outputTokens": 9104,
+        "cacheReadTokens": 12928,
+        "cacheWriteTokens": 0,
+        "totalTokens": 23954
+      }
+    },
+    {
+      "date": "20261117",
+      "session_group": "636bac",
+      "protocol": "4.0",
+      "scenario": "pagination",
+      "model": "deepseek-v4-flash",
+      "runtime": "npm DSH 0.2.1-rc.3",
+      "max_output_tokens_per_request": 8192,
+      "arm": "dependency_record",
+      "status": "incomplete",
+      "valid": true,
+      "same_turn_consumed": true,
+      "succeeded": false,
+      "seconds": 67.736576,
+      "final_checks": {
+        "core_snapshot": false,
+        "api_snapshot": false,
+        "client_snapshot": false,
+        "auth": false,
+        "validation": false,
+        "core_validation": true,
+        "empty": false,
+        "input_immutable": false,
+        "account_filter": false
+      },
+      "record_schema_valid": false,
+      "stop_reason": "max-tokens",
+      "changed_artifacts": [],
+      "invalidated_decision_count": 5,
+      "tokens": {
+        "inputTokens": 2215,
+        "outputTokens": 10834,
+        "cacheReadTokens": 4992,
+        "cacheWriteTokens": 0,
+        "totalTokens": 18041
+      }
+    },
+    {
+      "date": "20261117",
+      "session_group": "f8375c",
+      "protocol": "4.0",
+      "scenario": "pagination",
+      "model": "deepseek-v4-flash",
+      "runtime": "npm DSH 0.2.1-rc.3",
+      "max_output_tokens_per_request": 8192,
+      "arm": "native",
+      "status": "completed",
+      "valid": true,
+      "same_turn_consumed": true,
+      "succeeded": true,
+      "seconds": 49.687845,
+      "final_checks": {
+        "core_snapshot": true,
+        "api_snapshot": true,
+        "client_snapshot": true,
+        "auth": true,
+        "validation": true,
+        "core_validation": true,
+        "empty": true,
+        "input_immutable": true,
+        "account_filter": true
+      },
+      "record_schema_valid": null,
+      "stop_reason": "completed",
+      "changed_artifacts": [
+        "api.py",
+        "client.py",
+        "core.py",
+        "test_orders.py"
+      ],
+      "invalidated_decision_count": 0,
+      "tokens": {
+        "inputTokens": 1224,
+        "outputTokens": 7932,
+        "cacheReadTokens": 11392,
+        "cacheWriteTokens": 0,
+        "totalTokens": 20548
+      }
+    },
+    {
+      "date": "20261117",
+      "session_group": "394ad0",
+      "protocol": "4.0",
+      "scenario": "pagination",
+      "model": "deepseek-v4-flash",
+      "runtime": "npm DSH 0.2.1-rc.3",
+      "max_output_tokens_per_request": 8192,
+      "arm": "dependency_record",
+      "status": "incomplete",
+      "valid": true,
+      "same_turn_consumed": true,
+      "succeeded": false,
+      "seconds": 86.101498,
+      "final_checks": {
+        "core_snapshot": false,
+        "api_snapshot": false,
+        "client_snapshot": false,
+        "auth": false,
+        "validation": false,
+        "core_validation": false,
+        "empty": false,
+        "input_immutable": false,
+        "account_filter": false
+      },
+      "record_schema_valid": false,
+      "stop_reason": "max-tokens",
+      "changed_artifacts": [],
+      "invalidated_decision_count": 5,
+      "tokens": {
+        "inputTokens": 938,
+        "outputTokens": 13138,
+        "cacheReadTokens": 7552,
+        "cacheWriteTokens": 0,
+        "totalTokens": 21628
+      }
+    },
+    {
+      "date": "20261118",
+      "session_group": "bb77ad",
+      "protocol": "4.1",
+      "scenario": "pagination",
+      "model": "deepseek-v4-flash",
+      "runtime": "npm DSH 0.2.1-rc.3",
+      "max_output_tokens_per_request": 8192,
+      "arm": "native",
+      "status": "completed",
+      "valid": true,
+      "same_turn_consumed": true,
+      "succeeded": true,
+      "seconds": 64.475479,
+      "final_checks": {
+        "core_snapshot": true,
+        "api_snapshot": true,
+        "client_snapshot": true,
+        "auth": true,
+        "validation": true,
+        "core_validation": true,
+        "empty": true,
+        "input_immutable": true,
+        "account_filter": true
+      },
+      "record_schema_valid": null,
+      "stop_reason": "completed",
+      "changed_artifacts": [
+        "api.py",
+        "client.py",
+        "core.py",
+        "test_orders.py"
+      ],
+      "invalidated_decision_count": 0,
+      "tokens": {
+        "inputTokens": 2454,
+        "outputTokens": 9441,
+        "cacheReadTokens": 44160,
+        "cacheWriteTokens": 0,
+        "totalTokens": 56055
+      }
+    },
+    {
+      "date": "20261118",
+      "session_group": "c68159",
+      "protocol": "4.1",
+      "scenario": "pagination",
+      "model": "deepseek-v4-flash",
+      "runtime": "npm DSH 0.2.1-rc.3",
+      "max_output_tokens_per_request": 8192,
+      "arm": "dependency_record",
+      "status": "completed",
+      "valid": true,
+      "same_turn_consumed": true,
+      "succeeded": true,
+      "seconds": 89.203832,
+      "final_checks": {
+        "core_snapshot": true,
+        "api_snapshot": true,
+        "client_snapshot": true,
+        "auth": true,
+        "validation": true,
+        "core_validation": true,
+        "empty": true,
+        "input_immutable": true,
+        "account_filter": true
+      },
+      "record_schema_valid": true,
+      "stop_reason": "completed",
+      "changed_artifacts": [
+        "api.py",
+        "client.py",
+        "core.py",
+        "decisions.json",
+        "test_orders.py"
+      ],
+      "invalidated_decision_count": 4,
+      "tokens": {
+        "inputTokens": 2845,
+        "outputTokens": 12571,
+        "cacheReadTokens": 67712,
+        "cacheWriteTokens": 0,
+        "totalTokens": 83128
+      }
+    },
+    {
+      "date": "20261118",
+      "session_group": "f347c6",
+      "protocol": "4.2",
+      "scenario": "local-export",
+      "model": "deepseek-v4-flash",
+      "runtime": "npm DSH 0.2.1-rc.3",
+      "max_output_tokens_per_request": 8192,
+      "arm": "dependency_record",
+      "status": "completed",
+      "valid": true,
+      "same_turn_consumed": true,
+      "succeeded": true,
+      "seconds": 128.968428,
+      "final_checks": {
+        "live_core_current_offset": true,
+        "live_api_current_offset": true,
+        "live_api_account_and_size": true,
+        "export_account_and_size": true,
+        "export_pages_survive_inserts": true,
+        "export_interleaved_traversals": true,
+        "export_worker_survives_inserts": true
+      },
+      "record_schema_valid": true,
+      "stop_reason": "completed",
+      "changed_artifacts": [
+        "decisions.json",
+        "export_api.py",
+        "test_orders.py"
+      ],
+      "invalidated_decision_count": 5,
+      "tokens": {
+        "inputTokens": 4717,
+        "outputTokens": 19786,
+        "cacheReadTokens": 120320,
+        "cacheWriteTokens": 0,
+        "totalTokens": 144823
+      }
+    },
+    {
+      "date": "20261118",
+      "session_group": "f347c6",
+      "protocol": "4.2",
+      "scenario": "local-export",
+      "model": "deepseek-v4-flash",
+      "runtime": "npm DSH 0.2.1-rc.3",
+      "max_output_tokens_per_request": 8192,
+      "arm": "native",
+      "status": "completed",
+      "valid": true,
+      "same_turn_consumed": true,
+      "succeeded": true,
+      "seconds": 84.793887,
+      "final_checks": {
+        "live_core_current_offset": true,
+        "live_api_current_offset": true,
+        "live_api_account_and_size": true,
+        "export_account_and_size": true,
+        "export_pages_survive_inserts": true,
+        "export_interleaved_traversals": true,
+        "export_worker_survives_inserts": true
+      },
+      "record_schema_valid": null,
+      "stop_reason": "completed",
+      "changed_artifacts": [
+        "export_api.py",
+        "test_orders.py"
+      ],
+      "invalidated_decision_count": 0,
+      "tokens": {
+        "inputTokens": 2654,
+        "outputTokens": 13649,
+        "cacheReadTokens": 47104,
+        "cacheWriteTokens": 0,
+        "totalTokens": 63407
+      }
+    },
+    {
+      "date": "20261121",
+      "session_group": "f63a1a",
+      "protocol": "4.2",
+      "scenario": "local-export",
+      "model": "deepseek-v4-flash",
+      "runtime": "npm DSH 0.2.1-rc.3",
+      "max_output_tokens_per_request": 8192,
+      "arm": "dependency_record",
+      "status": "completed",
+      "valid": true,
+      "same_turn_consumed": true,
+      "succeeded": true,
+      "seconds": 116.704434,
+      "final_checks": {
+        "live_core_current_offset": true,
+        "live_api_current_offset": true,
+        "live_api_account_and_size": true,
+        "export_account_and_size": true,
+        "export_pages_survive_inserts": true,
+        "export_interleaved_traversals": true,
+        "export_worker_survives_inserts": true
+      },
+      "record_schema_valid": true,
+      "stop_reason": "completed",
+      "changed_artifacts": [
+        "decisions.json",
+        "export_api.py",
+        "test_orders.py"
+      ],
+      "invalidated_decision_count": 5,
+      "tokens": {
+        "inputTokens": 3871,
+        "outputTokens": 17335,
+        "cacheReadTokens": 117376,
+        "cacheWriteTokens": 0,
+        "totalTokens": 138582
+      }
+    },
+    {
+      "date": "20261121",
+      "session_group": "f63a1a",
+      "protocol": "4.2",
+      "scenario": "local-export",
+      "model": "deepseek-v4-flash",
+      "runtime": "npm DSH 0.2.1-rc.3",
+      "max_output_tokens_per_request": 8192,
+      "arm": "native",
+      "status": "invalid",
+      "valid": false,
+      "same_turn_consumed": false,
+      "succeeded": false,
+      "seconds": 41.110219,
+      "final_checks": {
+        "live_core_current_offset": true,
+        "live_api_current_offset": true,
+        "live_api_account_and_size": true,
+        "export_account_and_size": true,
+        "export_pages_survive_inserts": true,
+        "export_interleaved_traversals": true,
+        "export_worker_survives_inserts": true
+      },
+      "record_schema_valid": null,
+      "stop_reason": "initial_checkpoint_failed",
+      "changed_artifacts": [],
+      "invalidated_decision_count": 0,
+      "tokens": {
+        "inputTokens": 1927,
+        "outputTokens": 5967,
+        "cacheReadTokens": 16768,
+        "cacheWriteTokens": 0,
+        "totalTokens": 24662
+      }
+    }
+  ]
+}

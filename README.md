@@ -166,6 +166,7 @@ The repository includes `.agents/plugins/marketplace.json`, a portable root `plu
 | Desktop plugin discovery and use | [Desktop reproduction, 中文](tests/desktop-plugin.md) |
 | Isolated handoff, dependency recovery and legacy receipts | [Handoff recovery, 中文](tests/handoff-recovery.md) |
 | Paired pilot, coordination requests and resource use | [Paired pilot, 中文](tests/paired/README.md) |
+| DSH requirement changes and acceptance replay | [Research archive](research/README.md) |
 | Real multi-session case (final 19/20, not passed) | [Tool library, 中文](examples/tool-library/README.md) |
 | Native end-to-end reproduction steps | [Native E2E, 中文](tests/native-e2e.md) |
 | Behavioral test conditions and measured boundaries | [Scenarios, 中文](tests/scenarios.md) |
